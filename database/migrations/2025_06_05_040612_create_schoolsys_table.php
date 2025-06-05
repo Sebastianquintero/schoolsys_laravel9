@@ -74,7 +74,7 @@ return new class extends Migration {
 
         Schema::create('mensajes', function (Blueprint $table) {
             $table->id('id_mensaje');
-            $table->unsignedBigInteger('Remitente');
+            $table->unsignedBigInteger('remitente');
             $table->unsignedBigInteger('destinatario');
             $table->string('asunto', 150);
             $table->text('contenido');
@@ -82,7 +82,7 @@ return new class extends Migration {
             $table->dateTime('fecha_envio');
             $table->string('archivo_adjunto', 255)->nullable();
 
-            $table->foreign('Remitente')->references('id_usuario')->on('usuarios');
+            $table->foreign('remitente')->references('id_usuario')->on('usuarios');
             $table->foreign('destinatario')->references('id_usuario')->on('usuarios');
         });
 
