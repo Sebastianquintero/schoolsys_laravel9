@@ -1,0 +1,71 @@
+/* =================== GENERAL STYLES =================== */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* =================== FORMULARIO DE INFORMACIÓN PERSONAL =================== */
+.profile-form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 900px;
+}
+
+.profile-form h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2a7b2e;
+    text-align: center;
+}
+
+/* =================== CAMPOS DEL FORMULARIO =================== */
+.profile-form label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.profile-form input,
+.profile-form select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    transition: 0.3s ease;
+    font-size: 16px;
+}
+
+.profile-form input[readonly],
+.profile-form select[disabled] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Estilo para el botón de archivo */
+.profile-form input[type="file"] {
+    padding: 5px;
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* =================== RESPONSIVE DESIGN =================== */
+@media (max-width: 768px) {
+    .profile-form {
+        width: 95%;
+    }
+}
+select::after {
+    content: ""; /* Elimina si existe */
+}
+.select-wrapper + .select-wrapper {
+    display: none !important;
+}
+

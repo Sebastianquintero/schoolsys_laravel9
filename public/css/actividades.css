@@ -1,0 +1,114 @@
+/* =================== MEJORA GENERAL DEL FORMATO =================== */
+.activities-list {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* =================== FILTROS =================== */
+.activities-list .row {
+    margin-bottom: 15px;
+}
+
+.activities-list label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.activities-list select,
+.activities-list input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* =================== TABLA =================== */
+.table-striped {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background: #099204;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* =================== ESTILOS PARA ESTADO =================== */
+.badge {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.badge-warning {
+    background: #ffc107;
+    color: #000;
+}
+
+.badge-success {
+    background: #28a745;
+    color: #fff;
+}
+
+/* =================== BOTONES =================== */
+.btn {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.btn-primary {
+    background: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-success {
+    background: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+    .table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+    .table td {
+        display: block;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+}

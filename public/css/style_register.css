@@ -1,0 +1,95 @@
+/* Fondo ajustado para pantalla completa */
+body.registro_usuario {
+    background: url('../img/login_school.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor del formulario - Más ancho y centrado */
+.registro_usuario .form-container2 {
+    background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    width: 90%;
+    max-width: 750px; /* Se asegura de que ocupe más espacio */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ajustar diseño en dos columnas */
+.registro_usuario .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Distribuir campos en dos columnas */
+.registro_usuario .form-group {
+    width: 48%; /* Cada campo ocupa casi la mitad del contenedor */
+    margin-bottom: 15px;
+}
+
+/* Asegurar que algunos campos ocupen el ancho completo */
+.registro_usuario .form-group.full-width {
+    width: 100%;
+}
+
+/* Ajustar inputs */
+.registro_usuario .form-control {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Ajustar botones */
+.registro_usuario button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.registro_usuario button:hover {
+    background-color: #218838;
+}
+
+/* Cambios en títulos */
+.registro_usuario h2 {
+    font-size: 28px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Labels y enlaces */
+.registro_usuario label, 
+.registro_usuario a {
+    color: white;
+    font-size: 16px;
+}
+
+/* Responsivo: en pantallas pequeñas, todos los campos se ven en una columna */
+@media (max-width: 768px) {
+    .registro_usuario .form-group {
+        width: 100%;
+    }
+}
+/* Evita que el formulario quede oculto debajo del navbar fijo */
+.registro_usuario {
+    padding-top: 150px; /* Ajusta según la altura del navbar */
+}

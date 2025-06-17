@@ -1,0 +1,94 @@
+/* ==================== HEADER ==================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Mantener el encabezado fijo */
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== BODY & BACKGROUND ==================== */
+body.welcome {
+    margin: 0;
+    padding-top: 90px; /* Evita que el contenido se superponga con el header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url('../img/login_school.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ==================== CONTENEDOR DE MÓDULOS ==================== */
+.container-modulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* ==================== ESTILOS DE LAS TARJETAS ==================== */
+.boton_modulo {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.boton_modulo:hover {
+    background-color: rgba(0, 123, 255, 0.9);
+    transform: translateY(-5px);
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+}
+
+.boton_modulo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.boton_modulo span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.boton_modulo:hover span {
+    color: #fff;
+}
+
+.boton_modulo.disabled {
+    pointer-events: none; /* Desactiva clics */
+    opacity: 0.5; /* Hace que se vea deshabilitado */
+    filter: grayscale(50%); /* Da un efecto de módulo bloqueado */
+}
+
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    .container-modulos {
+        grid-template-columns: repeat(2, 1fr);
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-modulos {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
