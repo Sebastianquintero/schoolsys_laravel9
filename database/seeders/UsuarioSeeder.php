@@ -13,7 +13,13 @@ class UsuarioSeeder extends Seeder
     public function run(): void
     {
         DB::table('roles')->insert([
-            
+            [
+                'id_rol' => 1,
+                'nombre' => 'Administrador',
+                'estado' => 'Activo',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
             [
                 'id_rol' => 2,
                 'nombre' => 'Docente',
@@ -30,7 +36,7 @@ class UsuarioSeeder extends Seeder
             ],
         ]);
 
-        /*DB::table('usuarios')->insert([
+        DB::table('usuarios')->insert([
             'nombres'           => 'Admin',
             'apellidos'         => 'Principal',
             'tipo_documento'    => 'DNI',
@@ -40,6 +46,6 @@ class UsuarioSeeder extends Seeder
             'fecha_nacimiento'  => '2000-01-01',
             'numero_telefono'   => '9876543210',
             'fk_rol'            => 1, // asegúrate que exista el rol ID 1 en la tabla roles
-        ]);*/
+        ]);
     }
 }
