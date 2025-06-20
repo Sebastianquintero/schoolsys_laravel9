@@ -32,5 +32,16 @@ Route::get('/welcome', function () {
     return view('login.welcome'); })->name('welcome')->middleware('auth');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+//Ruta Modulo de Comunicacion 
+Route::get('/comunica_admin', function () {
+    return view('modulo_comunicacion.comunica_admin.comunica_admin');})->name('comunica_admin');
+
+Route::get('/comunica_add_admin', function () {
+    return view('modulo_comunicacion.comunica_admin.comunica_add_admin');})->name('comunica_add_admin');
+
+Route::get('/comunica_config_admin', function () {
+    return view('modulo_comunicacion.comunica_admin.comunica_config_admin');})->name('comunica_config_admin');
+
+
 
 

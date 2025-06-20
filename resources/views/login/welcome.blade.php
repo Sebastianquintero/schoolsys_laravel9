@@ -48,7 +48,7 @@
     <!-- 🟢 CONTENEDOR DE MÓDULOS -->
     <div class="container-modulos">
 
-        <a href="mail.html" class="boton_modulo">
+        <a href="{{ route('comunica_admin') }}" class="boton_modulo">
             <img src="img/icon/mail-icon.png" alt="Comunicacion">
             <span>Comunicación</span>
         </a>
