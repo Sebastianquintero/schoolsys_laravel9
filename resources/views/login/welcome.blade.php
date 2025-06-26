@@ -58,12 +58,12 @@
             <span>Votación</span>
         </a>
 
-        <a href="dashboard_estudiante.html" class="boton_modulo">
+        <a href="{{ route('dashboard_estudiante') }}" class="boton_modulo">
             <img src="img/icon/academico-icon.png" alt="Académico">
             <span>Académico</span>
         </a>
 
-        <a href="admin.html" class="boton_modulo">
+        <a href="{{ route('admin') }}" class="boton_modulo">
             <img src="img/icon/administrativo-icon.png" alt="Administrativo">
             <span>Administrativo</span>
         </a>

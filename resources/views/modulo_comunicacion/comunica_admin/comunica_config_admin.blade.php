@@ -18,12 +18,11 @@
     <div class="container-fluid sb1">
         <div class="row">
             <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
-                <a href="#" class="btn-close-menu"><i class="fa fa-times" aria-hidden="true"></i></a>
-                <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu" aria-hidden="true"></i></a>
-                <a href="{{ url('/') }}" class="a">
-                    <h1 class="m0">ScholSys</h1>
-                </a>
+                <a href="#" class="btn-close-menu"><i class="fa fa-times"></i></a>
+                <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu"></i></a>
+                <a href="{{ route('welcome') }}" class="a"><h1 class="m0">ScholSys</h1></a>
             </div>
+            
             <div class="col-md-6 col-sm-6 mob-hide">
                 <form class="app-search">
                     <input type="text" placeholder="Search..." class="form-control">
