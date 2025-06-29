@@ -9,7 +9,8 @@
     <meta name="description" content="Información personal de los estudiantes">
     <meta name="keyword" content="información personal, estudiante, contacto, perfil">
     <link rel="shortcut icon" href="{{ asset('img/ScholSys_login.jpg') }}" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link href="{{ asset('css/materialize.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
@@ -40,17 +41,23 @@
             </div>
             <div class="col-md-2 tab-hide">
                 <div class="top-not-cen">
-                    <a class='waves-effect btn-noti' href="{{ route('dashboard_estudiante') }}"><i class="fa fa-commenting-o"></i><span>1</span></a>
-                    <a class='waves-effect btn-noti' href="#"><i class="fa fa-envelope-o"></i><span>1</span></a>   <!-- Asignar la ruta correspondiente -->
+                    <a class='waves-effect btn-noti' href="{{ route('dashboard_estudiante') }}"><i
+                            class="fa fa-commenting-o"></i><span>1</span></a>
+                    <a class='waves-effect btn-noti' href="#"><i class="fa fa-envelope-o"></i><span>1</span></a>
+                    <!-- Asignar la ruta correspondiente -->
                     <a class='waves-effect btn-noti' href="#"><i class="fa fa-tag"></i><span></span></a>
                 </div>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-6">
-                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'><img src="{{ asset('images/placeholder.jpg') }}" alt="" />Mi cuenta <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'><img
+                        src="{{ asset('images/placeholder.jpg') }}" alt="" />Mi cuenta <i class="fa fa-angle-down"
+                        aria-hidden="true"></i></a>
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                    <li><a href="{{ route('perfil') }}" class="waves-effect"><i class="fa fa-cogs"></i>Configuración de perfil</a></li>
+                    <li><a href="{{ route('perfil') }}" class="waves-effect"><i class="fa fa-cogs"></i>Configuración de
+                            perfil</a></li>
                     <li class="divider"></li>
-                    <li><a href="{{ route('logout') }}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in"></i>Cerrar sesión</a></li>
+                    <li><a href="{{ route('logout') }}" class="ho-dr-con-last waves-effect"><i
+                                class="fa fa-sign-in"></i>Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -62,13 +69,26 @@
                 <div class="sb2-12">
                     <ul>
                         <li><img src="{{ asset('images/placeholder.jpg') }}" alt=""></li>
-                        <li><h5>Estudiante prueba<span> Bogotá D.C.</span></h5></li>
+                        @php
+                            $rol = Auth::user()->fk_rol;
+                        @endphp
+                        <li>
+                            <h5>{{ Auth::user()->nombres }} {{ Auth::user()->apellidos }}
+
+                                @if($rol == 3 && Auth::user()->estudiante)
+                                    <span>{{ Auth::user()->estudiante->grado }}</span>
+                                @elseif($rol == 1)
+                                    <span>Administrador</span>
+                                @endif
+                            </h5>
+                        </li>
                     </ul>
                 </div>
                 <div class="sb2-13">
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-info-circle"></i> Informativo</a>
+                            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-info-circle"></i>
+                                Informativo</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="{{ route('dashboard_estudiante') }}">Noticias</a></li>
@@ -78,15 +98,16 @@
                             </div>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap"></i> Académico</a>
+                            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap"></i>
+                                Académico</a>
                             <div class="collapsible-body left-sub-menu">
-                                <ul>                    
-                                      <!-- Asignar las rutas correspondientes -->
-                                    <li><a href="#">Actividades</a></li>
-                                    <li><a href="#">Cursos</a></li>
-                                    <li><a href="#">Profesores</a></li>
-                                    <li><a href="#">Encuestas</a></li>
-                                    <li><a href="#">Calificaciones</a></li>
+                                <ul>
+                                    <!-- Asignar las rutas correspondientes -->
+                                    <li><a href="{{ route('actividades') }}">Actividades</a></li>
+                                    <li><a href="{{ route('cursos') }}">Cursos</a></li>
+                                    <li><a href="{{ route('estudiante_profesor') }}">Profesores</a></li>
+                                    <li><a href="{{ route('encuesta') }}">Encuestas</a></li>
+                                    <li><a href="{{ route('calificaciones') }}">Calificaciones</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -130,7 +151,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" value="#">
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control"
+                                    value="#">
                             </div>
                             <div class="col-md-6">
                                 <label for="sexo">Sexo:</label>
@@ -172,6 +194,11 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    <!-- Logout Form -->
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 </body>
 
 </html>

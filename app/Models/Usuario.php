@@ -15,8 +15,13 @@ class Usuario extends Authenticatable
     protected $fillable = [
         'nombres',
         'apellidos',
-        'correo',
+        'tipo_documento',
+        'numero_documento',
         'contrasena',
+        'fecha_nacimiento',
+        'numero_telefono',
+        'correo',
+        'fk_rol'
     ];
 
     protected $hidden = ['contrasena'];
@@ -25,5 +30,11 @@ class Usuario extends Authenticatable
     public function getAuthPassword()
     {
         return $this->contrasena;
+    }
+
+
+    public function estudiante()
+    {
+        return $this->hasOne(Estudiante::class, 'fk_usuario', 'id_usuario');
     }
 }

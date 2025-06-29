@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>ScholSys</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="EEducation master is one of the best eEducational html template, it's suitable for all eEducation websites like university,college,school,online eEducation,tution center,distance eEducation,computer eEducation">
-    <meta name="keyword" content="eEducation html template, university template, college template, school template, online eEducation template, tution center template">
+    <meta name="description"
+        content="EEducation master is one of the best eEducational html template, it's suitable for all eEducation websites like university,college,school,online eEducation,tution center,distance eEducation,computer eEducation">
+    <meta name="keyword"
+        content="eEducation html template, university template, college template, school template, online eEducation template, tution center template">
     <link rel="shortcut icon" href="{{ asset('img/ScholSys_login.jpg') }}" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link href="{{ asset('css/materialize.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
@@ -19,6 +23,7 @@
     <script src="{{ asset('js/respond.min.js') }}"></script>
     <![endif]-->
 </head>
+
 <body>
     <!--== MAIN CONTRAINER ==-->
     <div class="container-fluid sb1">
@@ -26,7 +31,9 @@
             <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
                 <a href="#" class="btn-close-menu"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu" aria-hidden="true"></i></a>
-                <a href="{{ route('admin') }}" class="a"><h1 class="m0">ScholSys</h1></a>
+                <a href="{{ route('admin') }}" class="a">
+                    <h1 class="m0">ScholSys</h1>
+                </a>
             </div>
             <div class="col-md-6 col-sm-6 mob-hide">
                 <form class="app-search">
@@ -36,23 +43,30 @@
             </div>
             <div class="col-md-2 tab-hide">
                 <div class="top-not-cen">
-                    <a class='waves-effect btn-noti' href="#" title="principal"><i class="fa fa-commenting-o" aria-hidden="true"></i><span></span></a>
-                    <a class='waves-effect btn-noti' href="#" title="correo"><i class="fa fa-envelope-o" aria-hidden="true"></i><span></span></a>
-                    <a class='waves-effect btn-noti' href="#" title=""><i class="fa fa-tag" aria-hidden="true"></i><span></span></a>
+                    <a class='waves-effect btn-noti' href="#" title="principal"><i class="fa fa-commenting-o"
+                            aria-hidden="true"></i><span></span></a>
+                    <a class='waves-effect btn-noti' href="#" title="correo"><i class="fa fa-envelope-o"
+                            aria-hidden="true"></i><span></span></a>
+                    <a class='waves-effect btn-noti' href="#" title=""><i class="fa fa-tag"
+                            aria-hidden="true"></i><span></span></a>
                 </div>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-6">
-                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'><img src="{{ asset('images/user/6.png') }}" alt="" />Administrador<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'><img
+                        src="{{ asset('images/user/6.png') }}" alt="" />Administrador<i class="fa fa-angle-down"
+                        aria-hidden="true"></i></a>
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                    <li><a href="####" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Config de perfil</a></li>
+                    <li><a href="####" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Config de
+                            perfil</a></li>
                     <li class="divider"></li>
-                    <li><a href="{{ route('logout') }}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i>Cerrar sesión</a></li>
+                    <li><a href="{{ route('logout') }}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in"
+                                aria-hidden="true"></i>Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-<div class="container-fluid sb2">
+    <div class="container-fluid sb2">
         <div class="row">
             <div class="sb2-1">
                 <!--== USER INFO ==-->
@@ -60,8 +74,11 @@
                     <ul>
                         <li><img src="images/placeholder.jpg" alt="">
                         </li>
+                        @php
+                            $rol = Auth::user()->fk_rol;
+                        @endphp
                         <li>
-                            <h5>Administador(principal) <span> Bogotá D.C.</span></h5>
+                            <h5>{{ Auth::user()->nombres }}<span> Bogotá D.C.</span></h5>
                         </li>
                         <li></li>
                     </ul>
@@ -69,10 +86,12 @@
                 <!--== LEFT MENU ==-->
                 <div class="sb2-13">
                     <ul class="collapsible" data-collapsible="accordion">
-                        <li><a href="admin.html" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Principal</a>
+                        <li><a href="admin.html" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                Principal</a>
                         </li>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book" aria-hidden="true"></i>Todos los cursos</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book"
+                                    aria-hidden="true"></i>Todos los cursos</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="crud-vercurso.html">Todos los Cursos</a>
@@ -84,7 +103,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i>Todos los Usuarios</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user"
+                                    aria-hidden="true"></i>Todos los Usuarios</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="#">Usuarios</a>
@@ -94,19 +114,21 @@
                                 </ul>
                             </div>
                         </li>
-                        
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bars" aria-hidden="true"></i> Menu</a>
+
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bars"
+                                    aria-hidden="true"></i> Menu</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="admin.html">Menú Principal</a></li>
-									<li><a href="#">Acerca del Menú</a></li>
-									<li><a href="#">Menú Admisión</a></li>
-									<li><a href="#">Todas las paginas Menú</a></li>
+                                    <li><a href="#">Acerca del Menú</a></li>
+                                    <li><a href="#">Menú Admisión</a></li>
+                                    <li><a href="#">Todas las paginas Menú</a></li>
                                 </ul>
                             </div>
                         </li>
-						
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bullhorn" aria-hidden="true"></i> Crud profesores</a>
+
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bullhorn"
+                                    aria-hidden="true"></i> Crud profesores</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="admin-crud-profesor.html">Profesores</a>
@@ -116,7 +138,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Crud actividad</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap"
+                                    aria-hidden="true"></i>Crud actividad</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="admin-ver-actividades.html">Ver actividades</a>
@@ -126,7 +149,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil" aria-hidden="true"></i>Examenes</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i>Examenes</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="#">Todos los Examenes</a></li>
@@ -136,7 +160,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users" aria-hidden="true"></i>Estudiantes</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"
+                                    aria-hidden="true"></i>Estudiantes</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="admin-user-all.html">Todos los Estudiantes</a>
@@ -146,22 +171,24 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o" aria-hidden="true"></i>Consultas</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o"
+                                    aria-hidden="true"></i>Consultas</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="admin.html">Todas las Consultas</a></li>
-									<li><a href="crud-vercurso.html">Consulta de Cursos</a></li>
-									<li><a href="#">Consulta de Admisión</a></li>
-									<li><a href="#">Consulta de Seminario</a></li>
-									<li><a href="admin-event-add.html">Consulta de Eventos</a></li>
-									<li><a href="#">Consulta Común</a></li>
+                                    <li><a href="crud-vercurso.html">Consulta de Cursos</a></li>
+                                    <li><a href="#">Consulta de Admisión</a></li>
+                                    <li><a href="#">Consulta de Seminario</a></li>
+                                    <li><a href="admin-event-add.html">Consulta de Eventos</a></li>
+                                    <li><a href="#">Consulta Común</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-cloud-download" aria-hidden="true"></i> Importar y Exportar</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-cloud-download"
+                                    aria-hidden="true"></i> Importar y Exportar</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
-                                    <li><a href="admin-export-data.html">Exportar Archivos</a>
+                                    <li><a href="{{ route('importar.estudiantes.form') }}">Exportar Archivos</a>
                                     </li>
                                     <li><a href="admin-import-data.html">Importar Archivos</a>
                                     </li>
@@ -180,14 +207,14 @@
                         <li><a href="admin.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="active-bre"><a href="#"> Dashboard</a>
-                        
+
                     </ul>
                 </div>
                 <!--== DASHBOARD INFO ==-->
                 <div class="sb2-2-1">
                     <h2>Administrativo</h2>
                     <p>Contenido total de la parte administrativa</p>
-                    
+
                 </div>
 
                 <!--== User Details ==-->
@@ -211,82 +238,55 @@
                                                     <th>Ciudad</th>
                                                     <th>Id</th>
                                                     <th>Fecha Nacimiento</th>
-													<th>Estado</th>
-													<th>Ver</th>
+                                                    <th>Estado</th>
+                                                    <th>Ver</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marcela</span><span class="list-enq-city">Bogota D.C. Colombia</span></a>
-                                                    </td>
-                                                    <td>+57 3214 6522</td>
-                                                    <td>lucas@gmail.com</td>
-                                                    <td>Bogotá D.C.</td>
-                                                    <td>ST17241</td>
-													<td>03 Jun 1990</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Luis</span><span class="list-enq-city">Bogota D.C. Colombia</span></a>
-                                                    </td>
-                                                    <td>+57 8574 6854</td>
-                                                    <td>lucas@gmail.com</td>
-                                                    <td>Bogotá D.C.</td>
-                                                    <td>ST10231</td>
-													<td>16 Feb 1987</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Luisa</span><span class="list-enq-city">Bogota D.C. Colombia</span></a>
-                                                    </td>
-                                                    <td>+57 8574 6854</td>
-                                                    <td>Ethan@gmail.com</td>
-                                                    <td>Bogotá D.C.</td>
-                                                    <td>ST32168</td>
-													<td>21 Jun 1992</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Alejandro</span><span class="list-enq-city">Bogota D.C. Colombia</span></a>
-                                                    </td>
-                                                    <td>+57 8574 6854</td>
-                                                    <td>Ethan@gmail.com</td>
-                                                    <td>Bogotá D.C.</td>
-                                                    <td>ST32168</td>
-													<td>21 Jun 1992</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
-                                                </tr>
-                                                
-                                                
+                                                @foreach ($estudiantes as $user)
+                                                    <tr>
+                                                        <td>
+                                                            <span class="list-img">
+                                                                <img src="{{ asset('images/user/placeholder.jpg') }}"
+                                                                    alt="">
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <span class="list-enq-name">{{ $user->nombres }}
+                                                                    {{ $user->apellidos }}</span>
+                                                                <span class="list-enq-city">{{ $user->curso }}</span>
+                                                            </a>
+                                                        </td>
+                                                        <td>{{ $user->numero_telefono }}</td>
+                                                        <td>{{ $user->correo }}</td>
+                                                        <td>Bogotá D.C.</td> {{-- Puedes mejorar esto con otro campo si lo
+                                                        tienes --}}
+                                                        <td>{{ $user->numero_documento }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($user->fecha_nacimiento)->format('d M Y') }}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-success">Activo</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="ad-st-view">Ver</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
+
+                                            <div class="d-flex justify-content-center mt-3">
+                                                {{ $estudiantes->links() }}
+                                            </div>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-				
+
                 <!--== User Details ==-->
                 <div class="sb2-2-3">
                     <div class="row">
@@ -303,76 +303,92 @@
                                                 <tr>
                                                     <th>Usuario</th>
                                                     <th>Nombre</th>
-													<th>Puesto</th>
-													<th>Duracion</th>
+                                                    <th>Puesto</th>
+                                                    <th>Duracion</th>
                                                     <th>Fecha Inicio</th>
                                                     <th>Fecha Fin</th>
-													<th>Estado</th>
-													<th>Ver</th>
+                                                    <th>Estado</th>
+                                                    <th>Ver</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-1.jpg" alt=""></span>
+                                                    <td><span class="list-img"><img src="images/course/sm-1.jpg"
+                                                                alt=""></span>
                                                     </td>
-                                                    <td><a href="admin-student-details.html"><span class="list-enq-name">Aerospace Engineering</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="admin-student-details.html"><span
+                                                                class="list-enq-name">Aerospace Engineering</span><span
+                                                                class="list-enq-city">Illunois, United States</span></a>
                                                     </td>
                                                     <td>Ingeniero</td>
                                                     <td>60 Days(420hrs)</td>
                                                     <td>03 Ene 2025</td>
                                                     <td>12 Dic 2025</td>
-													
+
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
+                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-5.jpg" alt=""></span>
+                                                    <td><span class="list-img"><img src="images/course/sm-5.jpg"
+                                                                alt=""></span>
                                                     </td>
-                                                    <td><a href="admin-student-details.html"><span class="list-enq-name">Fashion Technology</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="admin-student-details.html"><span
+                                                                class="list-enq-name">Fashion Technology</span><span
+                                                                class="list-enq-city">Illunois, United States</span></a>
                                                     </td>
                                                     <td>Cultura fisica</td>
                                                     <td>30 Days(420hrs)</td>
                                                     <td>01 Ene 2025</td>
                                                     <td>01 Dic 2025</td>
-													
+
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
+                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-2.jpg" alt=""></span>
+                                                    <td><span class="list-img"><img src="images/course/sm-2.jpg"
+                                                                alt=""></span>
                                                     </td>
-                                                    <td><a href="admin-student-details.html"><span class="list-enq-name">Agriculture Courses</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="admin-student-details.html"><span
+                                                                class="list-enq-name">Agriculture Courses</span><span
+                                                                class="list-enq-city">Illunois, United States</span></a>
                                                     </td>
                                                     <td>Deportes</td>
                                                     <td>25 dias(420hrs)</td>
                                                     <td>05 Ene 2025</td>
                                                     <td>25 Dic 2025</td>
-													
+
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
+                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-3.jpg" alt=""></span>
+                                                    <td><span class="list-img"><img src="images/course/sm-3.jpg"
+                                                                alt=""></span>
                                                     </td>
-                                                    <td><a href="admin-student-details.html"><span class="list-enq-name">Marine Engineering</span><span class="list-enq-city">Illunois, United States</span></a>
+                                                    <td><a href="admin-student-details.html"><span
+                                                                class="list-enq-name">Marine Engineering</span><span
+                                                                class="list-enq-city">Illunois, United States</span></a>
                                                     </td>
                                                     <td>Quimica</td>
                                                     <td>06 Months</td>
                                                     <td>12 Ene 2025</td>
                                                     <td>14 Dic 2025</td>
-													
+
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">Ver</a></td>
+                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
+                                                    </td>
                                                 </tr>
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -381,7 +397,7 @@
                         </div>
                     </div>
                 </div>
-				
+
                 <div class="sb2-2-3">
                     <div class="row">
                         <!--== Cursos ==-->
@@ -389,7 +405,7 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Cursos</h4>
-                                    
+
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
@@ -424,7 +440,7 @@
                                                         <span class="label label-success">Activo</span>
                                                     </td>
                                                 </tr>
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -441,21 +457,27 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Ultimas actividades</h4>
-                                    
+
                                 </div>
                                 <div class="tab-inn list-act-hom">
                                     <ul>
                                         <li class="list-act-hom-con">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                             <h4><span>12 may, 2025</span> Bienvenido</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo corporis repellat atque beatae maiores incidunt, ad suscipit praesentium recusandae iure temporibus delectus dolorum maxime excepturi sapiente, quod architecto dolorem? Eos!</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo corporis
+                                                repellat atque beatae maiores incidunt, ad suscipit praesentium
+                                                recusandae iure temporibus delectus dolorum maxime excepturi sapiente,
+                                                quod architecto dolorem? Eos!</p>
                                         </li>
                                         <li class="list-act-hom-con">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                             <h4><span>08 Jun, 2025</span> Tabla de discusiones</h4>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, fuga et. Error nobis dolorem quibusdam ex aliquam voluptate, possimus a similique aliquid deserunt? Delectus quaerat vitae accusantium enim totam iure!</p>
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic, fuga et.
+                                                Error nobis dolorem quibusdam ex aliquam voluptate, possimus a similique
+                                                aliquid deserunt? Delectus quaerat vitae accusantium enim totam iure!
+                                            </p>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -466,7 +488,7 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Medios sociales</h4>
-                                    
+
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
@@ -483,7 +505,8 @@
                                                 <tr>
                                                     <td><span class="list-img"><img src="images/sm/1.png" alt=""></span>
                                                     </td>
-                                                    <td><span class="list-enq-name">Linked In</span><span class="list-enq-city">Bogotá D.C.</span>
+                                                    <td><span class="list-enq-name">Linked In</span><span
+                                                            class="list-enq-city">Bogotá D.C.</span>
                                                     </td>
                                                     <td>15K</td>
                                                     <td>18K</td>
@@ -491,7 +514,8 @@
                                                 <tr>
                                                     <td><span class="list-img"><img src="images/sm/3.png" alt=""></span>
                                                     </td>
-                                                    <td><span class="list-enq-name">Facebook</span><span class="list-enq-city">Bogotá D.C.</span>
+                                                    <td><span class="list-enq-name">Facebook</span><span
+                                                            class="list-enq-city">Bogotá D.C.</span>
                                                     </td>
                                                     <td>15K</td>
                                                     <td>18K</td>
@@ -499,7 +523,8 @@
                                                 <tr>
                                                     <td><span class="list-img"><img src="images/sm/5.png" alt=""></span>
                                                     </td>
-                                                    <td><span class="list-enq-name">YouTube</span><span class="list-enq-city">Bogotá D.C.</span>
+                                                    <td><span class="list-enq-name">YouTube</span><span
+                                                            class="list-enq-city">Bogotá D.C.</span>
                                                     </td>
                                                     <td>15K</td>
                                                     <td>18K</td>
@@ -507,7 +532,8 @@
                                                 <tr>
                                                     <td><span class="list-img"><img src="images/sm/6.png" alt=""></span>
                                                     </td>
-                                                    <td><span class="list-enq-name">WhatsApp</span><span class="list-enq-city">Bogotá D.C.</span>
+                                                    <td><span class="list-enq-name">WhatsApp</span><span
+                                                            class="list-enq-city">Bogotá D.C.</span>
                                                     </td>
                                                     <td>15K</td>
                                                     <td>18K</td>
@@ -529,4 +555,5 @@
     <script src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 </body>
+
 </html>

@@ -89,7 +89,7 @@
                         <input type="password" name="password" id="password"
                             class="form-control bg-dark-x border-0 mt-3" 
                             placeholder="Ingrese su contraseña" required>
-                        <a href="#" class="form-text text-muted text-decoration-none mt-5">¿Olvidaste tu contraseña?</a>
+                        <a href="{{ route('recuperacion_password') }}" class="form-text text-muted text-decoration-none mt-5">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
