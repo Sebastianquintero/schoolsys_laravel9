@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Estudiante extends Model
 {
     protected $table = 'estudiantes';
+    protected $primaryKey = 'id_estudiante';
+    public $incrementing = true; // id_estudiante es autoincremental
     protected $fillable = [
         'direccion',
         'tipo_via',

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -49,7 +48,8 @@
                 <a href="{{ route('index') }}" class="nav-item nav-link active">Inicio</a>
                 <a href="{{ route('about') }}" class="nav-item nav-link">Información</a>
                 <div class="nav-item dropdown">
-                    <a href="{{ route('feature') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Soluciones Educativas</a>
+                    <a href="{{ route('feature') }}" class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown">Soluciones Educativas</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="{{ route('feature') }}" class="dropdown-item">Solución Academica</a>
                         <a href="{{ route('feature2') }}" class="dropdown-item">Solución Adminstrativa</a>
@@ -59,7 +59,8 @@
                 </div>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contactenos</a>
             </div>
-            <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{{ route('login') }}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Login<i
+                    class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -68,52 +69,64 @@
 
 <body class="bg-dark">
     <section>
-    <div class="row g-0">
-        <div class="col-lg-12 d-flex flex-column align-items-end min-vh-100">
-            <h1 class="font-weight-bold mb-4">Bienvenido</h1>
+        <div class="row g-0">
+            <div class="col-lg-12 d-flex flex-column align-items-end min-vh-100">
+                <h1 class="font-weight-bold mb-4">Bienvenido</h1>
 
-            <!-- Formulario de Login -->
-            <div class="form-container">
-                <form action="{{ route('login') }}" method="POST">
-                    @csrf
+                <!-- Formulario de Login -->
+                <div class="form-container">
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
 
-                    <div class="mb-4">
-                        <label for="email" class="form-label font-weight-bold mb-3">Correo</label>
-                        <input type="email" name="email" id="email" 
-                            class="form-control bg-dark-x border-0 mt-4" 
-                            placeholder="Ingrese su correo" required>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="password" class="form-label font-weight-bold mb-3">Contraseña</label>
-                        <input type="password" name="password" id="password"
-                            class="form-control bg-dark-x border-0 mt-3" 
-                            placeholder="Ingrese su contraseña" required>
-                        <a href="{{ route('recuperacion_password') }}" class="form-text text-muted text-decoration-none mt-5">¿Olvidaste tu contraseña?</a>
-                    </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label font-weight-bold mb-3">Correo</label>
+                            <input type="email" name="email" id="email" class="form-control bg-dark-x border-0 mt-4"
+                                placeholder="Ingrese su correo" required>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                </form>
+                        <div class="mb-4">
+                            <label for="password" class="form-label font-weight-bold mb-3">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" name="password" id="password"
+                                    class="form-control bg-dark-x border-0 mt-3" placeholder="Ingrese su contraseña"
+                                    required>
+                                <span class="input-group-text bg-dark-x border-0 mt-3" style="cursor:pointer"
+                                    onclick="togglePassword()">
+                                    👁️
+                                </span>
+                            </div>
+                            <a href="{{ route('recuperacion_password') }}"
+                                class="form-text text-muted text-decoration-none mt-5">¿Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <script>
+                            function togglePassword() {
+                                const input = document.getElementById('password');
+                                input.type = input.type === 'password' ? 'text' : 'password';
+                            }
+                        </script>
+                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </body>
 
-    <!-- JS Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
+<!-- JS Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
 
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
-    <script src="{{ asset('lib/parallax/parallax.min.js') }}"></script>
-    <script src="{{ asset('lib/isotope/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}"></script>
+<script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+<script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
+<script src="{{ asset('lib/parallax/parallax.min.js') }}"></script>
+<script src="{{ asset('lib/isotope/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}"></script>
 
-    <!-- Main JS -->
-    <script src="{{ asset('js/main.js') }}"></script>
+<!-- Main JS -->
+<script src="{{ asset('js/main.js') }}"></script>
 
 </html>

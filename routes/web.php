@@ -45,7 +45,7 @@ Route::get('/welcome', function () {
 
 // ====================================================================================================
 //Ruta Modulo de Comunicacion administrador
-Route::middleware(['auth', 'rol:1'])->group(function () {
+Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/admin',[AdminController::class, 'verEstudiantes'])->name('admin');
 
     // Comunicaciones del admin
@@ -53,6 +53,32 @@ Route::middleware(['auth', 'rol:1'])->group(function () {
     Route::get('/comunica_add_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_add_admin'))->name('comunica_add_admin');
     Route::get('/comunica_config_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_config_admin'))->name('comunica_config_admin');
 
+    // Rutas para el módulo de gestión de estudiantes
+    Route::get('/estudiantes/ver_estudiantes', [AdminController::class, 'verTodosLosEstudiantes'])->name('admin_usuarios');
+    Route::get('/admin/estudiantes/{id}/editar', [AdminController::class, 'actualizarEstudiante'])->name('actualizar_estudiante');
+
+
+    // TOCA MODIFICARLAS BIEN
+    // Rutas para el módulo de gestión de profesores
+    /*Route::get('/gestion_profesores', [AdminController::class, 'gestionProfesores'])->name('gestion_profesores');
+    Route::get('/gestion_profesores/agregar', [AdminController::class, 'agregarProfesor'])->name('agregar_profesor');
+    Route::post('/gestion_profesores/guardar', [AdminController::class, 'guardarProfesor'])->name('guardar_profesor');
+    Route::get('/gestion_profesores/editar/{id}', [AdminController::class   , 'editarProfesor'])->name('editar_profesor');
+
+    // Rutas para el módulo de gestión de cursos
+    Route::get('/gestion_cursos', [AdminController::class, 'gestionCursos'])->name('gestion_cursos');
+    Route::get('/gestion_cursos/agregar', [AdminController::class, 'agregarCurso'])->name('agregar_curso');
+    Route::post('/gestion_cursos/guardar', [AdminController::class, 'guardarCurso'])->name('guardar_curso');
+    Route::get('/gestion_cursos/editar/{id}', [AdminController::class, 'editarCurso'])->name('editar_curso');
+    Route::get('/gestion_cursos/eliminar/{id}', [AdminController::class, 'eliminarCurso'])->name('eliminar_curso');
+
+    // Rutas para el módulo de gestión de actividades
+    Route::get('/gestion_actividades', [AdminController::class, 'gestionActividades'])->name('gestion_actividades');
+    Route::get('/gestion_actividades/agregar', [AdminController::class, '   agregarActividad'])->name('agregar_actividad');
+    Route::post('/gestion_actividades/guardar', [AdminController::class, '  guardarActividad'])->name('guardar_actividad');
+    Route::get('/gestion_actividades/editar/{id}', [AdminController::class, 'editarActividad'])->name('editar_actividad');
+    Route::get('/gestion_actividades/eliminar/{id}', [AdminController::class, 'eliminarActividad'])->name('eliminar_actividad');
+    */
 
 });
 
