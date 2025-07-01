@@ -15,7 +15,7 @@
                 <!--== USER INFO ==-->
                 <div class="sb2-12">
                     <ul>
-                        <li><img src="images/placeholder.jpg" alt="">
+                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt="">
                         </li>
                         @php
                             $rol = Auth::user()->fk_rol;
