@@ -57,7 +57,8 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/estudiantes/ver_estudiantes', [AdminController::class, 'verTodosLosEstudiantes'])->name('admin_usuarios');
     Route::get('/admin/estudiantes/{id}/editar', [AdminController::class, 'actualizarEstudiante'])->name('actualizar_estudiante');
 
-
+    // Rutas para el módulo de gestión de profesores
+    // Route::get('/profesores/profesores', [AdminController::class, 'gestionProfesores'])->name('gestion_profesores');
     // TOCA MODIFICARLAS BIEN
     // Rutas para el módulo de gestión de profesores
     /*Route::get('/gestion_profesores', [AdminController::class, 'gestionProfesores'])->name('gestion_profesores');

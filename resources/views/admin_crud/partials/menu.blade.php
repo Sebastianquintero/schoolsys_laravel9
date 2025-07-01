@@ -15,23 +15,23 @@
         </li>
 
         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user"></i>Todos los Usuarios</a>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user"></i>Todos los Estudiantes</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
-                    <li><a href="{{ route('admin_usuarios') }}">Usuarios</a></li>
-                    <li><a href="{{ route('admin_usuarios') }}">Agregar Usuario</a></li>
+                    <li><a href="{{ route('admin_usuarios') }}">Ver todos los estudiantes</a></li>
+                    <li><a href="{{ route('admin_usuarios') }}">Ver todos los usuarios</a></li>
                 </ul>
             </div>
         </li>
 
         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bars"></i> Menu</a>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bars"></i> Menu </a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <li><a href="{{ route('admin') }}">Menú Principal</a></li>
-                    <li><a href="#">Acerca del Menú</a></li>
-                    <li><a href="#">Menú Admisión</a></li>
-                    <li><a href="#">Todas las páginas del Menú</a></li>
+                    <li><a href="#">Boletin de estudiante</a></li>
+                    <li><a href="#">Observador estudiantil</a></li>
+                    
                 </ul>
             </div>
         </li>
