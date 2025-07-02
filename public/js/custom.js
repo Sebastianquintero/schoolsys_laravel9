@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	"use strict";
     $('.chips').material_chip();
-    $('select').material_select();
+    //$('select').material_select();
 
     //FILTER SELECT OPTIONS
     $(".wed-fil-1").on('click', function() {
@@ -117,7 +117,7 @@ $(document).ready(function() {
     });
 	
     //MATERIAL SELECT BOX
-    $('select').material_select();
+    //$('select').material_select();
 
     //MATERIAL COLLAPSIBLE
     $('.collapsible').collapsible();
