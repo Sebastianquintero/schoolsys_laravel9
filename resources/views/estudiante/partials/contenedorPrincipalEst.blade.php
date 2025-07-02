@@ -17,7 +17,7 @@
                 <div class="top-not-cen">
                     <a class='waves-effect btn-noti' href="{{ url('dashboard_estudiante') }}"><i
                             class="fa fa-commenting-o"></i><span>1</span></a>
-                    <a class='waves-effect btn-noti' href="{{ url('mail') }}"><i
+                    <a class='waves-effect btn-noti' href="{{ route('mail') }}"><i
                             class="fa fa-envelope-o"></i><span>1</span></a>
                     <a class='waves-effect btn-noti' href="#"><i class="fa fa-tag"></i></a>
                 </div>

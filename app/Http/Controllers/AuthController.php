@@ -12,22 +12,26 @@ class AuthController extends Controller
         return view('login.iniciar_sesion');
     }
 
-    public function login(Request $request)
-    {
-        $credentials = [
-            'correo' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
+    /*  -- ---- --  */
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('welcome');
-        }
+public function login(Request $request)
+{
+    $credentials = [
+        'correo' => $request->input('email'),
+        'password' => $request->input('password'),
+    ];
 
-        return back()->withErrors([
-            'email' => 'Correo o contraseña incorrectos.',
-        ]);
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended('welcome')->with('success', '¡Bienvenido al sistema!');
     }
+
+    return back()->with('error', 'Campos ingresados no válidos.');
+}
+
+
+    /*  -- - -- - - -- -- */
+
     public function logout(Request $request)
     {
         Auth::logout();

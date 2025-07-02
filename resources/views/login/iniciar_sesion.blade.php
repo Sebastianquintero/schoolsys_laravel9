@@ -117,6 +117,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
@@ -128,5 +129,29 @@
 
 <!-- Main JS -->
 <script src="{{ asset('js/main.js') }}"></script>
+
+<!-- Crea el alert cuando inicia session o cuando el inicio de sesion no es valido -->
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Acceso exitoso!',
+            text: '{{ session('success') }}',
+            confirmButtonText: 'Continuar'
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de autenticación',
+            text: '{{ session('error') }}',
+            confirmButtonText: 'Intentar de nuevo'
+        });
+    </script>
+@endif
 
 </html>

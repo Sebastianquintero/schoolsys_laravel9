@@ -1,156 +1,192 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <title>ScholSys</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="ScholSys plataforma educativa">
-    <meta name="keyword" content="educación, colegio, universidad, plataforma">
-
+    <meta name="description" content="Correo de estudiante">
+    <meta name="keyword" content="correo, inbox, estudiante, mensajes">
     <link rel="shortcut icon" href="{{ asset('img/ScholSys_login.jpg') }}" type="image/x-icon">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Josefin+Sans:600,700" rel="stylesheet">
-
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    
-    <!-- Estilos -->
-    <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style-mob.css') }}">
+    <link href="{{ asset('css/materialize.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/style2.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/style-mob.css') }}" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="{{ asset('js/html5shiv.js') }}"></script>
+    <script src="{{ asset('js/respond.min.js') }}"></script>
+    <![endif]-->
 </head>
 
 <body>
-
-    <!-- Header -->
     <div class="container-fluid sb1">
         <div class="row">
             <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
                 <a href="#" class="btn-close-menu"><i class="fa fa-times"></i></a>
                 <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu"></i></a>
-                <a href="{{ route('welcome') }}" class="a"><h1 class="m0">ScholSys</h1></a>
+                <a href="{{ route('dashboard_estudiante') }}" class="a"><h1 class="m0">ScholSys</h1></a>
             </div>
-
             <div class="col-md-6 col-sm-6 mob-hide">
                 <form class="app-search">
-                    <input type="text" placeholder="Buscar..." class="form-control">
+                    <input type="text" placeholder="Search..." class="form-control">
                     <a href="#"><i class="fa fa-search"></i></a>
                 </form>
             </div>
-
             <div class="col-md-2 tab-hide">
                 <div class="top-not-cen">
-                    <a class='waves-effect btn-noti' href="#"><i class="fa fa-commenting-o"></i><span>5</span></a>
-                    <a class='waves-effect btn-noti' href="#"><i class="fa fa-envelope-o"></i><span>5</span></a>
-                    <a class='waves-effect btn-noti' href="#"><i class="fa fa-tag"></i><span>5</span></a>
+                    <a class='waves-effect btn-noti' href="{{ route('dashboard_estudiante') }}" title="dashboard"><i class="fa fa-commenting-o"></i><span>1</span></a>
+                    <a class='waves-effect btn-noti' href="{{ route('mail') }}" title="correo"><i class="fa fa-envelope-o"></i><span>1</span></a>
+                    <a class='waves-effect btn-noti' href="#" title="etiquetas"><i class="fa fa-tag"></i></a>
                 </div>
             </div>
-
             <div class="col-md-2 col-sm-3 col-xs-6">
                 <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'>
-                    <img src="{{ asset('images/user/6.png') }}" alt="Usuario" />Administrador <i class="fa fa-angle-down"></i>
+                    <img src="{{ asset('images/placeholder.jpg') }}" alt="" />Mi cuenta <i class="fa fa-angle-down"></i>
                 </a>
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                    <li><a href="#" class="waves-effect"><i class="fa fa-cogs"></i>Config de perfil</a></li>
+                    <li><a href="{{ route('perfil') }}" class="waves-effect"><i class="fa fa-cogs"></i> Configuración de perfil</a></li>
                     <li class="divider"></li>
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button class="ho-dr-con-last waves-effect btn btn-link" type="submit">
-                                <i class="fa fa-sign-in"></i> Cerrar sesión
-                            </button>
-                        </form>
-                    </li>
+                    <li><a href="{{ route('logout') }}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in"></i> Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Botones -->
-    <div class="button-container text-center my-4">
-        <a href="{{ route('comunica_add_admin') }}" class="btn btn-primary">Añadir Anuncio</a>
-        <a href="{{ route('comunica_config_admin') }}" class="btn btn-secondary">Configurar Slider</a>
-    </div>
-
-    <!-- Slider -->
-    <div class="slider_inicio_comunicacion">
-        <div id="customSlider" class="new-slider-container">
-            <div class="new-slider-wrapper">
-
-                <div class="new-slide active">
-                    <img class="new-slide-image" src="{{ asset('img/automatizacion.jpg') }}" alt="Primera Diapositiva">
-                    <div class="new-slide-caption">
-                        <h2 class="new-slide-title">Bienvenido a ScholSys</h2>
-                        <p class="new-slide-description">Administra colegios en Colombia de forma eficiente.</p>
-                        <a href="#learnMore" class="new-slide-button">Ver</a>
-                    </div>
+    <div class="container-fluid sb2">
+        <div class="row">
+            <div class="sb2-1">
+                <div class="sb2-12">
+                    <ul>
+                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt=""></li>
+                        <li><h5>Estudiante (Correo)<span> Bogotá D.C.</span></h5></li>
+                    </ul>
                 </div>
-
-                <div class="new-slide">
-                    <img class="new-slide-image" src="{{ asset('img/funcionalidad.jpg') }}" alt="Segunda Diapositiva">
-                    <div class="new-slide-caption">
-                        <h2 class="new-slide-title">Innovación Educativa</h2>
-                        <p class="new-slide-description">Gestiona estudiantes, notas y comunicación fácilmente.</p>
-                        <a href="#features" class="new-slide-button">Ver</a>
-                    </div>
-                </div>
-
-                <div class="new-slide">
-                    <img class="new-slide-image" src="{{ asset('img/fuond.jpg') }}" alt="Tercera Diapositiva">
-                    <div class="new-slide-caption">
-                        <h2 class="new-slide-title">Soporte 24/7</h2>
-                        <p class="new-slide-description">Estamos contigo en cada paso del camino.</p>
-                        <a href="#support" class="new-slide-button">Ver</a>
-                    </div>
+                <div class="sb2-13">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li><a href="#" class="menu-active"><i class="fa fa-inbox"></i> Recibidos</a></li>
+                        <li><a href="#"><i class="fa fa-paper-plane"></i> Enviados</a></li>
+                        <li><a href="#"><i class="fa fa-pencil"></i> Borradores</a></li>
+                        <li><a href="#"><i class="fa fa-trash"></i> Papelera</a></li>
+                        <li>
+                            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-tags"></i> Categorías</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="#">Trabajo</a></li>
+                                    <li><a href="#">Personal</a></li>
+                                    <li><a href="#">Otros</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-cloud-download"></i> Importar & Exportar</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="#">Exportar datos</a></li>
+                                    <li><a href="#">Importar datos</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#"><i class="fa fa-cogs"></i> Configuración</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <button class="new-slider-control prev">&#10094;</button>
-            <button class="new-slider-control next">&#10095;</button>
+            <div class="sb2-2">
+                <div class="sb2-2-2">
+                    <ul>
+                        <li><a href="{{ route('dashboard_estudiante') }}"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i> Bandeja de Entrada</a></li>
+                        <li><a href="#"><i class="fa fa-paper-plane"></i> Enviados</a></li>
+                        <li><a href="#"><i class="fa fa-file-text"></i> Borradores</a></li>
+                        <li><a href="#"><i class="fa fa-trash"></i> Eliminados</a></li>
+                    </ul>
+                </div>
 
-            <div class="new-slider-indicators">
-                <span class="new-indicator active" data-slide-to="0"></span>
-                <span class="new-indicator" data-slide-to="1"></span>
-                <span class="new-indicator" data-slide-to="2"></span>
-            </div>
+                <div class="sb2-2-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Bandeja de Entrada</h4>
+                                    <p>Gestiona tus correos, incluyendo remitente, asunto, fecha y estado.</p>
+                                </div>
+                                <div class="tab-inn">
+                                    <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox"></th>
+                                                    <th>Remitente</th>
+                                                    <th>Asunto</th>
+                                                    <th>Fecha</th>
+                                                    <th>Estado</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type="checkbox"></td>
+                                                    <td>Juan Pérez</td>
+                                                    <td><a href="#">Recordatorio de reunión: Actualización del proyecto</a></td>
+                                                    <td>05 Dic 2024</td>
+                                                    <td><span class="label label-success">Leído</span></td>
+                                                    <td>
+                                                        <a href="#" title="Archivar"><i class="fa fa-archive"></i></a>
+                                                        <a href="#" title="Eliminar"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox"></td>
+                                                    <td>Equipo de Marketing</td>
+                                                    <td><a href="#">Lanzamiento de nueva campaña</a></td>
+                                                    <td>04 Dic 2024</td>
+                                                    <td><span class="label label-warning">No leído</span></td>
+                                                    <td>
+                                                        <a href="#" title="Archivar"><i class="fa fa-archive"></i></a>
+                                                        <a href="#" title="Eliminar"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox"></td>
+                                                    <td>Soporte Técnico</td>
+                                                    <td><a href="#">Tu ticket ha sido resuelto</a></td>
+                                                    <td>03 Dic 2024</td>
+                                                    <td><span class="label label-success">Leído</span></td>
+                                                    <td>
+                                                        <a href="#" title="Archivar"><i class="fa fa-archive"></i></a>
+                                                        <a href="#" title="Eliminar"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox"></td>
+                                                    <td>Recursos Humanos</td>
+                                                    <td><a href="#">Actualización de la política de vacaciones</a></td>
+                                                    <td>01 Dic 2024</td>
+                                                    <td><span class="label label-warning">No leído</span></td>
+                                                    <td>
+                                                        <a href="#" title="Archivar"><i class="fa fa-archive"></i></a>
+                                                        <a href="#" title="Eliminar"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>   
         </div>
     </div>
 
-    <!-- Mensajes -->
-    @for ($i = 0; $i < 3; $i++)
-        <div class="message-block">
-            <div class="message-container">
-                <h3 class="message-title">¡Anuncio importante!</h3>
-                <img src="{{ asset('img/icon/mail-icon.png') }}" alt="">
-                <p class="message-text">
-                    No te pierdas nuestra nueva actualización del sistema ScholSys, que trae mejoras en la gestión de estudiantes y comunicación.
-                    ¡Mantente al tanto de las novedades!
-                </p>
-            </div>
-        </div>
-    @endfor
-
-    <!-- Calendario -->
-    <div class="sb2-r">
-        <div class="calendar">
-            <iframe 
-                src="https://calendar.google.com/calendar/embed?src=tucorreo@gmail.com&ctz=America%2FNew_York" 
-                style="border:0" 
-                width="800" 
-                height="600" 
-                frameborder="0" 
-                scrolling="no">
-            </iframe>
-        </div>
-    </div>
-
-    <!-- JS -->
-    <script src="{{ asset('lib/owlcarousel/slider.js') }}"></script>
-
+    <script src="{{ asset('js/main.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/materialize.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
