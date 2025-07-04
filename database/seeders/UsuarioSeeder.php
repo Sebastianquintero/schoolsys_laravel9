@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioSeeder extends Seeder
 {
-    
+
     public function run(): void
     {
         DB::table('roles')->insert([
@@ -37,55 +37,79 @@ class UsuarioSeeder extends Seeder
         ]);
 
         DB::table('usuarios')->insert([
-            'nombres'           => 'Admin',
-            'apellidos'         => 'Principal',
-            'tipo_documento'    => 'DNI',
-            'numero_documento'  => '12345678',
-            'correo'            => 'admin@scholsys.com',
-            'contrasena'        => Hash::make('admin123'), 
-            'fecha_nacimiento'  => '2000-01-01', 
-            'numero_telefono'   => '9876543210',
-            'fk_rol'            => 1, 
+            [
+                'nombres' => 'Admin',
+                'apellidos' => 'Principal',
+                'tipo_documento' => 'DNI',
+                'numero_documento' => '12345678',
+                'correo' => 'admin@scholsys.com',
+                'contrasena' => Hash::make('admin123'),
+                'fecha_nacimiento' => '2000-01-01',
+                'numero_telefono' => '9876543210',
+                'fk_rol' => 1,
+            ],
+            [
+                'nombres' => 'Juan',
+                'apellidos' => 'Pérez',
+                'tipo_documento' => 'Cédula',
+                'numero_documento' => '123456789',
+                'correo' => 'sebastquinter87@gmail.com',
+                'contrasena' => Hash::make('juan123'),
+                'fecha_nacimiento' => '1995-05-20',
+                'numero_telefono' => '3001234567',
+                'fk_rol' => 1,
+            ],
+            [
+                'nombres' => 'Cristian',
+                'apellidos' => 'Quintero',
+                'tipo_documento' => 'Cédula',
+                'numero_documento' => '987654321',
+                'correo' => 'cristianerodriguez607@gmail.com',
+                'contrasena' => Hash::make('cristian123'),
+                'fecha_nacimiento' => '1998-08-15',
+                'numero_telefono' => '3109876543',
+                'fk_rol' => 1,
+            ]
         ]);
 
         // ==============================
         // Estudiante 1
         $id1 = DB::table('usuarios')->insertGetId([
-            'nombres'           => 'Laura',
-            'apellidos'         => 'Martínez',
-            'tipo_documento'    => 'Tarjeta de Identidad',
-            'numero_documento'  => '56789012',
-            'contrasena'        => Hash::make('estudiante123'),
-            'fecha_nacimiento'  => '2010-06-15',
-            'numero_telefono'   => '3101234567',
-            'correo'            => 'laura@estudiante.com',
-            'fk_rol'            => 3,
+            'nombres' => 'Laura',
+            'apellidos' => 'Martínez',
+            'tipo_documento' => 'Tarjeta de Identidad',
+            'numero_documento' => '56789012',
+            'contrasena' => Hash::make('estudiante123'),
+            'fecha_nacimiento' => '2010-06-15',
+            'numero_telefono' => '3101234567',
+            'correo' => 'laura@estudiante.com',
+            'fk_rol' => 3,
         ]);
 
         // Estudiante 2
         $id2 = DB::table('usuarios')->insertGetId([
-            'nombres'           => 'Carlos',
-            'apellidos'         => 'González',
-            'tipo_documento'    => 'Registro Civil',
-            'numero_documento'  => '67890123',
-            'contrasena'        => Hash::make('carlos123'),
-            'fecha_nacimiento'  => '2011-03-10',
-            'numero_telefono'   => '3204567890',
-            'correo'            => 'carlos@estudiante.com',
-            'fk_rol'            => 3,
+            'nombres' => 'Carlos',
+            'apellidos' => 'González',
+            'tipo_documento' => 'Registro Civil',
+            'numero_documento' => '67890123',
+            'contrasena' => Hash::make('carlos123'),
+            'fecha_nacimiento' => '2011-03-10',
+            'numero_telefono' => '3204567890',
+            'correo' => 'carlos@estudiante.com',
+            'fk_rol' => 3,
         ]);
 
         // Estudiante 3
         $id3 = DB::table('usuarios')->insertGetId([
-            'nombres'           => 'Mariana',
-            'apellidos'         => 'Ruiz',
-            'tipo_documento'    => 'Cédula',
-            'numero_documento'  => '78901234',
-            'contrasena'        => Hash::make('mariana123'),
-            'fecha_nacimiento'  => '2009-11-22',
-            'numero_telefono'   => '3117894561',
-            'correo'            => 'mariana@estudiante.com',
-            'fk_rol'            => 3,
+            'nombres' => 'Mariana',
+            'apellidos' => 'Ruiz',
+            'tipo_documento' => 'Cédula',
+            'numero_documento' => '78901234',
+            'contrasena' => Hash::make('mariana123'),
+            'fecha_nacimiento' => '2009-11-22',
+            'numero_telefono' => '3117894561',
+            'correo' => 'mariana@estudiante.com',
+            'fk_rol' => 3,
         ]);
 
         // ==============================

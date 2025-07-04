@@ -32,7 +32,7 @@
     <!-- 🟢 HEADER -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light sticky-top p-0">
-            <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <a href="#" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
                 <h1 class="m-0">ScholSys</h1>
             </a>
             <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -53,10 +53,10 @@
             <span>Comunicación</span>
         </a>
 
-        <a href="ADMIN-VOTACION.html" class="boton_modulo disabled">
+        <!--<a href="ADMIN-VOTACION.html" class="boton_modulo disabled">
             <img src="img/icon/vote-icon.png" alt="Votación">
             <span>Votación</span>
-        </a>
+        </a>-->
 
         <a href="{{ route('dashboard_estudiante') }}" class="boton_modulo">
             <img src="img/icon/academico-icon.png" alt="Académico">

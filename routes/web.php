@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EstudianteImportController;
+use App\Http\Controllers\PasswordResetController;
+
+
 
 Route::get('/index', function () {
     return view('inicio.index');
@@ -35,6 +38,14 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/recuperacion', function () { return view('login.recuperacion_password');})->name('recuperacion_password');
+
+// recuperar contraseña
+Route::get('/recuperar-contrasena', [PasswordResetController::class, 'showRecoveryForm'])->name('password.request');
+Route::post('/recuperar-contrasena', [PasswordResetController::class, 'sendResetCode'])->name('password.send');
+
+Route::get('/verificar-codigo', [PasswordResetController::class, 'showCodeForm'])->name('password.code.form');
+Route::post('/restablecer-contrasena', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
+
 
 // Ruta protegida: página de bienvenida
 Route::get('/welcome', function () {

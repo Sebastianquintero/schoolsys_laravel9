@@ -37,7 +37,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="{{ route('index') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h1 class="m-0">ScholSys</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -71,7 +71,7 @@
     <section>
         <div class="row g-0">
             <div class="col-lg-12 d-flex flex-column align-items-end min-vh-100">
-                <h1 class="font-weight-bold mb-4">Bienvenido</h1>
+                
 
                 <!-- Formulario de Login -->
                 <div class="form-container">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recuperación</title>
+    <title>Verificación</title>
     <!-- Bootstrap desde CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -67,7 +67,7 @@
 
 </header>
 
-<body class="bg-dark">
+<body class="bg-dark ">
     <section>
         <div class="row g-0">
             <div class="col-lg-12 d-flex flex-column align-items-end min-vh-100">
@@ -76,56 +76,41 @@
                     <h1 class="font-weight-bold mb-4">Bienvenido</h1>
 
                     <!-- Inicio de formulario, Con Label, Input -->
-                    <div class="form-container">
                     <div class="container d-flex justify-content-center align-items-center vh-100">
                         <div class="form-container p-4 bg-dark rounded shadow-lg" style="width: 350px;">
 
-                            <form method="POST" action="{{ route('password.send') }}">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">{{ $errors->first() }}</div>
+                            @endif
+
+                            <form method="POST" action="{{ route('password.reset') }}">
                                 @csrf
-                                <label for="usuario" class="form-label">Correo</label>
-                                <input type="email" name="usuario" id="usuario" required class="form-control">
-                                <button type="submit" class="btn btn-success w-100">Recuperar Contraseña</button>
-                                <a href="{{route('login')}}"
-                                    class="btn btn-outline-light w-100 fw-bold d-flex justify-content-center align-items-center mt-2">
-                                    Volver a Inicio Sesión
-                                </a>
+                                <input type="hidden" name="email" value="{{ session('email') }}">
+
+                                <div class="mb-3">
+                                    <label for="codigo" class="form-label">Código recibido</label>
+                                    <input type="text" name="codigo" id="codigo" required class="form-control"
+                                        maxlength="4">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Nueva contraseña</label>
+                                    <input type="password" name="password" id="password" required class="form-control">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
+                                        required class="form-control">
+                                </div>
+
+                                <button type="submit" class="btn btn-success w-100">Restablecer contraseña</button>
                             </form>
                         </div>
+                        <!-- Fin del formulario -->
                     </div>
-                    </div>
-
-                    <script>
-                        document.getElementById("formRecuperar").addEventListener("submit", function (event) {
-                            event.preventDefault(); // Evita el envío predeterminado
-
-                            let email = document.getElementById("usuario").value;
-
-                            if (email.trim() === "") {
-                                // Si el campo está vacío, mostrar alerta de error
-                                Swal.fire({
-                                    title: "Error",
-                                    text: "Por favor, ingrese su correo electrónico.",
-                                    icon: "error",
-                                    confirmButtonText: "Aceptar"
-                                });
-                            } else {
-                                // Si el campo está lleno, mostrar alerta de éxito
-                                Swal.fire({
-                                    title: "¡Contraseña enviada!",
-                                    text: "Su contraseña temporal fue enviada al correo registrado.",
-                                    icon: "success",
-                                    confirmButtonText: "Aceptar"
-                                });
-                            }
-                        });
-                    </script>
-
-
-
-                    <!-- Fin del formulario -->
                 </div>
             </div>
-        </div>
         </div>
 
     </section>
