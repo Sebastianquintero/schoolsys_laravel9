@@ -37,4 +37,9 @@ class Usuario extends Authenticatable
     {
         return $this->hasOne(Estudiante::class, 'fk_usuario', 'id_usuario');
     }
+    public function colegio()
+    {
+        return $this->belongsTo(Colegio::class, 'fk_colegio', 'id_colegio');
+    }
+
 }

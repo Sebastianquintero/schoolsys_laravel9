@@ -17,7 +17,11 @@ class EstudianteController extends Controller
         }
 
         $estudiante = $usuario->estudiante;
+        $colegio_id = Auth::user()->fk_colegio;
 
+        $estudiantes = Estudiante::where('fk_colegio', $colegio_id)
+            ->with('usuario')
+            ->paginate(10);
         return view('estudiante.dashboard', compact('usuario', 'estudiante'));
     }
 }

@@ -47,6 +47,10 @@ return new class extends Migration {
             $table->string('eps', 100);
             $table->string('sisben', 50);
 
+            // Relación con colegio
+            $table->unsignedBigInteger('fk_colegio')->nullable();
+            $table->foreign('fk_colegio')->references('id_colegio')->on('colegios');
+
             $table->timestamps();
         });
     }

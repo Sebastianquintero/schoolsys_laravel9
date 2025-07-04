@@ -35,7 +35,29 @@ class UsuarioSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
-
+        DB::table('colegios')->insert([
+            [
+                'id_colegio' => 1,
+                'nombre' => 'Colegio Enrique Olaya Herrera',
+                'direccion' => 'Calle 123 #45-67',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_colegio' => 2,
+                'nombre' => 'Colegio San Juan Bosco',
+                'direccion' => 'Carrera 89 #12-34',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_colegio' => 3,
+                'nombre' => 'Colegio Santa María',
+                'direccion' => 'Diagonal 56 #78-90',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
         DB::table('usuarios')->insert([
             [
                 'nombres' => 'Admin',
@@ -47,6 +69,7 @@ class UsuarioSeeder extends Seeder
                 'fecha_nacimiento' => '2000-01-01',
                 'numero_telefono' => '9876543210',
                 'fk_rol' => 1,
+                'fk_colegio' => 1, // Asignar al colegio con ID 1
             ],
             [
                 'nombres' => 'Juan',
@@ -58,6 +81,7 @@ class UsuarioSeeder extends Seeder
                 'fecha_nacimiento' => '1995-05-20',
                 'numero_telefono' => '3001234567',
                 'fk_rol' => 1,
+                'fk_colegio' => 1, // Asignar al colegio con ID 1
             ],
             [
                 'nombres' => 'Cristian',
@@ -69,6 +93,7 @@ class UsuarioSeeder extends Seeder
                 'fecha_nacimiento' => '1998-08-15',
                 'numero_telefono' => '3109876543',
                 'fk_rol' => 1,
+                'fk_colegio' => 1, // Asignar al colegio con ID 1
             ]
         ]);
 
@@ -84,6 +109,7 @@ class UsuarioSeeder extends Seeder
             'numero_telefono' => '3101234567',
             'correo' => 'laura@estudiante.com',
             'fk_rol' => 3,
+            'fk_colegio' => 1, // Asignar al colegio con ID 1
         ]);
 
         // Estudiante 2
@@ -97,6 +123,7 @@ class UsuarioSeeder extends Seeder
             'numero_telefono' => '3204567890',
             'correo' => 'carlos@estudiante.com',
             'fk_rol' => 3,
+            'fk_colegio' => 1, // Asignar al colegio con ID 1
         ]);
 
         // Estudiante 3
@@ -110,6 +137,7 @@ class UsuarioSeeder extends Seeder
             'numero_telefono' => '3117894561',
             'correo' => 'mariana@estudiante.com',
             'fk_rol' => 3,
+            'fk_colegio' => 1, // Asignar al colegio con ID 1
         ]);
 
         // ==============================

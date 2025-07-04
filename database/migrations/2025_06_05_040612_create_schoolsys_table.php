@@ -16,6 +16,12 @@ return new class extends Migration {
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->timestamps();
         });
+        Schema::create('colegios', function (Blueprint $table) {
+            $table->id('id_colegio');
+            $table->string('nombre');
+            $table->string('direccion')->nullable();
+            $table->timestamps();
+        });
 
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id('id_usuario');
@@ -28,8 +34,13 @@ return new class extends Migration {
             $table->string('numero_telefono', 11);
             $table->string('correo', 100);
             $table->unsignedBigInteger('fk_rol');
-
+            $table->unsignedBigInteger('fk_colegio');
+            
+            $table->foreign('fk_colegio')->references('id_colegio')->on('colegios');
             $table->foreign('fk_rol')->references('id_rol')->on('roles');
+            
+
+
         });
 
         Schema::create('materias', function (Blueprint $table) {
@@ -130,9 +141,7 @@ return new class extends Migration {
             $table->foreign('fk_encuesta')->references('id_encuesta')->on('encuestas');
         });
 
-
-
-
+        
 
 
 
