@@ -103,7 +103,7 @@
                                                             <span class="label label-success">Activo</span>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('actualizar_estudiante', $user->estudiante->id_estudiante) }}" class="ad-st-view">Ver</a>
+                                                            <a href="{{ route('comunica_admin', $user->estudiante->id_estudiante) }}" class="ad-st-view">Ver</a>
 
                                                         </td>
                                                     </tr>

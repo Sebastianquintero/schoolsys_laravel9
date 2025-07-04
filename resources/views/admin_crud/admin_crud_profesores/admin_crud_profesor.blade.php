@@ -76,7 +76,7 @@
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-edit-profesor.html" class="ad-st-view">Editar</a></td>
+													<td><a href="{{ route('admin_edit_profesor') }}" class="ad-st-view">Editar</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
@@ -87,7 +87,7 @@
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-seminar-edit.html" class="ad-st-view">Editar</a></td>
+													<td><a href="{{ route('admin_edit_profesor') }}" class="ad-st-view">Editar</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
@@ -98,7 +98,7 @@
                                                     <td>
                                                         <span class="label label-success">Activo</span>
                                                     </td>
-													<td><a href="admin-seminar-edit.html" class="ad-st-view">Editar</a></td>
+													<td><a href="{{ route('admin_edit_profesor') }}" class="ad-st-view">Editar</a></td>
                                                 </tr>
                                                 
                                             </tbody>
