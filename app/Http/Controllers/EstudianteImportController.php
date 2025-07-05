@@ -13,30 +13,18 @@ class EstudianteImportController extends Controller
         return view('admin_crud.import_export.importar_estudiantes');
     }
 
-public function import(Request $request)
-{
-    $request->validate([
-        'archivo' => 'required|file|mimes:xlsx,csv,xls'
-    ]);
+    public function import(Request $request)
+    {
+        $request->validate([
+            'archivo' => 'required|file|mimes:xlsx,csv,xls'
+        ]);
 
-    try {
-        $archivo = $request->file('archivo');
+        $import = new EstudiantesImport();
+        Excel::import($import, $request->file('archivo'));
 
-        // Verifica si el archivo fue recibido
-        if (!$archivo || !$archivo->isValid()) {
-            return back()->with('error', 'Archivo no válido.');
-        }
-
-
-        // Importar datos
-        Excel::import(new EstudiantesImport, $archivo);
-
-        return back()->with('success', 'Estudiantes importados correctamente.');
-    } catch (\Exception $e) {
-        // Log para ayudarte a detectar errores
-        logger()->error('Error al importar estudiantes: ' . $e->getMessage());
-
-        return back()->with('error', 'Ocurrió un error durante la importación.');
+        return back()->with(
+            'mensaje',
+            "Importados: {$import->getImportados()}, Omitidos (duplicados): {$import->getOmitidos()}"
+        );
     }
-}
 }

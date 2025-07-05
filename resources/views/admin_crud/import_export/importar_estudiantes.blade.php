@@ -55,6 +55,11 @@
                                     <p>Todo acerca de los estudiantes con la plantilla</p>
                                 </div>
                                 <div class="tab-inn">
+                                    @if(session('mensaje'))
+                                        <div class="alert alert-success">
+                                            {{ session('mensaje') }}
+                                        </div>
+                                    @endif
                                     <form action="{{ route('importar.estudiantes') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf

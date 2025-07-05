@@ -99,7 +99,7 @@ class UsuarioSeeder extends Seeder
 
         // ==============================
         // Estudiante 1
-        $id1 = DB::table('usuarios')->insertGetId([
+        /*$id1 = DB::table('usuarios')->insertGetId([
             'nombres' => 'Laura',
             'apellidos' => 'Martínez',
             'tipo_documento' => 'Tarjeta de Identidad',
@@ -206,7 +206,7 @@ class UsuarioSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
-        ]);
+        ]);*/
 
     }
 }

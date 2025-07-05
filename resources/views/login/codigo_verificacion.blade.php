@@ -94,17 +94,39 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Nueva contraseña</label>
-                                    <input type="password" name="password" id="password" required class="form-control">
+                                    <label for="password" class="form-label font-weight-bold mb-3">Nueva
+                                        Contraseña</label>
+                                    <div class="input-group">
+                                        <input type="password" name="password" id="password"
+                                            class="form-control bg-dark-x border-0 mt-3"
+                                            placeholder="Ingrese su contraseña" required>
+                                        <span class="input-group-text bg-dark-x border-0 mt-3" style="cursor:pointer"
+                                            onclick="togglePassword()">
+                                            👁️
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
-                                    <input type="password" name="password_confirmation" id="password_confirmation"
-                                        required class="form-control">
+                                    <label for="password_confirmation" class="form-label font-weight-bold mb-3">Confirmar
+                                        contraseña</label>
+                                    <div class="input-group">
+                                        <input type="password" name="password_confirmation" id="password_confirmation"
+                                            required class="form-control bg-dark-x border-0 mt-3" placeholder="Confirmar contraseña">
+                                        <span class="input-group-text bg-dark-x border-0 mt-3" style="cursor:pointer"
+                                            onclick="togglePassword()">
+                                            👁️
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-success w-100">Restablecer contraseña</button>
+                                <script>
+                                    function togglePassword() {
+                                        const input = document.getElementById('password');
+                                        input.type = input.type === 'password' ? 'text' : 'password';
+                                    }
+                                </script>
                             </form>
                         </div>
                         <!-- Fin del formulario -->

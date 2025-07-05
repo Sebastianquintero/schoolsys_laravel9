@@ -21,7 +21,8 @@ class Usuario extends Authenticatable
         'fecha_nacimiento',
         'numero_telefono',
         'correo',
-        'fk_rol'
+        'fk_rol',
+        'fk_colegio'
     ];
 
     protected $hidden = ['contrasena'];

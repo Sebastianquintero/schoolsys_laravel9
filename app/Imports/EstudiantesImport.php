@@ -4,70 +4,106 @@ namespace App\Imports;
 
 use App\Models\Estudiante;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Hash;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class EstudiantesImport implements ToModel
+class EstudiantesImport implements ToModel, WithHeadingRow
 {
-public function model(array $row)
-{
-    if (Str::lower(trim($row[0])) === 'nombres') return null;
+    private int $importados = 0;
+    private int $omitidos = 0;
 
-    $row = array_map(fn($val) => trim((string)$val), $row);
+    public function model(array $row)
+    {
+        // Ignorar fila vacía o inválida
+        if (empty($row['nombres']) || empty($row['correo'])) {
+            $this->omitidos++;
+            return null;
+        }
 
-    // Validar la fecha
-    $fecha = $this->transformarFecha($row[5]);
-    if (!$fecha) return null; // Omite la fila si no se puede transformar
+        $fecha = $this->transformarFecha($row['fecha_nacimiento']);
+        if (!$fecha) {
+            $this->omitidos++;
+            return null;
+        }
 
-    $usuario = Usuario::create([
-        'nombres'            => $row[0],
-        'apellidos'          => $row[1],
-        'tipo_documento'     => $row[2],
-        'numero_documento'   => $row[3],
-        'contrasena'         => Hash::make($row[4]),
-        'fecha_nacimiento'   => $fecha,
-        'numero_telefono'    => $row[6],
-        'correo'             => $row[7],
-        'fk_rol'             => 3,
-    ]);
+        $admin = Auth::user();
 
-    return new Estudiante([
-        'tipo_via'           => $row[8],
-        'direccion'          => $row[9],
-        'fecha_nacimiento'   => $fecha,
-        'edad'               => (int)$row[10],
-        'grado'              => $row[11],
-        'curso'              => $row[12],
-        'nivel_educativo'    => $row[13],
-        'nacionalidad'       => $row[14],
-        'correo_personal'    => $row[15],
-        'acudiente'          => $row[16],
-        'eps'                => $row[17],
-        'sisben'             => $row[18],
-        'telefono'           => $row[6],
-        'fk_usuario'         => $usuario->id_usuario,
-    ]);
-}
+        $existe = Usuario::where('correo', $row['correo'])
+            ->orWhere('numero_documento', $row['numero_documento'])
+            ->first();
 
+        if ($existe) {
+            $this->omitidos++;
+            return null;
+        }
 
-    /* -------------- ---------------*/
+        $usuario = Usuario::updateOrCreate(
+            [
+                'correo' => $row['correo']
+            ],
+            [
+                'nombres' => $row['nombres'],
+                'apellidos' => $row['apellidos'],
+                'tipo_documento' => $row['tipo_documento'],
+                'numero_documento' => $row['numero_documento'],
+                'contrasena' => Hash::make($row['contrasena']),
+                'fecha_nacimiento' => $fecha,
+                'numero_telefono' => $row['numero_telefono'],
+                'fk_rol' => 3,
+                'fk_colegio' => 1,
+            ]
+        );
 
-    private function transformarFecha($valor)
-{
-    // Si es un número (Excel serial date)
-    if (is_numeric($valor)) {
-        return \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($valor)->format('Y-m-d');
-    }
+        Estudiante::updateOrCreate(
+            ['fk_usuario' => $usuario->id_usuario],
+            [
+                'tipo_via' => $row['tipo_via'],
+                'direccion' => $row['direccion'],
+                'fecha_nacimiento' => $fecha,
+                'edad' => $row['edad'],
+                'grado' => $row['grado'],
+                'curso' => $row['curso'],
+                'nivel_educativo' => $row['nivel_educativo'],
+                'nacionalidad' => $row['nacionalidad'],
+                'correo_personal' => $row['correo_personal'],
+                'acudiente' => $row['acudiente'],
+                'eps' => $row['eps'],
+                'sisben' => $row['sisben'],
+                'telefono' => $row['numero_telefono'],
+                'fk_colegio' => 1,
+            ]
+        );
 
-    // Si ya es texto tipo 'YYYY-MM-DD'
-    try {
-        return \Carbon\Carbon::parse($valor)->format('Y-m-d');
-    } catch (\Exception $e) {
+        $this->importados++;
         return null;
     }
-}
+
+    public function getImportados(): int
+    {
+        return $this->importados;
+    }
+
+    public function getOmitidos(): int
+    {
+        return $this->omitidos;
+    }
+
+    private function transformarFecha($valor)
+    {
+        if (is_numeric($valor)) {
+            return Date::excelToDateTimeObject($valor)->format('Y-m-d');
+        }
+
+        try {
+            return Carbon::parse($valor)->format('Y-m-d');
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 }

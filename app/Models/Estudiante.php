@@ -24,7 +24,8 @@ class Estudiante extends Model
         'acudiente',
         'eps',
         'sisben',
-        'fk_usuario'
+        'fk_usuario',
+        'fk_colegio'
     ];
     public function usuario()
     {

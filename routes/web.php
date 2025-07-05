@@ -6,6 +6,8 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EstudianteImportController;
 use App\Http\Controllers\PasswordResetController;
+use App\Exports\EstudiantesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 
@@ -37,7 +39,8 @@ Route::get('/feature3', function () {
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/recuperacion', function () { return view('login.recuperacion_password');})->name('recuperacion_password');
+Route::get('/recuperacion', function () {
+    return view('login.recuperacion_password'); })->name('recuperacion_password');
 
 // recuperar contraseña
 Route::get('/recuperar-contrasena', [PasswordResetController::class, 'showRecoveryForm'])->name('password.request');
@@ -57,7 +60,7 @@ Route::get('/welcome', function () {
 // ====================================================================================================
 //Ruta Modulo de Comunicacion administrador
 Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
-    Route::get('/admin',[AdminController::class, 'verEstudiantes'])->name('admin');
+    Route::get('/admin', [AdminController::class, 'verEstudiantes'])->name('admin');
 
     // Comunicaciones del admin
     Route::get('/comunica_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_admin'))->name('comunica_admin');
@@ -66,13 +69,13 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
 
     // Rutas para el módulo de gestión de estudiantes
     Route::get('/crud_ver_curso', fn() => view('admin_crud.admin_crud_cursos.crud_ver_curso'))->name('crud_ver_curso');
-    Route::get('/admin_add_curso', fn() => view('admin_crud.admin_crud_cursos.admin_add_curso'))->name('admin_add_curso'); 
+    Route::get('/admin_add_curso', fn() => view('admin_crud.admin_crud_cursos.admin_add_curso'))->name('admin_add_curso');
 
     // Rutas para el módulo de gestión de profesores
 
     Route::get('/admin_crud_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_crud_profesor'))->name('admin_crud_profesor');
     Route::get('/admin_add_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_add_profesor'))->name('admin_add_profesor');
-    Route::get('/admin_edit_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_edit_profesor'))->name('admin_edit_profesor'); 
+    Route::get('/admin_edit_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_edit_profesor'))->name('admin_edit_profesor');
     // Rutas para el módulo de gestión de profesores
     /*Route::get('/gestion_profesores', [AdminController::class, 'gestionProfesores'])->name('gestion_profesores');
     Route::get('/gestion_profesores/agregar', [AdminController::class, 'agregarProfesor'])->name('agregar_profesor');
@@ -95,6 +98,7 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     //Route::get('/gestion_actividades/editar/{id}', [AdminController::class, 'editarActividad'])->name('editar_actividad');
     //Route::get('/gestion_actividades/eliminar/{id}', [AdminController::class, 'eliminarActividad'])->name('eliminar_actividad');
 
+    
 });
 
 // =====================================================================================================
@@ -126,4 +130,7 @@ Route::middleware(['auth', 'rol:1,3'])->group(function () {
 Route::get('/importar-estudiantes', [EstudianteImportController::class, 'show'])->name('importar.estudiantes.form');
 Route::post('/importar-estudiantes', [EstudianteImportController::class, 'import'])->name('importar.estudiantes');
 
-
+// Exportar estudiantes a Excel
+    Route::get('/exportar-estudiantes', function () {
+        return Excel::download(new EstudiantesExport, 'estudiantes.xlsx');
+    })->middleware('auth')->name('exportar.estudiantes');

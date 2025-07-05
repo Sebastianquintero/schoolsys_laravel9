@@ -34,7 +34,7 @@ return new class extends Migration {
             $table->string('numero_telefono', 11);
             $table->string('correo', 100);
             $table->unsignedBigInteger('fk_rol');
-            $table->unsignedBigInteger('fk_colegio');
+            $table->unsignedBigInteger('fk_colegio')->nullable();
             
             $table->foreign('fk_colegio')->references('id_colegio')->on('colegios');
             $table->foreign('fk_rol')->references('id_rol')->on('roles');
