@@ -89,6 +89,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('destinatario');
             $table->string('asunto', 150);
             $table->text('contenido');
+            $table->boolean('leido')->default(false);
             $table->dateTime('fecha_creacion');
             $table->dateTime('fecha_envio');
             $table->string('archivo_adjunto', 255)->nullable();

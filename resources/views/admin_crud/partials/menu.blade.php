@@ -23,7 +23,26 @@
                 </ul>
             </div>
         </li>
+        <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bullhorn"></i>Todos los profesores</a>
+            <div class="collapsible-body left-sub-menu">
+                <ul>
+                    <li><a href="{{ route('admin_crud_profesor') }}">Profesores</a></li>
+                    <li><a href="{{ route('admin_add_profesor') }}">Agregar Profesor</a></li>
+                </ul>
+            </div>
+        </li>
 
+        <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Todos los usuarios</a>
+            <div class="collapsible-body left-sub-menu">
+                <ul>
+                    <!-- <li><a href="{{ url('admin/estudiantes') }}">Todos los Usuarios</a></li> -->
+                    
+                </ul>
+            </div>
+        </li>
+        
         <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bars"></i> Menu </a>
             <div class="collapsible-body left-sub-menu">
@@ -36,18 +55,10 @@
             </div>
         </li>
 
-        <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bullhorn"></i>Crud profesores</a>
-            <div class="collapsible-body left-sub-menu">
-                <ul>
-                    <li><a href="{{ route('admin_crud_profesor') }}">Profesores</a></li>
-                    <li><a href="{{ route('admin_add_profesor') }}">Agregar Profesor</a></li>
-                </ul>
-            </div>
-        </li>
+        
 
         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap"></i>Crud actividad</a>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap"></i>Actividades</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <li><a href="{{ route('admin_ver_actividades') }}">Ver actividades</a></li>
@@ -68,15 +79,7 @@
             </div>
         </li>
 
-        <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Estudiantes</a>
-            <div class="collapsible-body left-sub-menu">
-                <ul>
-                    <!-- <li><a href="{{ url('admin/estudiantes') }}">Todos los Estudiantes</a></li> -->
-                    <!-- <li><a href="{{ url('admin/estudiantes/agregar') }}">Agregar Nuevo Estudiante</a></li> -->
-                </ul>
-            </div>
-        </li>
+        
 
         <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o"></i>Consultas</a>

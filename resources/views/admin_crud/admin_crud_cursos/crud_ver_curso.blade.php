@@ -49,7 +49,7 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Detalles de (curso)</h4>
-                                    
+
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
@@ -58,38 +58,43 @@
                                                 <tr>
                                                     <th>(curso perteneciente)</th>
                                                     <th>Ver/editar Estudiantes</th>
-                                               
-                                                                                </tr>
+
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                               
+
                                                     <td><a href="#"><span class="list-enq-name">001</span></a>
                                                     </td>
-                                            
-                                                    <td><a href="admin-crud-estudiante.html" class="ad-st-view">Ver/editar</a></td>
+
+                                                    <td><a href="admin-crud-estudiante.html"
+                                                            class="ad-st-view">Ver/editar</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="#"><span class="list-enq-name">002</span></a>
                                                     </td>
-                                                    <td><a href="admin-crud-estudiante.html" class="ad-st-view">Ver/editar</a></td>
+                                                    <td><a href="admin-crud-estudiante.html"
+                                                            class="ad-st-view">Ver/editar</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="#"><span class="list-enq-name">003</span></a>
                                                     </td>
-                                                    <td><a href="admin-crud-estudiante.html" class="ad-st-view">Ver/editar</a></td>
+                                                    <td><a href="admin-crud-estudiante.html"
+                                                            class="ad-st-view">Ver/editar</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="#"><span class="list-enq-name">004</span></a>
                                                     </td>
-                                                    <td><a href="admin-crud-estudiante.html" class="ad-st-view">Ver/editar</a></td>
+                                                    <td><a href="admin-crud-estudiante.html"
+                                                            class="ad-st-view">Ver/editar</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="#"><span class="list-enq-name">005</span></a>
                                                     </td>
-                                                    <td><a href="admin-crud-estudiante.html" class="ad-st-view">Ver/editar</a></td>
+                                                    <td><a href="admin-crud-estudiante.html"
+                                                            class="ad-st-view">Ver/editar</a></td>
                                                 </tr>
-                                              
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -98,6 +103,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
 
         </div>

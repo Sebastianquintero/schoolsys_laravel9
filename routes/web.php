@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\DocenteImportController;
 use App\Exports\DocentesExport;
+use App\Http\Controllers\MensajeController;
 
 
 Route::get('/index', function () { return view('inicio.index');})->name('index');
@@ -51,9 +52,9 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'verEstudiantes'])->name('admin');
 
     // Comunicaciones del admin
-    Route::get('/comunica_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_admin'))->name('comunica_admin');
-    Route::get('/comunica_add_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_add_admin'))->name('comunica_add_admin');
-    Route::get('/comunica_config_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_config_admin'))->name('comunica_config_admin');
+    //Route::get('/comunica_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_admin'))->name('comunica_admin');
+    //Route::get('/comunica_add_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_add_admin'))->name('comunica_add_admin');
+    //Route::get('/comunica_config_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_config_admin'))->name('comunica_config_admin');
 
     // Rutas para el módulo de cursos
     Route::get('/crud_ver_curso', fn() => view('admin_crud.admin_crud_cursos.crud_ver_curso'))->name('crud_ver_curso');
@@ -110,9 +111,25 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
     Route::get('/encuesta', fn() => view('estudiante.encuestas.encuesta'))->name('encuesta');
     Route::get('/calificaciones', fn() => view('estudiante.calificaciones.calificaciones'))->name('calificaciones');
 
-    Route::get('/mail', fn() => view('modulo_comunicacion.mail'))->name('mail');
+    
 });
 
+// =====================================================================================================
+// Ruta de email mensajeria
+Route::middleware(['auth', 'rol:1,2,3'])->prefix('mensajes')->group(function () {
+    Route::get('/correo', [MensajeController::class, 'bandejaEntrada'])->name('mensajes.bandeja');
+    Route::get('/mensajes/redactar', [MensajeController::class, 'redactar'])->name('mensajes.redactar');
+    Route::post('/mensajes/enviar', [MensajeController::class, 'enviar'])->name('mensajes.enviar');
+    Route::get('/mensaje/{id}', [MensajeController::class, 'ver'])->name('mensajes.ver');
+
+});
+
+
+
+
+
+
+// =====================================================================================================
 
 // Ruta para el ingreso de estudiantes o administradores para cierta vista
 Route::middleware(['auth', 'rol:1,3'])->group(function () {
