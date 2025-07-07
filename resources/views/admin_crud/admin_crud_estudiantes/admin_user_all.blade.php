@@ -72,13 +72,13 @@
                                                     <th>Ver</th>
                                                 </tr>
                                             </thead>
-<tbody>
+                                            <tbody>
                                                 @if($estudiantes->isEmpty())
                                                     <tr>
                                                         <td colspan="8">No hay estudiantes registrados.</td>
                                                     </tr>
                                                 @endif
-                                                @foreach ($estudiantes as $user)
+                                                @foreach ($estudiantes as $estudiante)
                                                     <tr>
                                                         <td>
                                                             <span class="list-img">
@@ -88,24 +88,23 @@
                                                         </td>
                                                         <td>
                                                             <a href="#">
-                                                                <span class="list-enq-name">{{ $user->nombres }}
-                                                                    {{ $user->apellidos }}</span>
-                                                                <span class="list-enq-city">{{ $user->curso }}</span>
+                                                                <span
+                                                                    class="list-enq-name">{{ $estudiante->usuario->nombres }}
+                                                                    {{ $estudiante->usuario->apellidos }}</span>
+                                                                <span class="list-enq-city">{{ $estudiante->curso }}</span>
                                                             </a>
                                                         </td>
-                                                        <td>{{ $user->numero_telefono }}</td>
-                                                        <td>{{ $user->correo }}</td>
-                                                        <td>Bogotá D.C.</td>
-                                                        <td>{{ $user->numero_documento }}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($user->fecha_nacimiento)->format('d M Y') }}
+                                                        <td>{{ $estudiante->telefono }}</td>
+                                                        <td>{{ $estudiante->usuario->correo }}</td>
+                                                        <td>{{ $estudiante->direccion ?? 'N/A' }}</td>
+                                                        <td>{{ $estudiante->usuario->numero_documento }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($estudiante->usuario->fecha_nacimiento)->format('d M Y') }}
                                                         </td>
                                                         <td>
                                                             <span class="label label-success">Activo</span>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('docente.edit', $user->estudiante->id_estudiante) }}"
-                                                                class="ad-st-view">Editar</a>
-                                                                
+                                                            <a href="#" class="ad-st-view">Ver</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

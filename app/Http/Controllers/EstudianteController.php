@@ -92,12 +92,10 @@ class EstudianteController extends Controller
     return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
 }
 
-    public function verEstudiantes()
-    {
-        $estudiantes = Usuario::where('fk_rol', 3)
-            ->with('estudiante')
-            ->paginate(10);
-        return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
-    }
+    public function verCrudEstudiante()
+{
+    $estudiantes = Estudiante::with('usuario')->paginate(10);
+    return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
+}
 
 }

@@ -14,12 +14,18 @@ use App\Exports\DocentesExport;
 use App\Http\Controllers\MensajeController;
 
 
-Route::get('/index', function () { return view('inicio.index');})->name('index');
-Route::get('/about', function () { return view('inicio.about');})->name('about');
-Route::get('/contact', function () { return view('inicio.contact');})->name('contact');
-Route::get('/feature', function () { return view('inicio.feature');})->name('feature');
-Route::get('/feature2', function () { return view('inicio.feature2');})->name('feature2');
-Route::get('/feature3', function () { return view('inicio.feature3');})->name('feature3');
+Route::get('/index', function () {
+    return view('inicio.index'); })->name('index');
+Route::get('/about', function () {
+    return view('inicio.about'); })->name('about');
+Route::get('/contact', function () {
+    return view('inicio.contact'); })->name('contact');
+Route::get('/feature', function () {
+    return view('inicio.feature'); })->name('feature');
+Route::get('/feature2', function () {
+    return view('inicio.feature2'); })->name('feature2');
+Route::get('/feature3', function () {
+    return view('inicio.feature3'); })->name('feature3');
 
 // Login
 
@@ -69,7 +75,9 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::post('/guardar_estudiante', [EstudianteController::class, 'store'])->name('guardar_estudiante');
 
     // Ruta: Mostrar todos estudiantes existentes
+    Route::get('/admin_user_all', [EstudianteController::class, 'verCrudEstudiante'])->name('admin_user_all');
     Route::get('/admin/lista-estudiantes', [EstudianteController::class, 'verCrudEstudiante'])->name('lista_estudiantes_admin');
+    Route::get('/ver-estudiantes', [EstudianteController::class, 'verEstudiantes'])->name('ver_estudiantes');
 
 
 
@@ -124,7 +132,7 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
     Route::get('/encuesta', fn() => view('estudiante.encuestas.encuesta'))->name('encuesta');
     Route::get('/calificaciones', fn() => view('estudiante.calificaciones.calificaciones'))->name('calificaciones');
 
-    
+
 });
 
 // =====================================================================================================
