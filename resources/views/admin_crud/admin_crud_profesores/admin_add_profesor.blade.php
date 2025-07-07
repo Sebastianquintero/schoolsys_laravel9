@@ -73,7 +73,7 @@
                                                 <label>tipo de documento</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" name="Numero documento"
+                                                <input type="text" name="numero_documento"
                                                     placeholder="Numero documento" required>
                                                 <label>numero de documento</label>
                                             </div>
