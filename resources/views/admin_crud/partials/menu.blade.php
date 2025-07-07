@@ -15,11 +15,11 @@
         </li>
 
         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user"></i>Todos los Estudiantes</a>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user"></i>Crud Estudiantes</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
-                    <!-- <li><a href="#">Ver todos los estudiantes</a></li> -->
-                    <!-- <li><a href="#">Ver todos los usuarios</a></li> -->
+                    <li><a href="{{ route('admin_user_all') }}">Estudiantes</a></li>
+                    <li><a href="{{ route('admin_crud_estudiante') }}">Agregar Estudiantes</a></li>
                 </ul>
             </div>
         </li>
@@ -79,7 +79,15 @@
             </div>
         </li>
 
-        
+        <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Todos los Estudiantes</a>
+            <div class="collapsible-body left-sub-menu">
+                <ul>
+                    <!-- <li><a href="{{ url('admin/estudiantes') }}">Todos los Estudiantes</a></li> -->
+                    <!-- <li><a href="{{ url('admin/estudiantes/agregar') }}">Agregar Nuevo Estudiante</a></li> -->
+                </ul>
+            </div>
+        </li>
 
         <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o"></i>Consultas</a>

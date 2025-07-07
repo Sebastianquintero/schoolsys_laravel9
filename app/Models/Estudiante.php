@@ -31,4 +31,9 @@ class Estudiante extends Model
     {
         return $this->belongsTo(Usuario::class, 'fk_usuario', 'id_usuario');
     }
+
+        public function colegio()
+    {
+        return $this->belongsTo(Colegio::class, 'fk_colegio', 'id_colegio');
+    }
 }
