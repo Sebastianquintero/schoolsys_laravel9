@@ -9,30 +9,16 @@ use App\Http\Controllers\PasswordResetController;
 use App\Exports\EstudiantesExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\DocenteImportController;
+use App\Exports\DocentesExport;
 
 
-Route::get('/index', function () {
-    return view('inicio.index');
-})->name('index');
-Route::get('/about', function () {
-    return view('inicio.about');
-})->name('about');
-
-Route::get('/contact', function () {
-    return view('inicio.contact');
-})->name('contact');
-
-Route::get('/feature', function () {
-    return view('inicio.feature');
-})->name('feature');
-
-Route::get('/feature2', function () {
-    return view('inicio.feature2');
-})->name('feature2');
-
-Route::get('/feature3', function () {
-    return view('inicio.feature3');
-})->name('feature3');
+Route::get('/index', function () { return view('inicio.index');})->name('index');
+Route::get('/about', function () { return view('inicio.about');})->name('about');
+Route::get('/contact', function () { return view('inicio.contact');})->name('contact');
+Route::get('/feature', function () { return view('inicio.feature');})->name('feature');
+Route::get('/feature2', function () { return view('inicio.feature2');})->name('feature2');
+Route::get('/feature3', function () { return view('inicio.feature3');})->name('feature3');
 
 // Login
 
@@ -59,7 +45,7 @@ Route::get('/welcome', function () {
 
 
 // ====================================================================================================
-//Ruta Modulo de Comunicacion administrador
+//Ruta Modulo de administrador
 Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     // Ruta: Dashboard de admin ver estudiantes
     Route::get('/admin', [AdminController::class, 'verEstudiantes'])->name('admin');
@@ -141,3 +127,10 @@ Route::post('/importar-estudiantes', [EstudianteImportController::class, 'import
 Route::get('/exportar-estudiantes', function () {
     return Excel::download(new EstudiantesExport, 'estudiantes.xlsx');
 })->middleware('auth')->name('exportar.estudiantes');
+
+Route::get('/importar-docentes', [DocenteImportController::class, 'show'])->name('importar.docentes.form');
+Route::post('/importar-docentes', [DocenteImportController::class, 'import'])->name('importar.docentes');
+
+Route::get('/exportar-docentes', function () {
+    return Excel::download(new DocentesExport, 'docentes.xlsx');
+})->middleware('auth')->name('exportar.docentes');

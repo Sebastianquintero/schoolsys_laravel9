@@ -102,18 +102,18 @@
                                                                 <button type="submit" class="ad-st-view">Eliminar</button>
                                                             </form>
                                                         </td>
-                                                        <form action="{{ route('docente.destroyAll') }}" method="POST"
+                                                        
+
+
+                                                    </tr>
+                                                @endforeach
+                                                <form action="{{ route('docente.destroyAll') }}" method="POST"
                                                             onsubmit="return confirm('¿Estás seguro de eliminar todos los docentes? Esta acción no se puede deshacer.');">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Eliminar
                                                                 Todos</button>
                                                         </form>
-
-
-                                                    </tr>
-                                                @endforeach
-
                                                 @if ($docentes->isEmpty())
                                                     <tr>
                                                         <td colspan="8" class="text-center">No hay profesores registrados.
@@ -123,7 +123,8 @@
                                             </tbody>
                                         </table>
 
-                                        <div class="d-flex justify-content-center mt-3">
+                                        <div class="text-center my-3">
+                                            <div class="pagination-custom">
                                             {{ $docentes->links() }} <!-- Paginación -->
                                         </div>
                                     </div>

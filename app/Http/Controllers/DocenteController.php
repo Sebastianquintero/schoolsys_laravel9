@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Usuario;
+use App\Exports\DocentesExport;
+use App\Imports\DocentesImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DocenteController extends Controller
 {
@@ -155,5 +158,6 @@ class DocenteController extends Controller
         return redirect()->back()->with('success', 'Todos los docentes han sido eliminados.');
     }
 
+    
 
 }
