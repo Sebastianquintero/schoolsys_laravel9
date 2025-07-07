@@ -37,11 +37,12 @@
                 <!--== breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Users(Students)</a>
+                        <li class="active-bre"><a href="#"> Usuarios(Estudiantes)</a>
                         </li>
-                        <li class="page-back"><a href="index-2.html"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atras</a>
                         </li>
                     </ul>
                 </div>
@@ -71,129 +72,50 @@
                                                     <th>Ver</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>united states</td>
-                                                    <td>ST17241</td>
-													<td>03 Jun 1990</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Lucas Caden</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 8574 6854</td>
-                                                    <td>lucas@gmail.com</td>
-                                                    <td>Illinois</td>
-                                                    <td>ST10231</td>
-													<td>16 Feb 1987</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 8574 6854</td>
-                                                    <td>Ethan@gmail.com</td>
-                                                    <td>Illinois</td>
-                                                    <td>ST32168</td>
-													<td>21 Jun 1992</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 8574 6854</td>
-                                                    <td>Ethan@gmail.com</td>
-                                                    <td>Illinois</td>
-                                                    <td>ST32168</td>
-													<td>21 Jun 1992</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 3214 6522</td>
-                                                    <td>chadengle@dummy.com</td>
-                                                    <td>united states</td>
-                                                    <td>ST17241</td>
-													<td>03 Jun 1990</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Lucas Caden</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 8574 6854</td>
-                                                    <td>lucas@gmail.com</td>
-                                                    <td>Illinois</td>
-                                                    <td>ST10231</td>
-													<td>16 Feb 1987</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 8574 6854</td>
-                                                    <td>Ethan@gmail.com</td>
-                                                    <td>Illinois</td>
-                                                    <td>ST32168</td>
-													<td>21 Jun 1992</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>+01 8574 6854</td>
-                                                    <td>Ethan@gmail.com</td>
-                                                    <td>Illinois</td>
-                                                    <td>ST32168</td>
-													<td>21 Jun 1992</td>
-                                                    <td>
-                                                        <span class="label label-success">Active</span>
-                                                    </td>
-													<td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                                </tr>
+<tbody>
+                                                @if($estudiantes->isEmpty())
+                                                    <tr>
+                                                        <td colspan="8">No hay estudiantes registrados.</td>
+                                                    </tr>
+                                                @endif
+                                                @foreach ($estudiantes as $user)
+                                                    <tr>
+                                                        <td>
+                                                            <span class="list-img">
+                                                                <img src="{{ asset('images/user/placeholder.jpg') }}"
+                                                                    alt="">
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <span class="list-enq-name">{{ $user->nombres }}
+                                                                    {{ $user->apellidos }}</span>
+                                                                <span class="list-enq-city">{{ $user->curso }}</span>
+                                                            </a>
+                                                        </td>
+                                                        <td>{{ $user->numero_telefono }}</td>
+                                                        <td>{{ $user->correo }}</td>
+                                                        <td>Bogotá D.C.</td>
+                                                        <td>{{ $user->numero_documento }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($user->fecha_nacimiento)->format('d M Y') }}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-success">Activo</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('docente.edit', $user->estudiante->id_estudiante) }}"
+                                                                class="ad-st-view">Editar</a>
+                                                                
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
-                                            </table>
+                                        </table>
+                                        <div class="text-center my-3">
+                                            <div class="pagination-custom">
+                                                {{ $estudiantes->links() }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -70,7 +70,7 @@
                                                     <th>Tel</th>
                                                     <th>Email</th>
                                                     <th>Ciudad</th>
-                                                    <th>Id</th>
+                                                    <th>Documento</th>
                                                     <th>Fecha Nacimiento</th>
                                                     <th>Estado</th>
                                                     <th>Ver</th>

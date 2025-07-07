@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     @include('admin_crud.partials.head')
 </head>
@@ -32,124 +33,146 @@
             </div>
 
             <!--== BODY INNER CONTAINER ==-->
-            <div class="sb2-2">
+           <div class="sb2-2">
                 <!--== breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Usuarios(Estudiantes)</a>
-
+                        <li class="active-bre"><a href="#">Agregar estudiante</a>
+                        </li>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward" aria-hidden="true"></i>Atras</a>
+                        </li>
                     </ul>
                 </div>
 
                 <!--== User Details ==-->
-
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="box-inn-sp">
+						<div class="box-inn-sp admin-form">
                                 <div class="inn-title">
-                                    <h4>Estudiantes del (curso)</h4>
-                                    <form class="app-search">
-                                        <input type="text" placeholder="Search..." class="form-control">
-                                        <a href="#"><i class="fa fa-search"></i></a>
-                                    </form>
-
+                                    <h4>Agregar un nuevo estudiante</h4>
+                                    <p>Here you can edit your website basic details URL, Phone, Email, Address, User and password and more</p>
                                 </div>
                                 <div class="tab-inn">
-                                    <div class="table-responsive table-desi">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Foto </th>
-                                                    <th>Nombre</th>
-                                                    <th>Apellido</th>
-                                                    <th>Telefono</th>
-                                                    <th>Correo</th>
-                                                    <th>Acudiente</th>
-                                                    <th>Tel/acudiente</th>
-                                                    <th>Direccion</th>
-                                                    <th>editar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-stuedit.html" class="ad-st-view">Editar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/2.png"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-stuedit.html" class="ad-st-view">Editar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/4.png"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-stuedit.html" class="ad-st-view">Editar</a></td>
-                                                </tr>
+                                    <form action="{{ route('guardar_estudiante') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
 
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/5.png"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-stuedit.html" class="ad-st-view">Editar</a></td>
-                                                </tr>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" name="nombres" placeholder="Nombres" required>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="apellidos" placeholder="Apellidos" required>
+                                            </div>
+                                        </div>
 
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-stuedit.html" class="ad-st-view">Editar</a></td>
-                                                </tr>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" name="tipo_documento" placeholder="Tipo de documento" required>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="numero_documento" placeholder="Número de documento" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <span class="helper-text">Fecha de nacimiento</span>
+                                                <input type="date" name="fecha_nacimiento" required>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="numero_telefono" placeholder="Número de teléfono" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="email" name="correo" placeholder="Correo institucional" required>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="tipo_via" placeholder="Tipo de vía (Calle, Cra, Tv, Dg)" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="direccion" placeholder="Dirección" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="edad" placeholder="Edad" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="grado" placeholder="Grado" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="curso" placeholder="Curso" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="nivel_educativo" placeholder="Nivel educativo" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="nacionalidad" placeholder="Nacionalidad" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="email" name="correo_personal" placeholder="Correo personal" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="acudiente" placeholder="Acudiente" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="eps" placeholder="EPS" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" name="sisben" placeholder="SISBEN" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <button type="submit" class="waves-effect waves-light btn-large">Guardar Estudiante</button>
+                                            </div>
+                                        </div>
+
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
