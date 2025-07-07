@@ -15,17 +15,23 @@ use App\Http\Controllers\MensajeController;
 
 
 Route::get('/index', function () {
-    return view('inicio.index'); })->name('index');
+    return view('inicio.index');
+})->name('index');
 Route::get('/about', function () {
-    return view('inicio.about'); })->name('about');
+    return view('inicio.about');
+})->name('about');
 Route::get('/contact', function () {
-    return view('inicio.contact'); })->name('contact');
+    return view('inicio.contact');
+})->name('contact');
 Route::get('/feature', function () {
-    return view('inicio.feature'); })->name('feature');
+    return view('inicio.feature');
+})->name('feature');
 Route::get('/feature2', function () {
-    return view('inicio.feature2'); })->name('feature2');
+    return view('inicio.feature2');
+})->name('feature2');
 Route::get('/feature3', function () {
-    return view('inicio.feature3'); })->name('feature3');
+    return view('inicio.feature3');
+})->name('feature3');
 
 // Login
 
@@ -78,6 +84,20 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/admin_user_all', [EstudianteController::class, 'verCrudEstudiante'])->name('admin_user_all');
     Route::get('/admin/lista-estudiantes', [EstudianteController::class, 'verCrudEstudiante'])->name('lista_estudiantes_admin');
     Route::get('/ver-estudiantes', [EstudianteController::class, 'verEstudiantes'])->name('ver_estudiantes');
+
+    // Ruta: Mostrar formulario para editar un estudiante existente
+
+    Route::get('/admin_crud_estudiantess', fn() => view('admin_crud.admin_crud_estudiantes.admin_edit_estudiante'))->name('admin_crud_estudiantess');
+    Route::get('/admin/admin_edit_estudiante/{id}', [EstudianteController::class, 'edit'])->name('estudiante.edit');
+    Route::put('/admin/estudiante/{id}', [EstudianteController::class, 'update'])->name('estudiante.update');
+
+    // Ruta: Eliminar un estudiante-------
+    // Eliminar estudiante individual
+    Route::delete('/admin/estudiante/{id}', [EstudianteController::class, 'destroy'])->name('estudiante.destroy');
+
+    //Eliminar todos los estudiantes
+    Route::delete('/admin/estudiantes/eliminar-todos', [EstudianteController::class, 'destroyAll'])->name('estudiante.destroyAll');
+
 
 
 

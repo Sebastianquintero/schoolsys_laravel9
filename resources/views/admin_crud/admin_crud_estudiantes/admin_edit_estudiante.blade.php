@@ -54,99 +54,26 @@
                                     <p>Here you can edit</p>
                                 </div>
                                 <div class="tab-inn">
-                                    <form action="{{ route('actualizar_estudiante', $estudiante->id_estudiante) }}"
-                                        method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('estudiante.update', $estudiante->id_estudiante) }}"
+                                        method="POST">
                                         @csrf
                                         @method('PUT')
+                                        <input type="text" name="nombres" value="{{ $estudiante->usuario->nombres }}" required>
+                                        <input type="text" name="apellidos"value="{{ $estudiante->usuario->apellidos }}" required>
+                                        <input type="text" name="numero_telefono" value="{{ $estudiante->telefono }}"required>
+                                        <input type="email" name="correo" value="{{ $estudiante->usuario->correo }}"required>
+                                        <input type="email" name="correo_personal" value="{{ $estudiante->correo_personal }}" required>
+                                        <input type="text" name="direccion" value="{{ $estudiante->direccion }}"required>
+                                        <input type="number" name="edad" value="{{ $estudiante->edad }}" required>
+                                        <input type="text" name="grado" value="{{ $estudiante->grado }}" required>
+                                        <input type="text" name="curso" value="{{ $estudiante->curso }}" required>
+                                        <input type="text" name="nivel_educativo" value="{{ $estudiante->nivel_educativo }}" required>
+                                        <input type="text" name="nacionalidad" value="{{ $estudiante->nacionalidad }}" required>
+                                        <input type="text" name="acudiente" value="{{ $estudiante->acudiente }}" required>
+                                        <input type="text" name="eps" value="{{ $estudiante->eps }}" required>
+                                        <input type="text" name="sisben" value="{{ $estudiante->sisben }}" required>
 
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" name="nombres"
-                                                    value="{{ old('nombres', $estudiante->usuario->nombres) }}"
-                                                    class="validate" required>
-                                                <label class="active">Nombre</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" name="apellidos"
-                                                    value="{{ old('apellidos', $estudiante->usuario->apellidos) }}"
-                                                    class="validate" required>
-                                                <label class="active">Apellido</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="input-field col s6">
-                                                <input type="email" name="correo"
-                                                    value="{{ old('correo', $estudiante->usuario->correo) }}"
-                                                    class="validate" required>
-                                                <label class="active">Correo</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" name="telefono"
-                                                    value="{{ old('telefono', $estudiante->telefono) }}"
-                                                    class="validate" required>
-                                                <label class="active">Teléfono</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" name="acudiente"
-                                                    value="{{ old('acudiente', $estudiante->acudiente) }}"
-                                                    class="validate">
-                                                <label class="active">Acudiente</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" name="correo_personal"
-                                                    value="{{ old('correo_personal', $estudiante->correo_personal) }}"
-                                                    class="validate">
-                                                <label class="active">Tel/Acudiente</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" name="direccion"
-                                                    value="{{ old('direccion', $estudiante->direccion) }}"
-                                                    class="validate">
-                                                <label class="active">Dirección</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="file-field input-field col s12">
-                                                <div class="btn admin-upload-btn">
-                                                    <span>Foto</span>
-                                                    <input type="file" name="foto">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text"
-                                                        placeholder="Imagen estudiante">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <button type="submit"
-                                                    class="btn-large waves-effect waves-light">Actualizar</button>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <form
-                                                    action="{{ route('eliminar_estudiante', $estudiante->id_estudiante) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('¿Estás seguro de eliminar este estudiante?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn-large red darken-2 waves-effect waves-light">Eliminar</button>
-                                                </form>
-                                            </div>
-                                        </div>
+                                        <button type="submit">Actualizar</button>
                                     </form>
                                 </div>
                             </div>

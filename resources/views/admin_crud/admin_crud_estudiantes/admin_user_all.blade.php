@@ -67,7 +67,6 @@
                                                     <th>Email</th>
                                                     <th>Ciudad</th>
                                                     <th>Id</th>
-                                                    <th>Fecha Nacimiento</th>
                                                     <th>Estado</th>
                                                     <th>Ver</th>
                                                 </tr>
@@ -98,17 +97,39 @@
                                                         <td>{{ $estudiante->usuario->correo }}</td>
                                                         <td>{{ $estudiante->direccion ?? 'N/A' }}</td>
                                                         <td>{{ $estudiante->usuario->numero_documento }}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($estudiante->usuario->fecha_nacimiento)->format('d M Y') }}
-                                                        </td>
                                                         <td>
                                                             <span class="label label-success">Activo</span>
                                                         </td>
                                                         <td>
-                                                            <a href="#" class="ad-st-view">Ver</a>
+                                                            <a href="{{ route('estudiante.edit', $estudiante->id_estudiante) }}"
+                                                                class="ad-st-view">Editar</a>
+
+                                                            <!-- Boton de eliminar -->
+                                                            <form
+                                                                action="{{ route('estudiante.destroy', $estudiante->id_estudiante) }}"
+                                                                method="POST" style="display:inline;"
+                                                                onsubmit="return confirm('¿Seguro que deseas eliminar este estudiante?');">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="ad-st-view">Eliminar</button>
+                                                            </form>
+                                                            
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
+
+
+                                            <!-- Boton para eliminar todos los estudiantes  -->
+
+                                            <form action="{{ route('estudiante.destroyAll') }}" method="POST"
+                                                onsubmit="return confirm('¿Eliminar todos los estudiantes? Esta acción no se puede deshacer.');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Eliminar Todos</button>
+                                            </form>
+
+                                            <!-- Fin de boton -->
                                         </table>
                                         <div class="text-center my-3">
                                             <div class="pagination-custom">
