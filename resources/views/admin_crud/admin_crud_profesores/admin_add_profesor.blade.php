@@ -58,34 +58,34 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" name="nombres" placeholder="nombres" required>
+                                                <input type="text" name="nombres" placeholder="Nombres" required>
                                                 <label>Nombre</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" name="apellidos" placeholder="apellidos" required>
+                                                <input type="text" name="apellidos" placeholder="Apellidos" required>
                                                 <label>Apellido</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" name="tipo_documento" placeholder="tipo_documento"
+                                                <input type="text" name="tipo_documento" placeholder="Tipo documento"
                                                     required>
                                                 <label>tipo de documento</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" name="numero_documento"
-                                                    placeholder="numero_documento" required>
+                                                <input type="text" name="Numero documento"
+                                                    placeholder="Numero documento" required>
                                                 <label>numero de documento</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" name="cargo" placeholder="cargo / puesto" required>
+                                                <input type="text" name="cargo" placeholder="Cargo / Puesto" required>
                                                 <label>Cargo / Puesto</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" name="tipo_contrato" placeholder="tipo de contrato"
+                                                <input type="text" name="tipo_contrato" placeholder="Tipo de contrato"
                                                     required>
                                                 <label>Tipo de Contrato</label>
                                             </div>
@@ -93,43 +93,44 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Fecha inicio contrato</span>
                                                 <input type="date" name="fecha_inicio" required>
-                                                <label class="active">Fecha Inicio Contrato</label>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Fecha fin contrato</span>
                                                 <input type="date" name="fecha_fin" required>
-                                                <label class="active">Fecha Fin Contrato</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" name="duracion" placeholder="duración del contrato"
+                                                <input type="text" name="duracion" placeholder="Duración del contrato"
                                                     required>
                                                 <label>Duración</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" name="numero_telefono" placeholder="teléfono">
+                                                <input type="text" name="numero_telefono" placeholder="Teléfono">
                                                 <label>Teléfono</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="email" name="correo" placeholder="correo institucional"
+                                                <input type="email" name="correo" placeholder="Correo institucional"
                                                     required>
                                                 <label>Correo Institucional</label>
                                             </div>
                                             <div class="input-field col s6">
                                                 <input type="email" name="correo_personal"
-                                                    placeholder="correo personal">
+                                                    placeholder="Correo personal">
                                                 <label>Correo Personal</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="date" name="fecha_nacimiento"
-                                                    placeholder="fecha de nacimiento" required>
+                                                <span class="helper-text">Ingrese la fecha de nacimiento</span>
+                                                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                                                
                                             </div>
                                         </div>
 
