@@ -98,6 +98,8 @@
                 <ul>
                     <li><a href="{{ route('importar.estudiantes.form') }}">Importar Estudiantes</a></li>
                     <li><a href="{{ route('exportar.estudiantes') }}">Exportar Estudiantes</a></li>
+                    <li><a href="{{ route('importar.docentes.form') }}">Importar Docentes</a></li>
+                    <li><a href="{{ route('exportar.docentes') }}">Exportar Docentes</a></li>
                 </ul>
             </div>
         </li>
