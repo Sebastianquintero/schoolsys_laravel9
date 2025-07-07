@@ -8,7 +8,7 @@ use App\Http\Controllers\EstudianteImportController;
 use App\Http\Controllers\PasswordResetController;
 use App\Exports\EstudiantesExport;
 use Maatwebsite\Excel\Facades\Excel;
-
+use App\Http\Controllers\DocenteController;
 
 
 Route::get('/index', function () {
@@ -40,7 +40,8 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/recuperacion', function () {
-    return view('login.recuperacion_password'); })->name('recuperacion_password');
+    return view('login.recuperacion_password');
+})->name('recuperacion_password');
 
 // recuperar contraseña
 Route::get('/recuperar-contrasena', [PasswordResetController::class, 'showRecoveryForm'])->name('password.request');
@@ -60,6 +61,7 @@ Route::get('/welcome', function () {
 // ====================================================================================================
 //Ruta Modulo de Comunicacion administrador
 Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
+    // Ruta: Dashboard de admin ver estudiantes
     Route::get('/admin', [AdminController::class, 'verEstudiantes'])->name('admin');
 
     // Comunicaciones del admin
@@ -67,21 +69,26 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/comunica_add_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_add_admin'))->name('comunica_add_admin');
     Route::get('/comunica_config_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_config_admin'))->name('comunica_config_admin');
 
-    // Rutas para el módulo de gestión de estudiantes
+    // Rutas para el módulo de cursos
     Route::get('/crud_ver_curso', fn() => view('admin_crud.admin_crud_cursos.crud_ver_curso'))->name('crud_ver_curso');
     Route::get('/admin_add_curso', fn() => view('admin_crud.admin_crud_cursos.admin_add_curso'))->name('admin_add_curso');
 
-    // Rutas para el módulo de gestión de profesores
+    // Ruta: Dashboard de admin ver docentes
+    Route::get('/admin_dashboard', [DocenteController::class, 'index'])->name('admin_all_profesor');
+    // Ruta: Lista de docentes
+    Route::get('/admin_crud_profesor', [DocenteController::class, 'verCrudDocente'])->name('admin_crud_profesor');
+    // Ruta: Mostrar formulario para crear un nuevo docente
+    Route::get('/admin_add_profesor', [DocenteController::class, 'create'])->name('admin_add_profesor');
+    Route::post('/guardar-docente', [DocenteController::class, 'store'])->name('guardar_docente');
+    // Ruta: Mostrar formulario para editar un docente existente
+    Route::get('/admin/admin_edit_profesor/{id}', [DocenteController::class, 'edit'])->name('docente.edit');
+    Route::put('/admin/docente/{id}', [DocenteController::class, 'update'])->name('docente.update');
+    // Ruta: Eliminar un docente
+    Route::delete('/admin/docente/{id}', [DocenteController::class, 'destroy'])->name('docente.destroy');
+    // Ruta: Eliminar todos los docentes
+    Route::delete('/admin/docentes/eliminar-todos', [DocenteController::class, 'destroyAll'])->name('docente.destroyAll');
 
-    Route::get('/admin_crud_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_crud_profesor'))->name('admin_crud_profesor');
-    Route::get('/admin_add_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_add_profesor'))->name('admin_add_profesor');
-    Route::get('/admin_edit_profesor', fn() => view('admin_crud.admin_crud_profesores.admin_edit_profesor'))->name('admin_edit_profesor');
-    // Rutas para el módulo de gestión de profesores
-    /*Route::get('/gestion_profesores', [AdminController::class, 'gestionProfesores'])->name('gestion_profesores');
-    Route::get('/gestion_profesores/agregar', [AdminController::class, 'agregarProfesor'])->name('agregar_profesor');
-    Route::post('/gestion_profesores/guardar', [AdminController::class, 'guardarProfesor'])->name('guardar_profesor');
-    Route::get('/gestion_profesores/editar/{id}', [AdminController::class   , 'editarProfesor'])->name('editar_profesor');
-
+    /*
     // Rutas para el módulo de gestión de cursos
     Route::get('/gestion_cursos', [AdminController::class, 'gestionCursos'])->name('gestion_cursos');
     Route::get('/gestion_cursos/agregar', [AdminController::class, 'agregarCurso'])->name('agregar_curso');
@@ -98,7 +105,7 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     //Route::get('/gestion_actividades/editar/{id}', [AdminController::class, 'editarActividad'])->name('editar_actividad');
     //Route::get('/gestion_actividades/eliminar/{id}', [AdminController::class, 'eliminarActividad'])->name('eliminar_actividad');
 
-    
+
 });
 
 // =====================================================================================================
@@ -131,6 +138,6 @@ Route::get('/importar-estudiantes', [EstudianteImportController::class, 'show'])
 Route::post('/importar-estudiantes', [EstudianteImportController::class, 'import'])->name('importar.estudiantes');
 
 // Exportar estudiantes a Excel
-    Route::get('/exportar-estudiantes', function () {
-        return Excel::download(new EstudiantesExport, 'estudiantes.xlsx');
-    })->middleware('auth')->name('exportar.estudiantes');
+Route::get('/exportar-estudiantes', function () {
+    return Excel::download(new EstudiantesExport, 'estudiantes.xlsx');
+})->middleware('auth')->name('exportar.estudiantes');

@@ -3,7 +3,7 @@
 
 <head>
     @include('admin_crud.partials.head')
-    
+
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                     </ul>
                 </div>
                 <!--== LEFT MENU ==-->
-                
+
                 @include('admin_crud.partials.menu')
 
             </div>
@@ -38,7 +38,7 @@
                 <!--== breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="admin.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        <li><a href="{{route('welcome')}}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
                         <li class="active-bre"><a href="#"> Dashboard</a>
 
@@ -77,6 +77,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @if($estudiantes->isEmpty())
+                                                    <tr>
+                                                        <td colspan="8">No hay estudiantes registrados.</td>
+                                                    </tr>
+                                                @endif
                                                 @foreach ($estudiantes as $user)
                                                     <tr>
                                                         <td>
@@ -94,8 +99,7 @@
                                                         </td>
                                                         <td>{{ $user->numero_telefono }}</td>
                                                         <td>{{ $user->correo }}</td>
-                                                        <td>Bogotá D.C.</td> {{-- Puedes mejorar esto con otro campo si lo
-                                                        tienes --}}
+                                                        <td>Bogotá D.C.</td>
                                                         <td>{{ $user->numero_documento }}</td>
                                                         <td>{{ \Carbon\Carbon::parse($user->fecha_nacimiento)->format('d M Y') }}
                                                         </td>
@@ -103,18 +107,21 @@
                                                             <span class="label label-success">Activo</span>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('comunica_admin', $user->estudiante->id_estudiante) }}" class="ad-st-view">Ver</a>
-
+                                                            <a href="{{ route('docente.edit', $user->estudiante->id_estudiante) }}"
+                                                                class="ad-st-view">Editar</a>
+                                                                
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
 
-                                            <div class="d-flex justify-content-center mt-3">
+
+                                        </table>
+                                        <div class="text-center my-3">
+                                            <div class="pagination-custom">
                                                 {{ $estudiantes->links() }}
                                             </div>
-                                        </table>
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -147,83 +154,48 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-1.jpg"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html"><span
-                                                                class="list-enq-name">Aerospace Engineering</span><span
-                                                                class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>Ingeniero</td>
-                                                    <td>60 Days(420hrs)</td>
-                                                    <td>03 Ene 2025</td>
-                                                    <td>12 Dic 2025</td>
+                                                @if($docentes->isEmpty())
+                                                    <tr>
+                                                        <td colspan="8">No hay profesores registrados.</td>
+                                                    </tr>
+                                                @endif
+                                                @foreach ($docentes as $docente)
+                                                    <tr>
+                                                        <td>
+                                                            <span class="list-img">
+                                                                <img src="{{ asset('images/docentes/' . ($docente->foto ?? 'placeholder.jpg')) }}"
+                                                                    alt="Foto docente">
+                                                            </span>
+                                                        </td>
 
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-5.jpg"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html"><span
-                                                                class="list-enq-name">Fashion Technology</span><span
-                                                                class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>Cultura fisica</td>
-                                                    <td>30 Days(420hrs)</td>
-                                                    <td>01 Ene 2025</td>
-                                                    <td>01 Dic 2025</td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <span class="list-enq-name">{{ $docente->usuario->nombres }}
+                                                                    {{ $docente->usuario->apellidos }}</span>
+                                                                <span
+                                                                    class="list-enq-city">{{ $docente->usuario->correo }}</span>
+                                                            </a>
+                                                        </td>
 
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-2.jpg"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html"><span
-                                                                class="list-enq-name">Agriculture Courses</span><span
-                                                                class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>Deportes</td>
-                                                    <td>25 dias(420hrs)</td>
-                                                    <td>05 Ene 2025</td>
-                                                    <td>25 Dic 2025</td>
+                                                        <td>{{ $docente->cargo }}</td>
+                                                        <td>{{ $docente->duracion }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($docente->fecha_inicio)->format('d M Y') }}
+                                                        </td>
+                                                        <td>{{ \Carbon\Carbon::parse($docente->fecha_fin)->format('d M Y') }}
+                                                        </td>
 
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/course/sm-3.jpg"
-                                                                alt=""></span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html"><span
-                                                                class="list-enq-name">Marine Engineering</span><span
-                                                                class="list-enq-city">Illunois, United States</span></a>
-                                                    </td>
-                                                    <td>Quimica</td>
-                                                    <td>06 Months</td>
-                                                    <td>12 Ene 2025</td>
-                                                    <td>14 Dic 2025</td>
+                                                        <td>
+                                                            <span class="label label-success">Activo</span>
+                                                        </td>
 
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-                                                    <td><a href="admin-student-details.html" class="ad-st-view">Ver</a>
-                                                    </td>
-                                                </tr>
+                                                        <td>
+                                                            <a href="{{ route('docente.edit', $docente->id_docente) }}"
+                                                                class="ad-st-view">Editar</a>
+                                                                
+                                                        </td>
 
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

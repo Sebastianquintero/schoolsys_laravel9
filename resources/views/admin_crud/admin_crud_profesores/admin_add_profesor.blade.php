@@ -31,80 +31,139 @@
                 @include('admin_crud.partials.menu')
             </div>
 
-            <!--== BODY INNER CONTAINER ==-->
+            <!--== CONTENEDOR PRINCIPAL ==-->
             <div class="sb2-2">
-                <!--== breadcrumbs ==-->
+                <!--== Breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li>
-                        <li class="active-bre"><a href="#">Agregar Profesor</a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
+                        <li class="active-bre"><a href="#"> Agregar Profesor</a></li>
                     </ul>
                 </div>
 
-                <!--== User Details ==-->
+                <!--== Formulario Agregar Profesor ==-->
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
-						<div class="box-inn-sp admin-form">
+                            <div class="box-inn-sp admin-form">
                                 <div class="inn-title">
                                     <h4>Agregar Profesor</h4>
-                                    <p>Here you can edit your website basic details URL, Phone, Email, Address, User and password and more</p>
+                                    <p>Formulario para crear un nuevo profesor vinculado al colegio</p>
                                 </div>
+
                                 <div class="tab-inn">
-                                    <form>
+                                    <form action="{{ route('guardar_docente') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" name="nombres" placeholder="nombres" required>
+                                                <label>Nombre</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="apellidos" placeholder="apellidos" required>
+                                                <label>Apellido</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" name="tipo_documento" placeholder="tipo_documento"
+                                                    required>
+                                                <label>tipo de documento</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="numero_documento"
+                                                    placeholder="numero_documento" required>
+                                                <label>numero de documento</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" name="cargo" placeholder="cargo / puesto" required>
+                                                <label>Cargo / Puesto</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="tipo_contrato" placeholder="tipo de contrato"
+                                                    required>
+                                                <label>Tipo de Contrato</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="date" name="fecha_inicio" required>
+                                                <label class="active">Fecha Inicio Contrato</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="date" name="fecha_fin" required>
+                                                <label class="active">Fecha Fin Contrato</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="text" name="duracion" placeholder="duración del contrato"
+                                                    required>
+                                                <label>Duración</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="text" name="numero_telefono" placeholder="teléfono">
+                                                <label>Teléfono</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="email" name="correo" placeholder="correo institucional"
+                                                    required>
+                                                <label>Correo Institucional</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input type="email" name="correo_personal"
+                                                    placeholder="correo personal">
+                                                <label>Correo Personal</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <input type="date" name="fecha_nacimiento"
+                                                    placeholder="fecha de nacimiento" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="file-field input-field col s12">
+                                                <div class="btn admin-upload-btn">
+                                                    <span>Foto</span>
+                                                    <input type="file" name="foto" accept="image/*">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text"
+                                                        placeholder="Foto del Profesor">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input type="text" value="" class="validate" required>
-                                                <label class="">Nombre Profesor</label>
+                                                <button type="submit" class="waves-effect waves-light btn-large">Guardar
+                                                    Profesor</button>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea></textarea>
-                                                <label class="">Descripcion Del Profesor</label>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" value="" class="validate" required>
-                                                <label class="">Fecha Ingreso</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" class="validate" value="" required>
-                                                <label class="">Horario</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" value="" class="validate">
-                                                <label class="">Ciudad</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" value="" class="validate">
-                                                <label class="">Pais</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-											<div class="file-field input-field col s12">
-												<div class="btn admin-upload-btn">
-													<span>Carga de foto</span>
-													<input type="file">
-												</div>
-												<div class="file-path-wrapper">
-													<input class="file-path validate" type="text" placeholder="Foto del Profesor">
-												</div>
-											</div>
-                                        </div>
-										<div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input"></i>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </form>
-                                </div>
-                            </div>
+                                </div> <!-- tab-inn -->
+                            </div> <!-- box-inn-sp -->
                         </div>
                     </div>
                 </div>

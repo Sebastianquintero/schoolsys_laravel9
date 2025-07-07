@@ -56,7 +56,7 @@ class EstudiantesImport implements ToModel, WithHeadingRow
                 'fecha_nacimiento' => $fecha,
                 'numero_telefono' => $row['numero_telefono'],
                 'fk_rol' => 3,
-                'fk_colegio' => 1,
+                'fk_colegio' => $admin->fk_colegio ?: 1, // Asignar colegio del usuario autenticado o 1 por defecto
             ]
         );
 
@@ -76,7 +76,7 @@ class EstudiantesImport implements ToModel, WithHeadingRow
                 'eps' => $row['eps'],
                 'sisben' => $row['sisben'],
                 'telefono' => $row['numero_telefono'],
-                'fk_colegio' => 1,
+                'fk_colegio' => $admin->fk_colegio ?: 1, // Asignar colegio del usuario autenticado o 1 por defecto
             ]
         );
 

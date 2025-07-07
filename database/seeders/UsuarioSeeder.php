@@ -69,7 +69,7 @@ class UsuarioSeeder extends Seeder
                 'fecha_nacimiento' => '2000-01-01',
                 'numero_telefono' => '9876543210',
                 'fk_rol' => 1,
-                'fk_colegio' => 1, // Asignar al colegio con ID 1
+                'fk_colegio' => 1, 
             ],
             [
                 'nombres' => 'Juan',
@@ -81,7 +81,7 @@ class UsuarioSeeder extends Seeder
                 'fecha_nacimiento' => '1995-05-20',
                 'numero_telefono' => '3001234567',
                 'fk_rol' => 1,
-                'fk_colegio' => 1, // Asignar al colegio con ID 1
+                'fk_colegio' => 1, 
             ],
             [
                 'nombres' => 'Cristian',
@@ -93,10 +93,22 @@ class UsuarioSeeder extends Seeder
                 'fecha_nacimiento' => '1998-08-15',
                 'numero_telefono' => '3109876543',
                 'fk_rol' => 1,
-                'fk_colegio' => 1, // Asignar al colegio con ID 1
+                'fk_colegio' => 1, 
+            ],
+            [
+                'nombres' => 'Cris',
+                'apellidos' => 'Argotty',
+                'tipo_documento' => 'Cédula',
+                'numero_documento' => '234567890',
+                'correo' => 'cristianmonito100@gmail.com',
+                'contrasena' => Hash::make('cris123'),
+                'fecha_nacimiento' => '1999-09-09',
+                'numero_telefono' => '3201234567',
+                'fk_rol' => 1,
+                'fk_colegio' => 2,
             ]
         ]);
-
+        
         // ==============================
         // Estudiante 1
         /*$id1 = DB::table('usuarios')->insertGetId([

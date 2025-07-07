@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Estudiante;
+use App\Models\Docente;
 
 class AdminController extends Controller
 {
@@ -13,8 +14,8 @@ class AdminController extends Controller
         $estudiantes = Usuario::where('fk_rol', 3)
             ->with('estudiante')
             ->paginate(10);
-        ;
-        return view('admin_crud.admin', compact('estudiantes'));
+        $docentes = Docente::with('usuario')->paginate(10);
+        return view('admin_crud.admin', compact('estudiantes', 'docentes'));
     }
 
     // Vista separada: admin_user_all.blade.php

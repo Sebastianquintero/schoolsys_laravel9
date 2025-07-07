@@ -30,95 +30,131 @@
                 <!--== LEFT MENU ==-->
                 @include('admin_crud.partials.menu')
             </div>
-
-            <!--== BODY INNER CONTAINER ==-->
+<!--== CONTENEDOR PRINCIPAL ==-->
             <div class="sb2-2">
-                <!--== breadcrumbs ==-->
+                <!--== Breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li>
-                        <li class="active-bre"><a href="#"> Editar Profesor</a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
+                        <li class="active-bre"><a href="#"> Agregar Profesor</a></li>
                     </ul>
                 </div>
+            <!--== User Details ==-->
+            <div class="sb2-2-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-inn-sp admin-form">
+                            <div class="inn-title">
+                                <h4>Editar Profesor</h4>
+                                <p>Modifica la información del docente</p>
+                            </div>
 
-                <!--== User Details ==-->
-                <div class="sb2-2-3">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="box-inn-sp admin-form">
-                                <div class="inn-title">
-                                    <h4>Editar Profesor</h4>
-                                    <p>Here you can edit your website basic details URL, Phone, Email, Address, User and
-                                        password and more</p>
-                                </div>
-                                <div class="tab-inn">
-                                    <form>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="text" value="Latinoo College Expo 2018 - DONATION"
-                                                    class="validate" required>
-                                                <label class="">Seminar name</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea>Fusce purus mauris, blandit vitae purus eget, viverra volutpat nibh. Nam in elementum nisi, a placerat nisi. Quisque ullamcorper magna in odio rhoncus semper.Sed nec ultricies velit. Aliquam non massa id enim ultrices aliquet a ac tortor.
+                            <div class="tab-inn">
+                                <form action="{{ route('docente.update', $docente->id_docente) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</textarea>
-                                                <label class="">Seminar Descriptions</label>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="text" name="nombres" value="{{ $docente->usuario->nombres }}"
+                                                class="validate" required>
+                                            <label class="active">Nombres</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" name="apellidos"
+                                                value="{{ $docente->usuario->apellidos }}" class="validate" required>
+                                            <label class="active">Apellidos</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="text" name="cargo" value="{{ $docente->cargo }}"
+                                                class="validate" required>
+                                            <label class="active">Cargo</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="text" name="tipo_contrato"
+                                                value="{{ $docente->tipo_contrato }}" class="validate" required>
+                                            <label class="active">Tipo de contrato</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s4">
+                                            <input type="date" name="fecha_inicio" value="{{ $docente->fecha_inicio }}"
+                                                class="validate" required>
+                                            <label class="active">Fecha de inicio</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input type="date" name="fecha_fin" value="{{ $docente->fecha_fin }}"
+                                                class="validate" required>
+                                            <label class="active">Fecha de fin</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input type="text" name="duracion" value="{{ $docente->duracion }}"
+                                                class="validate">
+                                            <label class="active">Duración</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="text" name="numero_telefono" value="{{ $docente->numero_telefono }}"
+                                                class="active validate">
+                                            <label class="active">Teléfono</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input type="email" name="correo_personal"
+                                                value="{{ $docente->correo_personal }}" class="validate">
+                                            <label class="active">Correo Personal</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="email" name="correo" value="{{ $docente->usuario->correo }}"
+                                                class="validate" required>
+                                            <label class="active">Correo Institucional</label>
+                                        </div>
+                                        <div class="file-field input-field col s6">
+                                            <div class="btn admin-upload-btn">
+                                                <span>Foto</span>
+                                                <input type="file" name="foto">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text"
+                                                    placeholder="Subir nueva foto">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" value="Jan 01, 2018" class="validate" required>
-                                                <label class="">Date</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" class="validate" value="02:00 PM GMT" required>
-                                                <label class="">Time</label>
-                                            </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="input-field col s12">
+                                            <button type="submit" class="waves-effect waves-light btn-large">Guardar
+                                                Cambios</button>
                                         </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input type="text" value="New york" class="validate">
-                                                <label class="">City</label>
+                                    </div>
+                                    @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input type="text" value="United states" class="validate">
-                                                <label class="">Country</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="file-field input-field col s12">
-                                                <div class="btn admin-upload-btn">
-                                                    <span>Carga de foto</span>
-                                                    <input type="file">
-                                                </div>
-                                                <div class="file-path-wrapper">
-                                                    <input class="file-path validate" type="text"
-                                                        placeholder="Foto del Profesor">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
-                                                        type="submit" class="waves-button-input"></i>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                        @endif
+                                </form>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
+</div>
     @include('admin_crud.partials.footer')
 </body>
 

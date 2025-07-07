@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::table('estudiantes', function (Blueprint $table) {
             $table->dropColumn(['nombres', 'apellidos', 'tipo_documento']);
         });
+        
     }
 
     /**
@@ -29,5 +30,6 @@ return new class extends Migration {
             $table->string('apellidos', 100);
             $table->string('tipo_documento', 30);
         });
+       
     }
 };

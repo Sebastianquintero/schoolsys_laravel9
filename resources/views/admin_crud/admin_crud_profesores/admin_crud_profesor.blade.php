@@ -49,8 +49,8 @@
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-									<h4>Todos los Profesores</h4>
-                                    <p>All about students like name, student id, phone, email, country, city and more</p>
+                                    <h4>Todos los Profesores</h4>
+                                    <p>Lista completa de profesores activos en la institución</p>
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
@@ -58,57 +58,80 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-													<th>Foto</th>
+                                                    <th>Foto</th>
                                                     <th>Nombre</th>
-                                                    <th>Fecha Inicio</th>
-													<th>Ciudad</th>
-													<th>Estado</th>
-													<th>Editar</th>
+                                                    <th>Puesto</th>
+                                                    <th>Inicio</th>
+                                                    <th>Fin</th>
+                                                    <th>Estado</th>
+                                                    <th>Editar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><span class="list-img"><img src="images/course/sm-1.jpg" alt=""></span></td>
-													<td>Profesor Prueba</td>
-                                                    <td>21 June 2018</td>
-													<td>Bogotá</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="{{ route('admin_edit_profesor') }}" class="ad-st-view">Editar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td><span class="list-img"><img src="images/course/sm-2.jpg" alt=""></span></td>
-													<td>CUNY Assessment Test Workshop</td>
-                                                    <td>05 April 2018</td>
-													<td>Bogotá</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="{{ route('admin_edit_profesor') }}" class="ad-st-view">Editar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td><span class="list-img"><img src="images/course/sm-3.jpg" alt=""></span></td>
-													<td>Fire & ice launch party</td>
-                                                    <td>12 December 2018</td>
-													<td>Bogotá</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-													<td><a href="{{ route('admin_edit_profesor') }}" class="ad-st-view">Editar</a></td>
-                                                </tr>
-                                                
+                                                @foreach ($docentes as $index => $docente)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>
+                                                            <span class="list-img">
+                                                                <img src="{{ asset('storage/' . $docente->foto) }}"
+                                                                    alt="foto" width="60">
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            {{ $docente->usuario->nombres }}
+                                                            {{ $docente->usuario->apellidos }}
+                                                        </td>
+                                                        <td>{{ $docente->cargo }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($docente->fecha_inicio)->format('d M Y') }}
+                                                        </td>
+                                                        <td>{{ \Carbon\Carbon::parse($docente->fecha_fin)->format('d M Y') }}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-success">Activo</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('docente.edit', $docente->id_docente) }}"
+                                                                class="ad-st-view">Editar</a>
+                                                            <form
+                                                                action="{{ route('docente.destroy', $docente->id_docente) }}"
+                                                                method="POST"
+                                                                onsubmit="return confirm('¿Estás seguro de eliminar este docente?');"
+                                                                style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="ad-st-view">Eliminar</button>
+                                                            </form>
+                                                        </td>
+                                                        <form action="{{ route('docente.destroyAll') }}" method="POST"
+                                                            onsubmit="return confirm('¿Estás seguro de eliminar todos los docentes? Esta acción no se puede deshacer.');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Eliminar
+                                                                Todos</button>
+                                                        </form>
+
+
+                                                    </tr>
+                                                @endforeach
+
+                                                @if ($docentes->isEmpty())
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No hay profesores registrados.
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             </tbody>
                                         </table>
+
+                                        <div class="d-flex justify-content-center mt-3">
+                                            {{ $docentes->links() }} <!-- Paginación -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> <!-- end sb2-2-3 -->
             </div>
 
         </div>
