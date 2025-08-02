@@ -3,7 +3,7 @@
             <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
                 <a href="#" class="btn-close-menu"><i class="fa fa-times"></i></a>
                 <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu"></i></a>
-                <a href="{{ route('dashboard_estudiante') }}" class="a">
+                <a href="{{ route('welcome') }}" class="a">
                     <h1 class="m0">ScholSys</h1>
                 </a>
             </div>
@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-2 tab-hide">
                 <div class="top-not-cen">
-                    <a class='waves-effect btn-noti' href="{{ route('dashboard_estudiante') }}" title="dashboard"><i
+                    <a class='waves-effect btn-noti' href="{{ route('welcome') }}" title="dashboard"><i
                             class="fa fa-commenting-o"></i><span>1</span></a>
                     <a class='waves-effect btn-noti' href="{{ route('mensajes.bandeja') }}" title="correo"><i
                             class="fa fa-envelope-o"></i><span>1</span></a>
@@ -29,6 +29,9 @@
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
                     <li><a href="{{ route('perfil') }}" class="waves-effect"><i class="fa fa-cogs"></i> Configuración de
                             perfil</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ route('welcome') }}" class="waves-effect"><i class="fa fa-cogs"></i> Menu
+                            principal</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ route('logout') }}" class="ho-dr-con-last waves-effect"><i
                                 class="fa fa-sign-in"></i> Cerrar sesión</a></li>

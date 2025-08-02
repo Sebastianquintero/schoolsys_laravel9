@@ -101,9 +101,9 @@
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input type="text" name="numero_telefono" value="{{ $docente->numero_telefono }}"
-                                                class="active validate">
-                                            <label class="active">Teléfono</label>
+                                            <input type="text" name="numero_telefono" value="{{ $docente->usuario->numero_telefono }}"
+                                                class="validate">
+                                            <label class="active">Telefono</label>
                                         </div>
                                         <div class="input-field col s6">
                                             <input type="email" name="correo_personal"

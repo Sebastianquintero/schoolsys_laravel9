@@ -18,7 +18,7 @@ class Docente extends Model
         'fecha_inicio',
         'fecha_fin',
         'correo_personal',
-        'telefono'
+        
     ];
 
     public function usuario()

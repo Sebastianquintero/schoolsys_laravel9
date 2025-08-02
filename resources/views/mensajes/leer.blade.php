@@ -39,6 +39,9 @@
                     <li><a href="{{ route('perfil') }}" class="waves-effect"><i class="fa fa-cogs"></i> Configuración de
                             perfil</a></li>
                     <li class="divider"></li>
+                    <li><a href="{{ route('welcome') }}" class="waves-effect"><i class="fa fa-cogs"></i> Menu
+                            principal</a></li>
+                    <li class="divider"></li>
                     <li><a href="#" class="ho-dr-con-last waves-effect"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-in" aria-hidden="true"></i> Cerrar sesión
@@ -109,7 +112,7 @@
             <div class="sb2-2">
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="{{ route('dashboard_estudiante') }}"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li><a href="{{ route('welcome') }}"><i class="fa fa-home"></i> Inicio</a></li>
                         <li><a href="#"><i class="fa fa-envelope"></i> Bandeja de Entrada</a></li>
                         <li><a href="#"><i class="fa fa-paper-plane"></i> Enviados</a></li>
                         <li><a href="#"><i class="fa fa-file-text"></i> Borradores</a></li>
@@ -132,9 +135,11 @@
                                                 <h3>{{ $mensaje->asunto }}</h3>
                                                 <hr>
                                                 <p><strong>De:</strong> {{ $mensaje->remitenteUsuario->nombres }}
-                                                    {{ $mensaje->remitenteUsuario->apellidos }}</p>
+                                                    {{ $mensaje->remitenteUsuario->apellidos }}
+                                                </p>
                                                 <p><strong>Para:</strong> {{ $mensaje->destinatarioUsuario->nombres }}
-                                                    {{ $mensaje->destinatarioUsuario->apellidos }}</p>
+                                                    {{ $mensaje->destinatarioUsuario->apellidos }}
+                                                </p>
                                                 <p><strong>Fecha:</strong>
                                                     {{ $mensaje->fecha_envio->format('d M Y H:i') }}</p>
                                                 <hr>

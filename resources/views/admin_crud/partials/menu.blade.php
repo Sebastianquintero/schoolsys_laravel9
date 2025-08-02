@@ -66,28 +66,7 @@
                 </ul>
             </div>
         </li>
-
-        <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil"></i>Examenes</a>
-            <div class="collapsible-body left-sub-menu">
-                <ul>
-                    <li><a href="#">Todos los Examenes</a></li>
-                    <li><a href="#">Agregar Nuevo Examen</a></li>
-                    <li><a href="#">Todos los Grupos</a></li>
-                    <li><a href="#">Crear Nuevos Grupos</a></li>
-                </ul>
-            </div>
-        </li>
-
-        <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Todos los Estudiantes</a>
-            <div class="collapsible-body left-sub-menu">
-                <ul>
-                    <!-- <li><a href="{{ url('admin/estudiantes') }}">Todos los Estudiantes</a></li> -->
-                    <!-- <li><a href="{{ url('admin/estudiantes/agregar') }}">Agregar Nuevo Estudiante</a></li> -->
-                </ul>
-            </div>
-        </li>
+        
 
         <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o"></i>Consultas</a>

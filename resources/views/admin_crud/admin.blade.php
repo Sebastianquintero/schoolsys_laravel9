@@ -107,7 +107,7 @@
                                                             <span class="label label-success">Activo</span>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('docente.edit', $user->estudiante->id_estudiante) }}"
+                                                            <a href="{{ route('estudiante.edit', $user->estudiante->id_estudiante) }}"
                                                                 class="ad-st-view">Editar</a>
                                                                 
                                                         </td>

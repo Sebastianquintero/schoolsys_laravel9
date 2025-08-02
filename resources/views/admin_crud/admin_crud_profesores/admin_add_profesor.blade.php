@@ -35,8 +35,8 @@
             <div class="sb2-2">
                 <!--== Breadcrumbs ==-->
                 <div class="sb2-2-2">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
+                    <ul>    
+                        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li class="active-bre"><a href="#"> Agregar Profesor</a></li>
                     </ul>
                 </div>

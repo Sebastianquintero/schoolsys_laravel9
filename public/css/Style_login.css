@@ -4,7 +4,7 @@
     --lightt: #ffffff;
 }
 body{
-    font-family: "League Spartan", serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
     color: var(--lightt);
 }

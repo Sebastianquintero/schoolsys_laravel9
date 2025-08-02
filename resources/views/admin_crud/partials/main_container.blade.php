@@ -32,6 +32,9 @@
                 <li><a href="####" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Config de
                         perfil</a></li>
                 <li class="divider"></li>
+                <li><a href="{{ route('welcome') }}" class="waves-effect"><i class="fa fa-cogs"></i> Menu
+                            principal</a></li>
+                    <li class="divider"></li>
                 <li><a href="#" class="ho-dr-con-last waves-effect"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> Cerrar sesión

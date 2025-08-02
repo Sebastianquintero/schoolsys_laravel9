@@ -17,7 +17,7 @@
                 <div class="top-not-cen">
                     <a class='waves-effect btn-noti' href="{{ url('dashboard_estudiante') }}"><i
                             class="fa fa-commenting-o"></i><span>1</span></a>
-                    <a class='waves-effect btn-noti' href="{{ route('mail') }}"><i
+                    <a class='waves-effect btn-noti' href="{{ route('mensajes.bandeja') }}"><i
                             class="fa fa-envelope-o"></i><span>1</span></a>
                     <a class='waves-effect btn-noti' href="#"><i class="fa fa-tag"></i></a>
                 </div>
@@ -28,6 +28,9 @@
                 </a>
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
                     <li><a href="{{ url('profile') }}"><i class="fa fa-cogs"></i>Configuración de perfil</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ route('welcome') }}" class="waves-effect"><i class="fa fa-cogs"></i> Menu
+                            principal</a></li>
                     <li class="divider"></li>
                     <li>
                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

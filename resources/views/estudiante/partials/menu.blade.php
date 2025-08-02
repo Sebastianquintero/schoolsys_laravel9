@@ -48,7 +48,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{ route('mail') }}" class="collapsible-header"><i class="fa fa-users"></i>
+                            <a href="{{ route('mensajes.bandeja') }}" class="collapsible-header"><i class="fa fa-users"></i>
                                 Correo</a>
                         </li>
                     </ul>

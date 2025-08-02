@@ -33,7 +33,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light sticky-top p-0">
             <a href="#" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                <h1 class="m-0">ScholSys</h1>
+                <h1 class="m-0" style="color:#348E38">ScholSys</h1>
             </a>
             <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
