@@ -6,6 +6,7 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EstudianteImportController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\CursoController;
 use App\Exports\EstudiantesExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\DocenteController;
@@ -192,3 +193,19 @@ Route::post('/importar-docentes', [DocenteImportController::class, 'import'])->n
 Route::get('/exportar-docentes', function () {
     return Excel::download(new DocentesExport, 'docentes.xlsx');
 })->middleware('auth')->name('exportar.docentes');
+
+
+
+
+/*--------------------- Rutas de Cursos -------------------------- */ 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin_add_cursos', [CursoController::class, 'create'])->name('admin_add_cursos');
+    Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
+    Route::get('/crud_ver_curso', [CursoController::class, 'index'])->name('crud_ver_curso');
+
+
+    Route::get('/admin_edit_curso/{id_curso}', [CursoController::class, 'edit'])->name('admin_edit_curso');
+    Route::put('/cursos/{id_curso}', [CursoController::class, 'update'])->name('cursos.update');
+    Route::delete('/cursos/{id_curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
+});

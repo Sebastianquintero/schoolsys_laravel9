@@ -16,8 +16,7 @@
                 <!--== USER INFO ==-->
                 <div class="sb2-12">
                     <ul>
-                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt="">
-                        </li>
+                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt=""></li>
                         @php
                             $rol = Auth::user()->fk_rol;
                         @endphp
@@ -36,9 +35,8 @@
                 <!--== breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li>
-                        <li class="active-bre"><a href="#"> Usuarios(Estudiantes)</a>
+                        <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                        <li class="active-bre"><a href="#"> Usuarios(Estudiantes)</a></li>
                     </ul>
                 </div>
 
@@ -46,71 +44,77 @@
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Detalles de (curso)</h4>
-
+                                    <h4>Detalles de Cursos</h4>
+                                    <a href="{{ route('admin_add_curso') }}" class="btn btn-success pull-right">
+                                        <i class="fa fa-plus"></i> Agregar Nuevo Curso
+                                    </a>
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>(curso perteneciente)</th>
-                                                    <th>Ver/editar Estudiantes</th>
-
+                                                    <th>ID</th>
+                                                    <th>Nombre del Curso</th>
+                                                    <th>Código</th>
+                                                    <th>Estado</th>
+                                                    <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @forelse($cursos as $curso)
                                                 <tr>
-
-                                                    <td><a href="#"><span class="list-enq-name">001</span></a>
+                                                    <td>{{ $curso->id_curso }}</td>
+                                                    <td>{{ $curso->nombre_curso }}</td>
+                                                    <td>{{ $curso->numero_curso }}</td>
+                                                    <td>
+                                                        <span class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
+                                                            {{ $curso->estado }}
+                                                        </span>
                                                     </td>
-
-                                                    <td><a href="admin-crud-estudiante.html"
-                                                            class="ad-st-view">Ver/editar</a></td>
+                                                    <td>
+                                                        <a href="{{ route('admin_edit_curso', $curso ->id_curso) }}" class="btn btn-sm btn-primary">
+                                                            <i class="fa fa-edit"></i> Editar
+                                                        </a>
+                                                        <form action="" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este curso?')">
+                                                                <i class="fa fa-trash"></i> Eliminar
+                                                            </button>
+                                                        </form>
+                                                        <a href="" class="btn btn-sm btn-info">
+                                                            <i class="fa fa-users"></i> Estudiantes
+                                                        </a>
+                                                    </td>
                                                 </tr>
+                                                @empty
                                                 <tr>
-                                                    <td><a href="#"><span class="list-enq-name">002</span></a>
-                                                    </td>
-                                                    <td><a href="admin-crud-estudiante.html"
-                                                            class="ad-st-view">Ver/editar</a></td>
+                                                    <td colspan="5" class="text-center">No hay cursos registrados</td>
                                                 </tr>
-                                                <tr>
-                                                    <td><a href="#"><span class="list-enq-name">003</span></a>
-                                                    </td>
-                                                    <td><a href="admin-crud-estudiante.html"
-                                                            class="ad-st-view">Ver/editar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#"><span class="list-enq-name">004</span></a>
-                                                    </td>
-                                                    <td><a href="admin-crud-estudiante.html"
-                                                            class="ad-st-view">Ver/editar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#"><span class="list-enq-name">005</span></a>
-                                                    </td>
-                                                    <td><a href="admin-crud-estudiante.html"
-                                                            class="ad-st-view">Ver/editar</a></td>
-                                                </tr>
-
+                                                @endforelse
                                             </tbody>
                                         </table>
+                                        <div class="text-center">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
-
         </div>
     </div>
 
     @include('admin_crud.partials.footer')
 </body>
-
-
 </html>
