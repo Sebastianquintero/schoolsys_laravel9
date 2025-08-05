@@ -7,31 +7,20 @@ use App\Models\Curso;
 
 class CursoController extends Controller
 {
-    public function index()
-    {
-        $cursos = Curso::where('fk_colegio', auth()->user()->fk_colegio)->get();
-        return view('admin_crud.admin_crud_cursos.crud_ver_curso', compact('cursos'));
-    }
-
     public function create()
     {
-        return view('admin_crud.admin_crud_cursos.admin_add_curso');
+        $estados = Curso::$estadosValidos;
+        return view('cursos.create', compact('estados'));
     }
 
-    public function store(Request $request)
+        public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:50',
-            'descripcion' => 'nullable|string',
-        ]);
-
-        Curso::create([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'fk_colegio' => auth()->user()->fk_colegio,
-            'nivel' => $request->nivel,
-        ]);
-
-        return redirect()->route('crud_ver_curso')->with('success', 'Curso creado');
+        $validated = $request->validate(Curso::rules());
+        
+        Curso::create($validated);
+        
+        return redirect()->route('cursos.index')
+                         ->with('success', 'Curso creado exitosamente');
     }
 }
+

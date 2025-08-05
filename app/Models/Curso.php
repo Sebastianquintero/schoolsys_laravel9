@@ -8,20 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     protected $primaryKey = 'id_curso';
-    protected $fillable = ['nombre', 'descripcion', 'fk_materia', 'fk_colegio', 'nivel'];
 
-    public function materia()
-    {
-        return $this->belongsTo(Materia::class, 'fk_materia');
-    }
+    protected $fillable = [
+        'nombre_curso',
+        'numero_curso',
+        'descripcion',
+        'estado'
+    ];
 
-    public function estudiantes()
-    {
-        return $this->hasMany(Estudiante::class, 'fk_curso', 'id_curso');
-    }
+    protected $casts = [
+        'estado' => 'string',
+    ];
 
-    public function colegio()
+    public static $estadosValidos = ['Activo', 'Inactivo'];
+
+        public static function rules()
     {
-        return $this->belongsTo(Colegio::class, 'fk_colegio');
+        return [
+            'nombre_curso' => 'required|string|max:100',
+            'numero_curso' => 'required|string|max:20',
+            'descripcion' => 'nullable|string',
+            'estado' => 'required|in:' . implode(',', self::$estadosValidos),
+        ];
     }
 }

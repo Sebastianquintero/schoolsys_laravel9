@@ -34,7 +34,7 @@
         </li>
 
         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Todos los usuarios</a>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Calificaciones</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <!-- <li><a href="{{ url('admin/estudiantes') }}">Todos los Usuarios</a></li> -->

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id('id_rol');
             $table->string('nombre');
             $table->enum('estado', ['Activo', 'Inactivo']);
-            $table->timestamps();
+            $table->timestamps(); 
         });
         Schema::create('colegios', function (Blueprint $table) {
             $table->id('id_colegio');
@@ -35,6 +35,7 @@ return new class extends Migration {
             $table->string('correo', 100);
             $table->unsignedBigInteger('fk_rol');
             $table->unsignedBigInteger('fk_colegio')->nullable();
+            $table->timestamps();
             
             $table->foreign('fk_colegio')->references('id_colegio')->on('colegios');
             $table->foreign('fk_rol')->references('id_rol')->on('roles');
@@ -48,15 +49,18 @@ return new class extends Migration {
             $table->string('nombre', 100);
             $table->text('descripcion');
             $table->unsignedBigInteger('fk_usuario');
+            $table->timestamps();
 
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
         });
 
         Schema::create('cursos', function (Blueprint $table) {
             $table->id('id_curso');
-            $table->unsignedBigInteger('fk_materia');
-
-            $table->foreign('fk_materia')->references('id_materia')->on('materias');
+            $table->string('nombre_curso', 100);
+            $table->string('numero_curso', 20);
+            $table->string('descripcion', 255)->nullable();
+            $table->enum('estado', ['Activo', 'Inactivo'])->default('Activo');
+            $table->timestamps();
         });
 
         Schema::create('asistencias', function (Blueprint $table) {
@@ -65,6 +69,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('fk_usuario');
             $table->date('fecha_asistencia');
             $table->boolean('estado');
+            $table->timestamps();
 
             $table->foreign('fk_curso')->references('id_curso')->on('cursos');
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
@@ -78,6 +83,7 @@ return new class extends Migration {
             $table->text('contenido');
             $table->dateTime('fecha_creacion');
             $table->string('archivo_adjunto', 255)->nullable();
+            $table->timestamps();
 
             $table->foreign('creador')->references('id_usuario')->on('usuarios');
             $table->foreign('fk_curso')->references('id_curso')->on('cursos');
@@ -93,6 +99,7 @@ return new class extends Migration {
             $table->dateTime('fecha_creacion');
             $table->dateTime('fecha_envio');
             $table->string('archivo_adjunto', 255)->nullable();
+            $table->timestamps();
 
             $table->foreign('remitente')->references('id_usuario')->on('usuarios');
             $table->foreign('destinatario')->references('id_usuario')->on('usuarios');
@@ -107,6 +114,7 @@ return new class extends Migration {
             $table->dateTime('fecha_creacion');
             $table->dateTime('fecha_envio');
             $table->string('archivo_adjunto', 255)->nullable();
+            $table->timestamps();
 
             $table->foreign('remitente')->references('id_usuario')->on('usuarios');
             $table->foreign('destinatario')->references('id_usuario')->on('usuarios');
@@ -117,6 +125,7 @@ return new class extends Migration {
             $table->string('nombre_buzon', 100);
             $table->unsignedBigInteger('fk_usuario');
             $table->unsignedBigInteger('fk_mensaje');
+            $table->timestamps();
 
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
             $table->foreign('fk_mensaje')->references('id_mensaje')->on('mensajes');
@@ -129,6 +138,7 @@ return new class extends Migration {
             $table->text('pregunta');
             $table->text('respuesta');
             $table->unsignedBigInteger('fk_usuario');
+            $table->timestamps();
 
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
         });
@@ -137,6 +147,7 @@ return new class extends Migration {
             $table->id('id_votacion');
             $table->unsignedBigInteger('fk_usuario');
             $table->unsignedBigInteger('fk_encuesta');
+            $table->timestamps();
 
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
             $table->foreign('fk_encuesta')->references('id_encuesta')->on('encuestas');
