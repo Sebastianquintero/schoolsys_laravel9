@@ -32,7 +32,7 @@ class CursoController extends Controller
                          ->with('success', 'Curso creado exitosamente');
     }
 
-    public function show(Curso $Curso)
+    public function show(Curso $curso)
     {
         return "Mostrar detalles del curso".$curso->id_curso;
     }
@@ -77,13 +77,7 @@ public function edit($id_curso)
     public function destroy($id_curso)
     {
         $curso = Curso::findOrFail($id_curso);
-
-        // Eliminar también al usuario relacionado si lo deseas
-        $id_curso = $curso->id_curso;
         $curso->delete();
-        if ($id_curso) {
-            $id_curso->delete();
-        }
 
         return redirect()->back()->with('success', 'Curso eliminado correctamente.');
     }

@@ -227,29 +227,26 @@
                                                     <th>Estado</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">Quimica</span>
-                                                    </td>
-                                                    <td>50</td>
-                                                    <td>15 Abril 2025</td>
-                                                    <td>Salon 301</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">Cultura Fisica</span>
-                                                    </td>
-                                                    <td>75</td>
-                                                    <td>21 Junio 2025</td>
-                                                    <td>Salon 302</td>
-                                                    <td>
-                                                        <span class="label label-success">Activo</span>
-                                                    </td>
-                                                </tr>
 
+                                            <tbody>
+                                                @forelse($cursos as $curso)
+                                                <tr>
+                                                    <td>{{ $curso->id_curso }}</td>
+                                                    <td>{{ $curso->nombre_curso }}</td>
+                                                    <td>{{ $curso->numero_curso }}</td>
+                                                    <td>
+                                                        <span class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
+                                                            {{ $curso->estado }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="5" class="text-center">No hay cursos registrados</td>
+                                                </tr>
+                                                @endforelse
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>

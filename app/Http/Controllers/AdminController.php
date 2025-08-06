@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Estudiante;
 use App\Models\Docente;
+use App\Models\Curso;
 
 class AdminController extends Controller
 {
@@ -80,6 +81,14 @@ class AdminController extends Controller
         return redirect()->route('admin.usuarios')->with('success', 'Estudiante eliminado correctamente.');
     }
 
+    // Método para mostrar la lista de cursos
+    public function verTodosLosCursos()
+    {
+        $cursos = Curso::withCount('cursos') // Opcional: contar estudiantes inscritos
+            ->orderBy('numero_curso')
+            ->paginate(10);
 
+        return view('admin_crud.admin', compact('cursos'));
+    }
 
 }

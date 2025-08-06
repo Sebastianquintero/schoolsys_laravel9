@@ -84,7 +84,7 @@
                                                         <a href="{{ route('admin_edit_curso', $curso ->id_curso) }}" class="btn btn-sm btn-primary">
                                                             <i class="fa fa-edit"></i> Editar
                                                         </a>
-                                                        <form action="" method="POST" style="display:inline;">
+                                                        <form action="{{ route('cursos.destroy', $curso->id_curso) }}" method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este curso?')">
