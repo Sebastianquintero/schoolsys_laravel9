@@ -13,61 +13,43 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\DocenteImportController;
 use App\Exports\DocentesExport;
 use App\Http\Controllers\MensajeController;
+use App\Http\Controllers\ContactController;
 
 
-Route::get('/index', function () {
-    return view('inicio.index');
-})->name('index');
-Route::get('/about', function () {
-    return view('inicio.about');
-})->name('about');
-Route::get('/contact', function () {
-    return view('inicio.contact');
-})->name('contact');
-Route::get('/feature', function () {
-    return view('inicio.feature');
-})->name('feature');
-Route::get('/feature2', function () {
-    return view('inicio.feature2');
-})->name('feature2');
-Route::get('/feature3', function () {
-    return view('inicio.feature3');
-})->name('feature3');
+// Páginas públicas
+Route::get('/index', fn() => view('inicio.index'))->name('index');
+Route::get('/about', fn() => view('inicio.about'))->name('about');
+Route::get('/contact', fn() => view('inicio.contact'))->name('contact');
+Route::get('/feature', fn() => view('inicio.feature'))->name('feature');
+Route::get('/feature2', fn() => view('inicio.feature2'))->name('feature2');
+Route::get('/feature3', fn() => view('inicio.feature3'))->name('feature3');
+
+// Ruta de contacto
+Route::post('/contacto', [App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
+
 
 // Login
-
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/recuperacion', function () {
-    return view('login.recuperacion_password');
-})->name('recuperacion_password');
+
+Route::get('/recuperacion', fn() => view('login.recuperacion_password'))->name('recuperacion_password');
 
 // recuperar contraseña
 Route::get('/recuperar-contrasena', [PasswordResetController::class, 'showRecoveryForm'])->name('password.request');
 Route::post('/recuperar-contrasena', [PasswordResetController::class, 'sendResetCode'])->name('password.send');
-
 Route::get('/verificar-codigo', [PasswordResetController::class, 'showCodeForm'])->name('password.code.form');
 Route::post('/restablecer-contrasena', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
 
 
 // Ruta protegida: página de bienvenida
-Route::get('/welcome', function () {
-    return view('login.welcome');
-})->name('welcome')->middleware('auth');
-
-
+Route::get('/welcome', fn() => view('login.welcome'))->name('welcome')->middleware('auth');
 
 // ====================================================================================================
 //Ruta Modulo de administrador
 Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     // Ruta: Dashboard de admin ver estudiantes
     Route::get('/admin', [AdminController::class, 'verEstudiantes'])->name('admin');
-
-    // Comunicaciones del admin
-    //Route::get('/comunica_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_admin'))->name('comunica_admin');
-    //Route::get('/comunica_add_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_add_admin'))->name('comunica_add_admin');
-    //Route::get('/comunica_config_admin', fn() => view('modulo_comunicacion.comunica_admin.comunica_config_admin'))->name('comunica_config_admin');
 
     // Rutas para el módulo de cursos
     Route::get('/crud_ver_curso', fn() => view('admin_crud.admin_crud_cursos.crud_ver_curso'))->name('crud_ver_curso');
@@ -129,11 +111,7 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/admin_ver_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_ver_actividades'))->name('admin_ver_actividades');
     Route::get('/admin_add_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_add_actividades'))->name('admin_add_actividades');
     Route::get('/admin_editar_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_editar_actividades'))->name('admin_editar_actividades');
-    //Route::get('/gestion_actividades/agregar', [AdminController::class, '   agregarActividad'])->name('agregar_actividad');
-    //Route::post('/gestion_actividades/guardar', [AdminController::class, '  guardarActividad'])->name('guardar_actividad');
-    //Route::get('/gestion_actividades/editar/{id}', [AdminController::class, 'editarActividad'])->name('editar_actividad');
-    //Route::get('/gestion_actividades/eliminar/{id}', [AdminController::class, 'eliminarActividad'])->name('eliminar_actividad');
-
+    
 
 });
 

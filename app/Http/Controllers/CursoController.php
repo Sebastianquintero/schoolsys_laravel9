@@ -25,53 +25,53 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(Curso::rules());
-        
+
         Curso::create($validated);
-        
+
         return redirect()->route('crud_ver_curso')
-                         ->with('success', 'Curso creado exitosamente');
+            ->with('success', 'Curso creado exitosamente');
     }
 
     public function show(Curso $curso)
     {
-        return "Mostrar detalles del curso".$curso->id_curso;
+        return "Mostrar detalles del curso" . $curso->id_curso;
     }
 
 
-public function edit($id_curso)
-{
-    //return $id_curso;
-    $curso = Curso::findOrFail($id_curso);
-    return view('admin_crud.admin_crud_cursos.admin_edit_curso', compact('curso'));
+    public function edit($id_curso)
+    {
+        //return $id_curso;
+        $curso = Curso::findOrFail($id_curso);
+        return view('admin_crud.admin_crud_cursos.admin_edit_curso', compact('curso'));
 
 
-}
+    }
 
 
 
 
-       public function update(Request $request, $id_curso)
-{
-    // Validar datos
-    $validated = $request->validate([
-        'nombre_curso' => 'required|string|max:255',
-        'numero_curso' => 'required|string|max:20',
-        'descripcion' => 'required|string|max:255',
-        'estado' => 'required|in:Activo,Inactivo',
-    ]);
+    public function update(Request $request, $id_curso)
+    {
+        // Validar datos
+        $validated = $request->validate([
+            'nombre_curso' => 'required|string|max:255',
+            'numero_curso' => 'required|string|max:20',
+            'descripcion' => 'required|string|max:255',
+            'estado' => 'required|in:Activo,Inactivo',
+        ]);
 
-    // Buscar y actualizar curso
-    $curso = Curso::findOrFail($id_curso);
-    $curso->update([
-        'nombre_curso' => $validated['nombre_curso'],
-        'numero_curso' => $validated['numero_curso'],
-        'descripcion' => $validated['descripcion'],
-        'estado' => $validated['estado']
-    ]);
+        // Buscar y actualizar curso
+        $curso = Curso::findOrFail($id_curso);
+        $curso->update([
+            'nombre_curso' => $validated['nombre_curso'],
+            'numero_curso' => $validated['numero_curso'],
+            'descripcion' => $validated['descripcion'],
+            'estado' => $validated['estado']
+        ]);
 
-    return redirect()->route('crud_ver_curso')
-                    ->with('success', 'Curso actualizado correctamente');
-}
+        return redirect()->route('crud_ver_curso')
+            ->with('success', 'Curso actualizado correctamente');
+    }
 
 
     public function destroy($id_curso)

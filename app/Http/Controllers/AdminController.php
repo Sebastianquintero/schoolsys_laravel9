@@ -16,7 +16,11 @@ class AdminController extends Controller
             ->with('estudiante')
             ->paginate(10);
         $docentes = Docente::with('usuario')->paginate(10);
-        return view('admin_crud.admin', compact('estudiantes', 'docentes'));
+        $cursos = Curso::select('id_curso','nombre_curso','numero_curso','estado')
+        ->orderByDesc('id_curso')
+        ->take(10)   
+        ->get();
+        return view('admin_crud.admin', compact('estudiantes', 'docentes', 'cursos'));
     }
 
     // Vista separada: admin_user_all.blade.php

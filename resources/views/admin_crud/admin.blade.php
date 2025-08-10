@@ -221,9 +221,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Curso</th>
-                                                    <th>Estudiantes</th>
-                                                    <th>Fecha</th>
-                                                    <th>Locacion</th>
+                                                    <th>Nombre</th>
+                                                    <th>Numero</th>
                                                     <th>Estado</th>
                                                 </tr>
                                             </thead>

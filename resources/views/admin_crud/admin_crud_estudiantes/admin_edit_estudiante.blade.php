@@ -58,23 +58,125 @@
                                         method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <input type="text" name="nombres" value="{{ $estudiante->usuario->nombres }}" required>
-                                        <input type="text" name="apellidos"value="{{ $estudiante->usuario->apellidos }}" required>
-                                        <input type="text" name="numero_telefono" value="{{ $estudiante->telefono }}"required>
-                                        <input type="email" name="correo" value="{{ $estudiante->usuario->correo }}"required>
-                                        <input type="email" name="correo_personal" value="{{ $estudiante->correo_personal }}" required>
-                                        <input type="text" name="direccion" value="{{ $estudiante->direccion }}"required>
-                                        <input type="number" name="edad" value="{{ $estudiante->edad }}" required>
-                                        <input type="text" name="grado" value="{{ $estudiante->grado }}" required>
-                                        <input type="text" name="curso" value="{{ $estudiante->curso }}" required>
-                                        <input type="text" name="nivel_educativo" value="{{ $estudiante->nivel_educativo }}" required>
-                                        <input type="text" name="nacionalidad" value="{{ $estudiante->nacionalidad }}" required>
-                                        <input type="text" name="acudiente" value="{{ $estudiante->acudiente }}" required>
-                                        <input type="text" name="eps" value="{{ $estudiante->eps }}" required>
-                                        <input type="text" name="sisben" value="{{ $estudiante->sisben }}" required>
+                                        <form action="{{ route('estudiante.update', $estudiante->id_estudiante) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
 
-                                        <button type="submit">Actualizar</button>
-                                    </form>
+                                            {{-- Nombres / Apellidos --}}
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="nombres" class="validate"
+                                                        value="{{ optional($estudiante->usuario)->nombres }}" required>
+                                                    <label class="active">Nombres</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="apellidos" class="validate"
+                                                        value="{{ optional($estudiante->usuario)->apellidos }}"
+                                                        required>
+                                                    <label class="active">Apellidos</label>
+                                                </div>
+                                            </div>
+
+                                            {{-- Teléfono / Correo institucional / Correo personal --}}
+                                            <div class="row">
+                                                <div class="input-field col s4">
+                                                    <input type="text" name="numero_telefono" class="validate"
+                                                        value="{{ $estudiante->telefono }}" required>
+                                                    <label class="active">Número de teléfono</label>
+                                                </div>
+                                                <div class="input-field col s4">
+                                                    <input type="email" name="correo" class="validate"
+                                                        value="{{ optional($estudiante->usuario)->correo }}" required>
+                                                    <label class="active">Correo institucional</label>
+                                                </div>
+                                                <div class="input-field col s4">
+                                                    <input type="email" name="correo_personal" class="validate"
+                                                        value="{{ $estudiante->correo_personal }}" required>
+                                                    <label class="active">Correo personal</label>
+                                                </div>
+                                            </div>
+
+                                            {{-- Dirección / Edad / Grado --}}
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="direccion" class="validate"
+                                                        value="{{ $estudiante->direccion }}" required>
+                                                    <label class="active">Dirección</label>
+                                                </div>
+                                                <div class="input-field col s3">
+                                                    <input type="number" name="edad" class="validate"
+                                                        value="{{ $estudiante->edad }}" required>
+                                                    <label class="active">Edad</label>
+                                                </div>
+                                                <div class="input-field col s3">
+                                                    <input type="text" name="grado" class="validate"
+                                                        value="{{ $estudiante->grado }}" required>
+                                                    <label class="active">Grado</label>
+                                                </div>
+                                            </div>
+
+                                            {{-- Curso / Nivel educativo --}}
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="curso" class="validate"
+                                                        value="{{ $estudiante->curso }}" required>
+                                                    <label class="active">Curso</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="nivel_educativo" class="validate"
+                                                        value="{{ $estudiante->nivel_educativo }}" required>
+                                                    <label class="active">Nivel educativo</label>
+                                                </div>
+                                            </div>
+
+                                            {{-- Nacionalidad / Acudiente --}}
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="nacionalidad" class="validate"
+                                                        value="{{ $estudiante->nacionalidad }}" required>
+                                                    <label class="active">Nacionalidad</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="acudiente" class="validate"
+                                                        value="{{ $estudiante->acudiente }}" required>
+                                                    <label class="active">Acudiente</label>
+                                                </div>
+                                            </div>
+
+                                            {{-- EPS / Sisbén --}}
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="eps" class="validate"
+                                                        value="{{ $estudiante->eps }}" required>
+                                                    <label class="active">EPS</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input type="text" name="sisben" class="validate"
+                                                        value="{{ $estudiante->sisben }}" required>
+                                                    <label class="active">Sisbén</label>
+                                                </div>
+                                            </div>
+
+                                            {{-- Guardar --}}
+                                            <div class="row mt-3">
+                                                <div class="input-field col s12">
+                                                    <button type="submit" class="waves-effect waves-light btn-large">
+                                                        Guardar Cambios
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </form>
                                 </div>
                             </div>
                         </div>
