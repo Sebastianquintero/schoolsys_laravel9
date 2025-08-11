@@ -19,9 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('fk_usuario')->unique();
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');
             
-
-
-            $table->string('foto')->nullable(); // Ruta o nombre del archivo
             $table->string('cargo', 100);       // Ej: Docente, Coordinador, etc.
             $table->string('tipo_contrato', 50); // Ej: Fijo, Temporal, Prestación de servicios
             $table->string('duracion', 50);     // Ej: 1 año, 6 meses

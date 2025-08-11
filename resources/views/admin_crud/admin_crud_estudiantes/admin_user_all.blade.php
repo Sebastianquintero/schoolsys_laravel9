@@ -17,7 +17,7 @@
                 <!--== USER INFO ==-->
                 <div class="sb2-12">
                     <ul>
-                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt="">
+                        <li><img src="{{ auth()->user()->foto_url }}" class="img-thumbnail rounded-circle" width="120" alt="Foto">
                         </li>
                         @php
                             $rol = Auth::user()->fk_rol;
@@ -81,8 +81,7 @@
                                                     <tr>
                                                         <td>
                                                             <span class="list-img">
-                                                                <img src="{{ asset('images/user/placeholder.jpg') }}"
-                                                                    alt="">
+                                                                <img src="{{ auth()->user()->foto_url }}" class="img-thumbnail rounded-circle" width="120" alt="Foto">
                                                             </span>
                                                         </td>
                                                         <td>

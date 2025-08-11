@@ -73,8 +73,7 @@
                                                         <td>{{ $index + 1 }}</td>
                                                         <td>
                                                             <span class="list-img">
-                                                                <img src="{{ asset('storage/' . $docente->foto) }}"
-                                                                    alt="foto" width="60">
+                                                                <img src="{{ auth()->user()->foto_url }}" class="img-thumbnail rounded-circle" width="120" alt="Foto">
                                                             </span>
                                                         </td>
                                                         <td>

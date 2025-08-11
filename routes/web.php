@@ -14,6 +14,7 @@ use App\Http\Controllers\DocenteImportController;
 use App\Exports\DocentesExport;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UsuarioController;
 
 
 // Páginas públicas
@@ -25,7 +26,7 @@ Route::get('/feature2', fn() => view('inicio.feature2'))->name('feature2');
 Route::get('/feature3', fn() => view('inicio.feature3'))->name('feature3');
 
 // Ruta de contacto
-Route::post('/contacto', [App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
+Route::post('/contacto', [ContactController::class, 'send'])->name('contact.send');
 
 
 // Login
@@ -122,8 +123,9 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
 // Ruta Estudiante
 Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () {
     Route::get('/dashboard_estudiante', fn() => view('estudiante.dashboard_estudiante'))->name('dashboard_estudiante');
-    Route::get('/perfil', fn() => view('estudiante.perfil'))->name('perfil');
-    Route::get('/info_personal', fn() => view('estudiante.info_personal'))->name('info_personal');
+    Route::get('/perfil', [EstudianteController::class, 'perfil'])->name('perfil');
+    Route::get('/info', [EstudianteController::class, 'info'])->name('info_personal');
+    Route::post('/info', [EstudianteController::class, 'updateInfo'])->name('estudiante.updateInfo');
 
     Route::get('/actividades', fn() => view('estudiante.actividades.actividades'))->name('actividades');
     Route::get('/cursos', fn() => view('estudiante.cursos.cursos'))->name('cursos');
@@ -144,7 +146,15 @@ Route::middleware(['auth', 'rol:1,2,3'])->prefix('mensajes')->group(function () 
 
 });
 
+// =====================================================================================================
+// COLOCAR FOTOS DE USUARIOS
+// Para que cada usuario actualice su propia foto
+Route::post('/perfil/avatar', [UsuarioController::class, 'updateOwnAvatar'])
+    ->middleware('auth')->name('usuario.avatar.own');
 
+// (Opcional) Para que un admin actualice la foto de otro usuario
+Route::post('/usuarios/{usuario}/avatar', [UsuarioController::class, 'updateAvatar'])
+    ->middleware(['auth','rol:1'])->name('usuario.avatar.update');
 
 
 

@@ -86,8 +86,7 @@
                                                     <tr>
                                                         <td>
                                                             <span class="list-img">
-                                                                <img src="{{ asset('images/user/placeholder.jpg') }}"
-                                                                    alt="">
+                                                                <img src="{{ auth()->user()->foto_url }}" class="img-thumbnail rounded-circle" width="120" alt="Foto">
                                                             </span>
                                                         </td>
                                                         <td>
@@ -163,8 +162,7 @@
                                                     <tr>
                                                         <td>
                                                             <span class="list-img">
-                                                                <img src="{{ asset('images/docentes/' . ($docente->foto ?? 'placeholder.jpg')) }}"
-                                                                    alt="Foto docente">
+                                                                <img src="{{ auth()->user()->foto_url }}" class="img-thumbnail rounded-circle" width="120" alt="Foto">
                                                             </span>
                                                         </td>
 

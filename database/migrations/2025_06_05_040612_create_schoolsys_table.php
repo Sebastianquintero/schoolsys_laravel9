@@ -25,6 +25,7 @@ return new class extends Migration {
 
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id('id_usuario');
+            $table->string('foto_path', 255)->nullable();
             $table->string('nombres', 100);
             $table->string('apellidos', 100);
             $table->string('tipo_documento', 20);

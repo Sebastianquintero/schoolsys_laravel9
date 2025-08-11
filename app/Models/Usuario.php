@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
+
 
 class Usuario extends Authenticatable
 {
@@ -22,11 +24,17 @@ class Usuario extends Authenticatable
         'numero_telefono',
         'correo',
         'fk_rol',
-        'fk_colegio'
+        'fk_colegio',
+        'foto_path', 
     ];
 
     protected $hidden = ['contrasena'];
 
+    // Para que created_at llegue como Carbon si lo usas en la vista
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
     // Laravel buscará aquí la contraseña al hacer login
     public function getAuthPassword()
     {
@@ -45,6 +53,13 @@ class Usuario extends Authenticatable
     public function docente()
     {
         return $this->hasOne(Docente::class, 'fk_usuario');
+    }
+    public function getFotoUrlAttribute()
+    {
+        if ($this->foto_path && Storage::disk('public')->exists($this->foto_path)) {
+            return Storage::disk('public')->url($this->foto_path);
+        }
+        return asset('images/placeholder.jpg'); // imagen por defecto
     }
 
 }

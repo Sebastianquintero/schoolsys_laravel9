@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->dropColumn(['nombres', 'apellidos', 'tipo_documento']);
         });
         
+
     }
 
     /**
@@ -30,6 +31,7 @@ return new class extends Migration {
             $table->string('apellidos', 100);
             $table->string('tipo_documento', 30);
         });
-       
+        
+
     }
 };
