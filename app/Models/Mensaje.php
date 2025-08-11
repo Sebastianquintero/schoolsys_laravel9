@@ -4,15 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mensaje extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'mensajes';
     protected $primaryKey = 'id_mensaje';
     public $timestamps = false;
-
+    protected $casts = [
+        'fecha_envio'    => 'datetime',
+        'fecha_creacion' => 'datetime',
+        'deleted_at'     => 'datetime',
+    ];
     protected $fillable = [
         'remitente',
         'destinatario',

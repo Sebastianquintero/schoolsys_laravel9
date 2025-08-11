@@ -8,14 +8,30 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+
 class MensajeController extends Controller
 {
     public function bandejaEntrada()
     {
-        $mensajes = Mensaje::with('usuarioRemitente')
-            ->where('destinatario', Auth::id())
+        $userId = auth()->user()->id_usuario;
+        $q = trim(request('q'));
+
+        $mensajes = Mensaje::with(['remitenteUsuario:id_usuario,nombres,apellidos'])
+            ->where('destinatario', $userId)
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($qq) use ($q) {
+                    $qq->where('asunto', 'like', "%{$q}%")
+                        ->orWhere('contenido', 'like', "%{$q}%")
+                        ->orWhereHas('remitenteUsuario', function ($u) use ($q) {
+                            $u->where('nombres', 'like', "%{$q}%")
+                                ->orWhere('apellidos', 'like', "%{$q}%")
+                                ->orWhereRaw("CONCAT(nombres,' ',apellidos) like ?", ["%{$q}%"]);
+                        });
+                });
+            })
             ->orderByDesc('fecha_envio')
-            ->get();
+            ->paginate(15)
+            ->withQueryString();
 
         return view('mensajes.mail', compact('mensajes'));
     }
@@ -75,7 +91,7 @@ class MensajeController extends Controller
     {
         $mensajes = Mensaje::where('destinatario', Auth::id())
             ->orderByDesc('fecha_envio')
-            ->get();
+            ->paginate(15);
 
         return view('mensajes.inbox', compact('mensajes'));
     }
@@ -128,4 +144,128 @@ class MensajeController extends Controller
 
         return view('mensajes.show', compact('mensaje'));
     }
+    public function enviados()
+    {
+        $userId = auth()->user()->id_usuario;
+        $q = trim(request('q'));
+
+        $mensajes = Mensaje::with(['destinatarioUsuario:id_usuario,nombres,apellidos'])
+            ->where('remitente', auth()->id())
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($qq) use ($q) {
+                    $qq->where('asunto', 'like', "%{$q}%")
+                        ->orWhere('contenido', 'like', "%{$q}%")
+                        ->orWhereHas('destinatarioUsuario', function ($u) use ($q) {
+                            $u->where('nombres', 'like', "%{$q}%")
+                                ->orWhere('apellidos', 'like', "%{$q}%")
+                                ->orWhereRaw("CONCAT(nombres,' ',apellidos) like ?", ["%{$q}%"]);
+                        });
+                });
+            })
+            ->orderByDesc('fecha_envio')
+            ->paginate(15);
+
+        return view('mensajes.enviados', compact('mensajes'));
+    }
+    public function borradores()
+    {
+        $userId = auth()->user()->id_usuario;
+        $q = trim(request('q'));
+
+        $mensajes = Mensaje::with('destinatarioUsuario')
+            ->where('remitente', auth()->id())
+            ->whereNull('fecha_envio') // ejemplo: no enviado aún
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($qq) use ($q) {
+                    $qq->where('asunto', 'like', "%{$q}%")
+                        ->orWhere('contenido', 'like', "%{$q}%")
+                        ->orWhereHas('destinatarioUsuario', function ($u) use ($q) {
+                            $u->where('nombres', 'like', "%{$q}%")
+                                ->orWhere('apellidos', 'like', "%{$q}%")
+                                ->orWhereRaw("CONCAT(nombres,' ',apellidos) like ?", ["%{$q}%"]);
+                        });
+                });
+            })
+            ->orderByDesc('fecha_creacion')
+            ->paginate(15);
+
+        return view('mensajes.borradores', compact('mensajes'));
+    }
+
+    public function papelera()
+    {
+        $userId = auth()->user()->id_usuario;
+
+        $mensajes = Mensaje::with(['remitenteUsuario', 'destinatarioUsuario'])
+            ->onlyTrashed() // si usas SoftDeletes
+            ->where(function ($q) use ($userId) {
+                $q->where('remitente', $userId)
+                    ->orWhere('destinatario', $userId);
+            })
+            ->orderByDesc('deleted_at')
+            ->paginate(15);
+
+        return view('mensajes.papelera', compact('mensajes'));
+    }
+
+    // Función para verificar si el usuario es propietario del mensaje
+    // Se usa en destroy, restore y forceDelete para evitar que otros usuarios accedan a los mensajes de otro usuario.
+    // Se usa en el query para evitar que un usuario acceda
+    private function userOwnsMessageQuery($q, $userId)
+    {
+        $q->where('remitente', $userId)->orWhere('destinatario', $userId);
+    }
+    public function destroy($id)
+    {
+        $userId = auth()->user()->id_usuario;
+
+        $mensaje = Mensaje::where('id_mensaje', $id)
+            ->where(function ($q) use ($userId) {
+                $this->userOwnsMessageQuery($q, $userId);
+            })
+            ->firstOrFail();
+
+        $mensaje->delete(); // SoftDelete → va a papelera
+
+        return back()->with('ok', 'Mensaje movido a papelera.');
+    }
+
+    public function restore($id)
+    {
+        $userId = auth()->user()->id_usuario;
+
+        $mensaje = Mensaje::withTrashed()
+            ->where('id_mensaje', $id)
+            ->where(function ($q) use ($userId) {
+                $this->userOwnsMessageQuery($q, $userId);
+            })
+            ->firstOrFail();
+
+        $mensaje->restore();
+
+        return back()->with('ok', 'Mensaje restaurado.');
+    }
+
+    public function forceDelete($id)
+    {
+        $userId = auth()->user()->id_usuario;
+
+        $mensaje = Mensaje::withTrashed()
+            ->where('id_mensaje', $id)
+            ->where(function ($q) use ($userId) {
+                $this->userOwnsMessageQuery($q, $userId);
+            })
+            ->firstOrFail();
+
+        // borrar adjunto si existe (en disk public)
+        if ($mensaje->archivo_adjunto) {
+            Storage::disk('public')->delete($mensaje->archivo_adjunto);
+        }
+
+        $mensaje->forceDelete();
+
+        return back()->with('ok', 'Mensaje eliminado definitivamente.');
+    }
+
+
 }

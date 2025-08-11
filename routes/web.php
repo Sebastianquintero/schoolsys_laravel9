@@ -138,12 +138,25 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
 
 // =====================================================================================================
 // Ruta de email mensajeria
-Route::middleware(['auth', 'rol:1,2,3'])->prefix('mensajes')->group(function () {
-    Route::get('/correo', [MensajeController::class, 'bandejaEntrada'])->name('mensajes.bandeja');
-    Route::get('/mensajes/redactar', [MensajeController::class, 'redactar'])->name('mensajes.redactar');
-    Route::post('/mensajes/enviar', [MensajeController::class, 'enviar'])->name('mensajes.enviar');
-    Route::get('/mensaje/{id}', [MensajeController::class, 'ver'])->name('mensajes.ver');
+Route::middleware(['auth', 'rol:1,2,3'])
+    ->prefix('mensajes')
+    ->name('mensajes.')
+    ->group(function () {
+        Route::get('/correo', [MensajeController::class, 'bandejaEntrada'])->name('bandeja');
+        Route::get('/enviados', [MensajeController::class, 'enviados'])->name('sent');
+        Route::get('/borradores', [MensajeController::class, 'borradores'])->name('drafts');
+        Route::get('/papelera', [MensajeController::class, 'papelera'])->name('trash');
 
+        Route::get('/redactar', [MensajeController::class, 'redactar'])->name('redactar');
+        Route::post('/enviar', [MensajeController::class, 'enviar'])->name('enviar');
+
+        // Acciones de papelera
+    Route::delete('/{id}',[MensajeController::class,'destroy'])->whereNumber('id')->name('destroy'); // mover a papelera
+    Route::post('/{id}/restore',[MensajeController::class,'restore'])->whereNumber('id')->name('restore'); // restaurar
+    Route::delete('/{id}/force',[MensajeController::class,'forceDelete'])->whereNumber('id')->name('force'); // eliminar definitivo
+        
+        Route::get('/{id}', [MensajeController::class, 'ver'])
+            ->whereNumber('id')->name('ver');
 });
 
 // =====================================================================================================
