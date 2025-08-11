@@ -245,4 +245,25 @@ class EstudianteController extends Controller
 
         return back()->with('success', 'Información actualizada correctamente.');
     }
+    public function profesores(Request $r)
+    {
+        $colegioId = auth()->user()->fk_colegio;
+        $q = trim($r->q);
+
+        $docentes = \App\Models\Docente::with(['usuario:id_usuario,nombres,apellidos,numero_telefono,correo,foto_path'])
+            ->whereHas('usuario', function ($u) use ($colegioId, $q) {
+                $u->where('fk_colegio', $colegioId)
+                    ->when($q, function ($uu) use ($q) {
+                        $uu->where('nombres', 'like', "%$q%")
+                            ->orWhere('apellidos', 'like', "%$q%")
+                            ->orWhere('correo', 'like', "%$q%");
+                    });
+            })
+            // ->with('cursos:id_curso,nombre_curso') // si tienes relación
+            ->orderByDesc('id_docente')
+            ->paginate(12)
+            ->appends(request()->query()); 
+
+        return view('estudiante.asignatura.estudiante_profesor', compact('docentes'));
+    }
 }

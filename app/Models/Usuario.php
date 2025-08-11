@@ -57,7 +57,7 @@ class Usuario extends Authenticatable
     public function getFotoUrlAttribute()
     {
         if ($this->foto_path && Storage::disk('public')->exists($this->foto_path)) {
-            return Storage::disk('public')->url($this->foto_path);
+            return Storage::url($this->foto_path);
         }
         return asset('images/placeholder.jpg'); // imagen por defecto
     }
