@@ -58,7 +58,7 @@ class AnuncioController extends Controller
         } elseif ($r->hasFile('video_file')) {
             $dir = "anuncios/{$colegioId}";
             $filename = uniqid('anuncio_').'.mp4';
-            Storage::disk('public')->putFileAs($dir, $r->file('video_file'), $filename);
+            $r->file('video_file')->storeAs($dir, $filename, 'public');
             $data['video_path'] = "{$dir}/{$filename}";
             $data['media_type'] = 'video_file';
         }
@@ -119,7 +119,7 @@ class AnuncioController extends Controller
             if ($anuncio->video_path) Storage::disk('public')->delete($anuncio->video_path);
             $dir = "anuncios/".auth()->user()->fk_colegio;
             $filename = uniqid('anuncio_').'.mp4';
-            Storage::disk('public')->putFileAs($dir, $r->file('video_file'), $filename);
+            $r->file('video_file')->storeAs($dir, $filename, 'public');
             $anuncio->video_path  = "{$dir}/{$filename}";
             $anuncio->imagen_path = $anuncio->video_url = null;
             $anuncio->media_type  = 'video_file';
