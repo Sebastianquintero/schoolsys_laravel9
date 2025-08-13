@@ -26,6 +26,7 @@ class EstudianteController extends Controller
             ->paginate(10);
         return view('estudiante.dashboard', compact('usuario', 'estudiante'));
     }
+    
 
 
     public function store(Request $request)
@@ -262,7 +263,7 @@ class EstudianteController extends Controller
             // ->with('cursos:id_curso,nombre_curso') // si tienes relación
             ->orderByDesc('id_docente')
             ->paginate(12)
-            ->appends(request()->query()); 
+            ->appends(request()->query());
 
         return view('estudiante.asignatura.estudiante_profesor', compact('docentes'));
     }

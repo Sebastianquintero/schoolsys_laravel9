@@ -15,6 +15,7 @@ use App\Exports\DocentesExport;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AnuncioController;
 
 
 // Páginas públicas
@@ -113,6 +114,12 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/admin_add_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_add_actividades'))->name('admin_add_actividades');
     Route::get('/admin_editar_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_editar_actividades'))->name('admin_editar_actividades');
     
+    // Rutas para el módulo de gestión de anuncios
+    Route::get('/anuncios', [AnuncioController::class,'index'])->name('admin.anuncios');
+    Route::post('/anuncios', [AnuncioController::class,'store'])->name('admin.anuncios.store');
+    Route::post('/anuncios/{id}', [AnuncioController::class,'update'])->name('admin.anuncios.update');
+    Route::delete('/anuncios/{id}', [AnuncioController::class,'destroy'])->name('admin.anuncios.destroy');
+    Route::post('/anuncios/{id}/toggle', [AnuncioController::class,'toggle'])->name('admin.anuncios.toggle');
 
 });
 

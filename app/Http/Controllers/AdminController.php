@@ -7,20 +7,26 @@ use App\Models\Usuario;
 use App\Models\Estudiante;
 use App\Models\Docente;
 use App\Models\Curso;
+use App\Models\Anuncio;
 
 class AdminController extends Controller
 {
     public function verEstudiantes()
     {
-        $estudiantes = Usuario::where('fk_rol', 3)
-            ->with('estudiante')
-            ->paginate(10);
+        $colegioId = auth()->user()->fk_colegio;
+
+        $estudiantes = Usuario::where('fk_rol', 3)->with('estudiante')->paginate(10);
         $docentes = Docente::with('usuario')->paginate(10);
-        $cursos = Curso::select('id_curso','nombre_curso','numero_curso','estado')
-        ->orderByDesc('id_curso')
-        ->take(10)   
-        ->get();
-        return view('admin_crud.admin', compact('estudiantes', 'docentes', 'cursos'));
+        $cursos = Curso::select('id_curso', 'nombre_curso', 'numero_curso', 'estado')
+            ->orderByDesc('id_curso')->take(10)->get();
+
+        // Paginado de anuncios para el panel admin
+        $anuncios = Anuncio::where('fk_colegio', $colegioId)
+            ->orderByDesc('fecha')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin_crud.admin', compact('estudiantes', 'docentes', 'cursos', 'anuncios'));
     }
 
     // Vista separada: admin_user_all.blade.php
