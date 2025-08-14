@@ -209,4 +209,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin_edit_curso/{id_curso}', [CursoController::class, 'edit'])->name('admin_edit_curso');
     Route::put('/cursos/{id_curso}', [CursoController::class, 'update'])->name('cursos.update');
     Route::delete('/cursos/{id_curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
+
+});
+
+    /*--------------------- Rutas de Materias -------------------------- */ 
+
+    //Route::get('/admin_ver_materia', fn() => view('admin_crud.admin_crud_materias.admin_ver_materia'))->name('admin_ver_materia');
+
+/* */
+
+    Route::middleware(['auth'])->group(function () {
+    //Route::get('/admin_add_cursos', [CursoController::class, 'create'])->name('admin_add_cursos');
+    //Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
+    Route::get('/admin_ver_materia', [CursoController::class, 'index'])->name('admin_ver_materia');
+
+
+    //Route::get('/admin_edit_curso/{id_materia}', [CursoController::class, 'edit'])->name('admin_edit_curso');
+    //Route::put('/cursos/{id_materia}', [CursoController::class, 'update'])->name('cursos.update');
+    //Route::delete('/cursos/{id_materia}', [CursoController::class, 'destroy'])->name('cursos.destroy');
+
 });

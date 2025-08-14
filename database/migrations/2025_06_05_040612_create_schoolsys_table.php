@@ -47,12 +47,10 @@ return new class extends Migration {
 
         Schema::create('materias', function (Blueprint $table) {
             $table->id('id_materia');
-            $table->string('nombre', 100);
+            $table->string('nombre',100);
             $table->text('descripcion');
-            $table->unsignedBigInteger('fk_usuario');
+            $table->enum('estado', ['Activo', 'Inactivo'])->default('Activo');
             $table->timestamps();
-
-            $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
         });
 
         Schema::create('cursos', function (Blueprint $table) {

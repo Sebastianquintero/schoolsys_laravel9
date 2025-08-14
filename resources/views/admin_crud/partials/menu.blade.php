@@ -33,6 +33,19 @@
             </div>
         </li>
 
+
+                <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Materias</a>
+            <div class="collapsible-body left-sub-menu">
+                <ul>
+                    <li><a href="{{ route('admin_ver_materia') }}">Ver Materias</a></li>
+                    <li><a href="#">Agregar Materia</a></li>
+                    <li><a href="#">Agregar Materia a Curso</a></li>
+                    
+                </ul>
+            </div>
+        </li>
+
         <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Calificaciones</a>
             <div class="collapsible-body left-sub-menu">

@@ -7,5 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Materia extends Model
 {
-    use HasFactory;
+    //use HasFactory;
+    protected $primaryKey = 'id_materia';
+
+    protected $fillable = [
+        'nombre_materia',
+        'numero',
+        'descripcion',
+        'estado'
+    ];
+
+    protected $casts = [
+        'estado' => 'string',
+    ];
+
+    public static $estadosValidos = ['Activo', 'Inactivo'];
+
+        public static function rules()
+    {
+        return [
+            'nombre' => 'required|string|max:100',
+            'descripcion' => 'nullable|string',
+            'estado' => 'required|in:' . implode(',', self::$estadosValidos),
+        ];
+    }
 }
