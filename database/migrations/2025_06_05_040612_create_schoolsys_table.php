@@ -62,6 +62,20 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+
+        Schema::create('curso_materias', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_curso');
+            $table->unsignedBigInteger('id_materia');
+            $table->timestamps();
+
+            $table->foreign('id_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
+            $table->foreign('id_materia')->references('id_materia')->on('materias')->onDelete('cascade');
+
+            $table->primary(['id_curso', 'id_materia']);
+        });
+
+
+
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id('id_asistencia');
             $table->unsignedBigInteger('fk_curso');

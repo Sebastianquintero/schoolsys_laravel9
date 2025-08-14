@@ -6,46 +6,34 @@
 </head>
 
 <body>
-    <!--== MAIN CONTRAINER ==-->
     @include('admin_crud.partials.main_container')
 
-    <!--== BODY CONTNAINER ==-->
     <div class="container-fluid sb2">
         <div class="row">
             <div class="sb2-1">
-                <!--== USER INFO ==-->
                 <div class="sb2-12">
                     <ul>
-                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt="">
-                        </li>
+                        <li><img src="{{ asset('images/placeholder.jpg') }}" alt=""></li>
                         @php
                             $rol = Auth::user()->fk_rol;
                         @endphp
                         <li>
                             <h5>{{ Auth::user()->nombres }}<span> Bogotá D.C.</span></h5>
                         </li>
-                        <li></li>
                     </ul>
                 </div>
-                <!--== LEFT MENU ==-->
                 @include('admin_crud.partials.menu')
             </div>
 
-            <!--== BODY INNER CONTAINER ==-->
             <div class="sb2-2">
-                <!--== breadcrumbs ==-->
                 <div class="sb2-2-2">
                     <ul>
-                        <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                        </li>
-                        <li class="active-bre"><a href="#"> Agregar nuevo curso</a>
-                        </li>
-                        <li class="page-back"><a href="{{ route('welcome') }}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
-                        </li>
+                        <li><a href="{{ route('welcome') }}"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="active-bre"><a href="#">Agregar nuevo curso</a></li>
+                        <li class="page-back"><a href="{{ route('welcome') }}"><i class="fa fa-backward"></i> Back</a></li>
                     </ul>
                 </div>
 
-                <!--== User Details ==-->
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
@@ -65,8 +53,10 @@
                                     @endif
 
                                     <ul class="nav nav-tabs tab-list">
-                                        <li class="active"><a data-toggle="tab" href="#home" aria-expanded="true"><i
-                                                    class="fa fa-info" aria-hidden="true"></i> <span>Detalles</span></a>
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="fa fa-info"></i> <span>Detalles</span>
+                                            </a>
                                         </li>
                                     </ul>
 
@@ -89,12 +79,14 @@
                                                                 <label for="numero_curso">Número de curso</label>
                                                             </div>
                                                         </div>
+
                                                         <div class="row">
                                                             <div class="input-field col s12">
                                                                 <textarea id="descripcion" name="descripcion" class="materialize-textarea">{{ old('descripcion') }}</textarea>
                                                                 <label for="descripcion">Descripción del curso:</label>
                                                             </div>
                                                         </div>
+
                                                         <div class="row">
                                                             <div class="input-field col s12">
                                                                 <select id="estado" name="estado" required>
@@ -102,8 +94,28 @@
                                                                     <option value="Activo" {{ old('estado') == 'Activo' ? 'selected' : '' }}>Activo</option>
                                                                     <option value="Desactivado" {{ old('estado') == 'Desactivado' ? 'selected' : '' }}>Desactivado</option>
                                                                 </select>
+                                                                <label for="estado">Estado del curso</label>
                                                             </div>
                                                         </div>
+
+                                                        {{-- 🔹 Nueva sección para asignar materias --}}
+                                                        <div class="row">
+                                                            <div class="input-field col s12">
+                                                                <label for="materias">Seleccione las materias:</label>
+                                                                <br><br>
+                                                                @foreach ($materias as $materia)
+                                                                    <p>
+                                                                        <label>
+                                                                            <input type="checkbox" name="materias[]" value="{{ $materia->id_materia }}"
+                                                                                {{ in_array($materia->id_materia, old('materias', [])) ? 'checked' : '' }}>
+                                                                            <span>{{ $materia->nombre }}</span>
+                                                                        </label>
+                                                                    </p>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                        {{-- 🔹 Fin sección materias --}}
+
                                                         <div class="row">
                                                             <div class="input-field col s12">
                                                                 <button type="submit" class="waves-effect waves-light btn-large">
@@ -127,7 +139,6 @@
 
     @include('admin_crud.partials.footer')
 
-    <!-- Script para inicializar select de Materialize -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');

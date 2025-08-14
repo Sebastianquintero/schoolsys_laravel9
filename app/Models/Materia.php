@@ -22,7 +22,7 @@ class Materia extends Model
 
     public static $estadosValidos = ['Activo', 'Inactivo'];
 
-        public static function rules()
+    public static function rules()
     {
         return [
             'nombre' => 'required|string|max:100',
@@ -30,4 +30,16 @@ class Materia extends Model
             'estado' => 'required|in:' . implode(',', self::$estadosValidos),
         ];
     }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(
+            Curso::class,
+            'curso_materias',
+            'id_materia',
+            'id_curso'
+        );
+    }
+
+
 }

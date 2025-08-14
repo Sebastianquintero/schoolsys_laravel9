@@ -15,10 +15,16 @@ class MateriaController extends Controller
     }
 
     // Método para mostrar el formulario de creación
-    public function create()
+    /*public function create()
     {
         $estados = Materia::$estadosValidos;
         return view('admin_crud.admin_crud_materias.admin_add_materia', compact('estados'));
+    }*/
+
+    public function create()
+    {
+        $materias = Materia::all(); // Obtiene todas las materias desde la BD
+        return view('admin_crud.admin_crud_cursos.admin_add_curso', compact('materias'));
     }
 
     // Método para guardar una nueva materia

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\Materia;
+
 
 class CursoController extends Controller
 {
@@ -15,71 +17,35 @@ class CursoController extends Controller
     }
 
     // Método para mostrar el formulario de creación
+    
     public function create()
     {
-        $estados = Curso::$estadosValidos;
-        return view('admin_crud.admin_crud_cursos.admin_add_cursos', compact('estados'));
+        // Obtener todas las materias para mostrarlas en el select
+        $materias = Materia::all();
+        return view('admin_crud.admin_crud_cursos.admin_add_curso', compact('materias'));
     }
 
-    // Método para guardar un nuevo curso
     public function store(Request $request)
     {
-        $validated = $request->validate(Curso::rules());
-
-        Curso::create($validated);
-
-        return redirect()->route('crud_ver_curso')
-            ->with('success', 'Curso creado exitosamente');
-    }
-
-    public function show(Curso $curso)
-    {
-        return "Mostrar detalles del curso" . $curso->id_curso;
-    }
-
-
-    public function edit($id_curso)
-    {
-        //return $id_curso;
-        $curso = Curso::findOrFail($id_curso);
-        return view('admin_crud.admin_crud_cursos.admin_edit_curso', compact('curso'));
-
-
-    }
-
-
-
-
-    public function update(Request $request, $id_curso)
-    {
-        // Validar datos
-        $validated = $request->validate([
+        $request->validate([
             'nombre_curso' => 'required|string|max:255',
-            'numero_curso' => 'required|string|max:20',
-            'descripcion' => 'required|string|max:255',
-            'estado' => 'required|in:Activo,Inactivo',
+            'numero_curso' => 'required|string|max:255',
+            'descripcion'  => 'nullable|string',
+            'estado'       => 'required|in:Activo,Desactivado',
+            'materias'     => 'required|array'
         ]);
 
-        // Buscar y actualizar curso
-        $curso = Curso::findOrFail($id_curso);
-        $curso->update([
-            'nombre_curso' => $validated['nombre_curso'],
-            'numero_curso' => $validated['numero_curso'],
-            'descripcion' => $validated['descripcion'],
-            'estado' => $validated['estado']
+        // Crear curso
+        $curso = Curso::create([
+            'nombre_curso' => $request->nombre_curso,
+            'numero_curso' => $request->numero_curso,
+            'descripcion'  => $request->descripcion,
+            'estado'       => $request->estado
         ]);
 
-        return redirect()->route('crud_ver_curso')
-            ->with('success', 'Curso actualizado correctamente');
+        // Relacionar materias seleccionadas
+        $curso->materias()->sync($request->materias);
+
+        return redirect()->route('cursos.index')->with('success', 'Curso creado correctamente con sus materias.');
     }
-
-
-    public function destroy($id_curso)
-    {
-        $curso = Curso::findOrFail($id_curso);
-        $curso->delete();
-
-        return redirect()->back()->with('success', 'Curso eliminado correctamente.');
-    }
-
 }

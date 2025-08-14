@@ -22,7 +22,7 @@ class Curso extends Model
 
     public static $estadosValidos = ['Activo', 'Inactivo'];
 
-        public static function rules()
+    public static function rules()
     {
         return [
             'nombre_curso' => 'required|string|max:100',
@@ -30,5 +30,20 @@ class Curso extends Model
             'descripcion' => 'nullable|string',
             'estado' => 'required|in:' . implode(',', self::$estadosValidos),
         ];
+    }
+
+    /*public function materias()
+{
+    return $this->belongsToMany(Materia::class, 'curso_materia', 'curso_id', 'materia_id');
+}*/
+
+    public function materias()
+    {
+        return $this->belongsToMany(
+            Materia::class,         // Modelo relacionado
+            'curso_materias',       // Nombre de la tabla pivote
+            'id_curso',             // FK de este modelo en la pivote
+            'id_materia'            // FK del otro modelo en la pivote
+        );
     }
 }
