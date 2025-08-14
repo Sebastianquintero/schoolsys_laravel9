@@ -42,131 +42,38 @@
                                                     <th>Apellido</th>
                                                     <th>Teléfono</th>
                                                     <th>Correo</th>
-                                                    <th>Dirección</th>
                                                     <th>Cursos Asignados</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                                    </td>
-                                                    <td><a href="#"><span class="list-enq-name">Nombre</span></a>
-                                                    </td>
-                                                    <td>Apellido</td>
-                                                    <td>Telefono</td>
-                                                    <td>Tel/acudiente</td>
-                                                    <td>Correo</td>
-                                                    <td>Acudiente</td>
-                                                    <td>Direccion</td>
-                                                    <td><a href="admin-proditc.html" class="ad-st-view">Cursos asignados</a></td>
-													
-                                                </tr>
-                                                </tr>
+                                                @forelse ($docentes as $d)
+                                                    @php $u = $d->usuario; @endphp
+                                                    <tr>
+                                                        <td>
+                                                            <span class="list-img">
+                                                            <img src="{{ $u?->foto_url ?? asset('images/placeholder.jpg') }}" alt="" style="width:40px;height:40px;border-radius:50%;object-fit:cover">
+                                                            </span>
+                                                        </td>
+                                                        <td>{{ $u->nombres ?? '—' }}</td>
+                                                        <td>{{ $u->apellidos ?? '—' }}</td>
+                                                        <td>{{ $u->numero_telefono ?? '—' }}</td>
+                                                        <td>{{ $u->correo ?? '—' }}</td>
+                                                        <td>
+                                                        @if (isset($d->cursos))
+                                                        {{ $d->cursos->pluck('nombre_curso')->join(', ') ?: '—' }}
+                                                        @else
+                                                        — {{-- si aún no tienes relación --}}
+                                                        @endif
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr><td colspan="6" class="text-center">No hay profesores.</td></tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="mt-3">
+                                        {{ $docentes->links() }}
                                     </div>
                                 </div>
                             </div>

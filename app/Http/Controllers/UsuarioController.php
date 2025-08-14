@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UsuarioController extends Controller
 {
     // Usuario autenticado se cambia su propia foto
+    
     public function updateOwnAvatar(Request $request)
     {
         return $this->handleAvatarUpload($request, auth()->user());

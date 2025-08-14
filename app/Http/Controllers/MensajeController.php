@@ -31,7 +31,7 @@ class MensajeController extends Controller
             })
             ->orderByDesc('fecha_envio')
             ->paginate(15)
-            ->withQueryString();
+            ->appends(request()->query()); 
 
         return view('mensajes.mail', compact('mensajes'));
     }
