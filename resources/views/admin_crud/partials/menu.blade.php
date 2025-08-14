@@ -39,8 +39,7 @@
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <li><a href="{{ route('admin_ver_materia') }}">Ver Materias</a></li>
-                    <li><a href="#">Agregar Materia</a></li>
-                    <li><a href="#">Agregar Materia a Curso</a></li>
+                    <li><a href="{{ route('admin_add_materia') }}">Agregar Materia</a></li>
                     
                 </ul>
             </div>

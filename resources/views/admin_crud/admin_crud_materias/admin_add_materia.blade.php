@@ -38,7 +38,7 @@
                     <ul>
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
-                        <li class="active-bre"><a href="#"> Agregar nuevo curso</a>
+                        <li class="active-bre"><a href="#"> Agregar nueva materia</a>
                         </li>
                         <li class="page-back"><a href="{{ route('welcome') }}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                         </li>
@@ -51,8 +51,8 @@
                         <div class="col-md-12">
                             <div class="box-inn-sp admin-form">
                                 <div class="sb2-2-add-blog sb2-2-1">
-                                    <h2>Agregar curso</h2>
-                                    <p>Agregar curso correspondiente</p>
+                                    <h2>Agregar Materia</h2>
+                                    <p>Agregar materia correspondiente</p>
 
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
@@ -74,25 +74,21 @@
                                         <div id="home" class="tab-pane fade active in">
                                             <div class="box-inn-sp">
                                                 <div class="inn-title">
-                                                    <h4>Información del curso</h4>
+                                                    <h4>Información de la materia</h4>
                                                 </div>
                                                 <div class="bor">
-                                                    <form method="POST" action="{{ route('cursos.store') }}">
+                                                    <form method="POST" action="{{ route('materias.store') }}">
                                                         @csrf
                                                         <div class="row">
                                                             <div class="input-field col s12">
-                                                                <input id="nombre_curso" name="nombre_curso" type="text" class="validate" value="{{ old('nombre_curso') }}" required>
-                                                                <label for="nombre_curso">Nombre del curso</label>
-                                                            </div>
-                                                            <div class="input-field col s12">
-                                                                <input id="numero_curso" name="numero_curso" type="text" class="validate" value="{{ old('numero_curso') }}" required>
-                                                                <label for="numero_curso">Número de curso</label>
+                                                                <input id="nombre" name="nombre" type="text" class="validate" value="{{ old('nombre') }}" required>
+                                                                <label for="nombre_curso">Nombre de la materia</label>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="input-field col s12">
                                                                 <textarea id="descripcion" name="descripcion" class="materialize-textarea">{{ old('descripcion') }}</textarea>
-                                                                <label for="descripcion">Descripción del curso:</label>
+                                                                <label for="descripcion">Descripción de la materia:</label>
                                                             </div>
                                                         </div>
                                                         <div class="row">

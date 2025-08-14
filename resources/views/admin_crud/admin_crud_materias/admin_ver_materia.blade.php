@@ -53,8 +53,8 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Detalles de Materias</h4>
-                                    <a href="################" class="btn btn-success pull-right">
-                                        <i class="fa fa-plus"></i> Agregar Nueva Materia
+                                    <a href="{{ route('admin_add_materia') }}" class="btn btn-success pull-right">
+                                        <i class="fa fa-plus"></i>Agregar Nueva Materia
                                     </a>
                                 </div>
                                 <div class="tab-inn">
@@ -70,35 +70,32 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($cursos as $curso)
+                                                @forelse($materias as $materia)
                                                 <tr>
-                                                    <td>{{ $curso->id_materia }}</td>
-                                                    <td>{{ $curso->nombre_materia }}</td>
-                                                    <td>{{ $curso->descripcion }}</td>
+                                                    <td>{{ $materia->id_materia }}</td>
+                                                    <td>{{ $materia->nombre }}</td>
+                                                    <td>{{ $materia->descripcion }}</td>
                                                     <td>
-                                                        <span class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
-                                                            {{ $curso->estado }}
+                                                        <span class="badge {{ $materia->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
+                                                            {{ $materia->estado }}
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin_edit_curso', $curso ->id_curso) }}" class="btn btn-sm btn-primary">
+                                                        <a href="{{ route('admin_edit_materia', $materia ->id_materia) }}" class="btn btn-sm btn-primary">
                                                             <i class="fa fa-edit"></i> Editar
                                                         </a>
-                                                        <form action="{{ route('cursos.destroy', $curso->id_curso) }}" method="POST" style="display:inline;">
+                                                        <form action="{{ route('materias.destroy', $materia->id_materia) }}" method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este curso?')">
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta materia?')">
                                                                 <i class="fa fa-trash"></i> Eliminar
                                                             </button>
                                                         </form>
-                                                        <a href="" class="btn btn-sm btn-info">
-                                                            <i class="fa fa-users"></i> Estudiantes
-                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="5" class="text-center">No hay cursos registrados</td>
+                                                    <td colspan="5" class="text-center">No hay materias registrados</td>
                                                 </tr>
                                                 @endforelse
                                             </tbody>

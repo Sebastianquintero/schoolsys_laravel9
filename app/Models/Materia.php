@@ -11,8 +11,7 @@ class Materia extends Model
     protected $primaryKey = 'id_materia';
 
     protected $fillable = [
-        'nombre_materia',
-        'numero',
+        'nombre',
         'descripcion',
         'estado'
     ];

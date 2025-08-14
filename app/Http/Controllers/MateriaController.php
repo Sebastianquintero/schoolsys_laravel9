@@ -18,7 +18,7 @@ class MateriaController extends Controller
     public function create()
     {
         $estados = Materia::$estadosValidos;
-        return view('admin_crud.admin_crud_cursos.admin_add_cursos', compact('estados'));
+        return view('admin_crud.admin_crud_materias.admin_add_materia', compact('estados'));
     }
 
     // Método para guardar una nueva materia
@@ -42,7 +42,7 @@ class MateriaController extends Controller
     {
         //return $id_curso;
         $materia = Materia::findOrFail($id_materia);
-        return view('admin_crud.admin_crud_cursos.admin_edit_curso', compact('materia'));
+        return view('admin_crud.admin_crud_materias.admin_edit_materia', compact('materia'));
 
 
     }

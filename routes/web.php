@@ -16,6 +16,7 @@ use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AnuncioController;
+use App\Http\Controllers\MateriaController;
 
 
 // Páginas públicas
@@ -221,18 +222,15 @@ Route::middleware(['auth'])->group(function () {
 
     /*--------------------- Rutas de Materias -------------------------- */ 
 
-    //Route::get('/admin_ver_materia', fn() => view('admin_crud.admin_crud_materias.admin_ver_materia'))->name('admin_ver_materia');
-
-/* */
 
     Route::middleware(['auth'])->group(function () {
-    //Route::get('/admin_add_cursos', [CursoController::class, 'create'])->name('admin_add_cursos');
-    //Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
-    Route::get('/admin_ver_materia', [CursoController::class, 'index'])->name('admin_ver_materia');
+    Route::get('/admin_add_materia', [MateriaController::class, 'create'])->name('admin_add_materia');
+    Route::post('/materias', [MateriaController::class, 'store'])->name('materias.store');
+    Route::get('/admin_ver_materia', [MateriaController::class, 'index'])->name('admin_ver_materia');
 
 
-    //Route::get('/admin_edit_curso/{id_materia}', [CursoController::class, 'edit'])->name('admin_edit_curso');
-    //Route::put('/cursos/{id_materia}', [CursoController::class, 'update'])->name('cursos.update');
-    //Route::delete('/cursos/{id_materia}', [CursoController::class, 'destroy'])->name('cursos.destroy');
+    Route::get('/admin_edit_materia/{id_materia}', [MateriaController::class, 'edit'])->name('admin_edit_materia');
+    Route::put('/materias/{id_materia}', [MateriaController::class, 'update'])->name('materias.update');
+    Route::delete('/materias/{id_materia}', [MateriaController::class, 'destroy'])->name('materias.destroy');
 
 });
