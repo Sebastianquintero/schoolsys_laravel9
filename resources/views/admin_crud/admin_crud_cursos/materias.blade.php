@@ -36,11 +36,12 @@
                 <div class="sb2-2-2">
                     <ul>
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                        <li class="active-bre"><a href="#"> Listado de Cursos</a></li>
+                        <li><a href="{{ route('crud_ver_curso') }}"><i class="fa fa-book"></i> Cursos</a></li>
+                        <li class="active-bre"><a href="#">Materias del Curso</a></li>
                     </ul>
                 </div>
 
-                <!--== User Details ==-->
+                <!--== Materias del Curso ==-->
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
@@ -49,12 +50,12 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-
+                            
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Detalles de Cursos</h4>
-                                    <a href="{{ route('admin_add_curso') }}" class="btn btn-success pull-right">
-                                        <i class="fa fa-plus"></i> Agregar Nuevo Curso
+                                    <h4>Materias del Curso: {{ $curso->nombre_curso }} ({{ $curso->numero_curso }})</h4>
+                                    <a href="{{ route('crud_ver_curso') }}" class="btn btn-secondary pull-right">
+                                        <i class="fa fa-arrow-left"></i> Volver a Cursos
                                     </a>
                                 </div>
                                 <div class="tab-inn">
@@ -63,59 +64,32 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Nombre del Curso</th>
-                                                    <th>Código</th>
+                                                    <th>Nombre</th>
+                                                    <th>Descripción</th>
                                                     <th>Estado</th>
-                                                    <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($cursos as $curso)
+                                                @forelse($curso->materiass as $materia)
                                                     <tr>
-                                                        <td>{{ $curso->id_curso }}</td>
-                                                        <td>{{ $curso->nombre_curso }}</td>
-                                                        <td>{{ $curso->numero_curso }}</td>
+                                                        <td>{{ $materia->id_materia }}</td>
+                                                        <td>{{ $materia->nombre }}</td>
+                                                        <td>{{ $materia->descripcion }}</td>
                                                         <td>
-                                                            <span
-                                                                class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
-                                                                {{ $curso->estado }}
+                                                            <span class="badge {{ $materia->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
+                                                                {{ $materia->estado }}
                                                             </span>
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ route('cursos_edit.edit', $curso->id_curso) }}"
-                                                                class="btn btn-sm btn-primary">
-                                                                <i class="fa fa-edit"></i> Editar
-                                                            </a>
-                                                            <form action="{{ route('cursos.destroy', $curso->id_curso) }}"
-                                                                method="POST" style="display:inline;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                                    onclick="return confirm('¿Estás seguro de eliminar este curso?')">
-                                                                    <i class="fa fa-trash"></i> Eliminar
-                                                                </button>
-                                                            </form>
-                                                            <a href="" class="btn btn-sm btn-info">
-                                                                <i class="fa fa-users"></i> Estudiantes
-                                                            </a>
-
-                                                            <a href="{{ route('cursos.materias', ['id' => $curso->id_curso]) }}"
-                                                                class="btn btn-sm btn-warning">
-                                                                <i class="fa fa-book"></i> Listado de Materias
-                                                            </a>
-
-
-
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="5" class="text-center">No hay cursos registrados</td>
+                                                        <td colspan="4" class="text-center">No hay materias registradas para este curso</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
                                         </table>
                                         <div class="text-center">
+                                            <!-- Paginación si la necesitas -->
                                         </div>
                                     </div>
                                 </div>
@@ -129,5 +103,4 @@
 
     @include('admin_crud.partials.footer')
 </body>
-
 </html>

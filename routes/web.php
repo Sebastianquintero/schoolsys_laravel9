@@ -209,13 +209,16 @@ Route::get('/exportar-docentes', function () {
 /*--------------------- Rutas de Cursos -------------------------- */ 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin_add_cursos', [CursoController::class, 'create'])->name('admin_add_cursos');
+    Route::get('/admin_add_curso', [CursoController::class, 'create'])->name('admin_add_curso');
     Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
     Route::get('/crud_ver_curso', [CursoController::class, 'index'])->name('crud_ver_curso');
 
 
-    Route::get('/admin_edit_curso/{id_curso}', [CursoController::class, 'edit'])->name('admin_edit_curso');
-    Route::put('/cursos/{id_curso}', [CursoController::class, 'update'])->name('cursos.update');
+    /*Route::get('/admin_edit_curso/{id_curso}', [CursoController::class, 'edit'])->name('admin_edit_curso');
+    Route::put('/cursos/{id_curso}', [CursoController::class, 'update'])->name('cursos.update');*/
+
+    Route::resource('cursos_edit', CursoController::class);
+
     Route::delete('/cursos/{id_curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
 
 });
@@ -232,5 +235,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin_edit_materia/{id_materia}', [MateriaController::class, 'edit'])->name('admin_edit_materia');
     Route::put('/materias/{id_materia}', [MateriaController::class, 'update'])->name('materias.update');
     Route::delete('/materias/{id_materia}', [MateriaController::class, 'destroy'])->name('materias.destroy');
+
+
+    /* ------------------ Ruat Boton de Listado de Materias -------------------- */
+
+    Route::get('/cursos/{id}/materias', [CursoController::class, 'verMaterias'])->name('cursos.materias');
+
 
 });

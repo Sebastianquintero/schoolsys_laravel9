@@ -94,24 +94,23 @@
                                                                     <option value="Activo" {{ old('estado') == 'Activo' ? 'selected' : '' }}>Activo</option>
                                                                     <option value="Desactivado" {{ old('estado') == 'Desactivado' ? 'selected' : '' }}>Desactivado</option>
                                                                 </select>
-                                                                <label for="estado">Estado del curso</label>
                                                             </div>
                                                         </div>
 
                                                         {{-- 🔹 Nueva sección para asignar materias --}}
                                                         <div class="row">
                                                             <div class="input-field col s12">
-                                                                <label for="materias">Seleccione las materias:</label>
                                                                 <br><br>
-                                                                @foreach ($materias as $materia)
-                                                                    <p>
-                                                                        <label>
-                                                                            <input type="checkbox" name="materias[]" value="{{ $materia->id_materia }}"
-                                                                                {{ in_array($materia->id_materia, old('materias', [])) ? 'checked' : '' }}>
-                                                                            <span>{{ $materia->nombre }}</span>
-                                                                        </label>
-                                                                    </p>
-                                                                @endforeach
+                                                            @foreach ($materias as $materia)
+                                                                <div>
+                                                                    <input type="checkbox" 
+                                                                        name="materias[]" 
+                                                                        id="materia_{{ $materia->id_materia }}" 
+                                                                        value="{{ $materia->id_materia }}"
+                                                                        {{ in_array($materia->id_materia, old('materias', [])) ? 'checked' : '' }}>
+                                                                    <label for="materia_{{ $materia->id_materia }}">{{ $materia->nombre }}</label>
+                                                                </div>
+                                                            @endforeach
                                                             </div>
                                                         </div>
                                                         {{-- 🔹 Fin sección materias --}}

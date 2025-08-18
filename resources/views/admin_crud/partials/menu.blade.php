@@ -9,7 +9,6 @@
                 <ul>
                     <li><a href="{{ route('crud_ver_curso') }}">Todos los Cursos</a></li>
                     <li><a href="{{ route('admin_add_curso') }}">Agregar Curso</a></li>
-                    <li><a href="#">Cursos Pasados</a></li>
                 </ul>
             </div>
         </li>

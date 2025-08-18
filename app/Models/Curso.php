@@ -46,4 +46,10 @@ class Curso extends Model
             'id_materia'            // FK del otro modelo en la pivote
         );
     }
+
+    public function materiass()
+    {
+        return $this->belongsToMany(Materia::class, 'curso_materias', 'id_curso', 'id_materia');
+    }
+
 }

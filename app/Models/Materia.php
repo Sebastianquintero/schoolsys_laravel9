@@ -41,5 +41,10 @@ class Materia extends Model
         );
     }
 
+    public function curso()
+    {
+        return $this->belongsToMany(Curso::class, 'curso_materias', 'id_materia', 'id_curso');
+    }
+
 
 }

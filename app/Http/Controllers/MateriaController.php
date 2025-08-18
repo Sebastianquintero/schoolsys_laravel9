@@ -24,7 +24,7 @@ class MateriaController extends Controller
     public function create()
     {
         $materias = Materia::all(); // Obtiene todas las materias desde la BD
-        return view('admin_crud.admin_crud_cursos.admin_add_curso', compact('materias'));
+        return view('admin_crud.admin_crud_materias.admin_add_materia', compact('materias'));
     }
 
     // Método para guardar una nueva materia

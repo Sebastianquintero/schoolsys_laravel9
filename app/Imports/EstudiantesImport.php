@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Estudiante;
 use App\Models\Usuario;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -60,6 +61,8 @@ class EstudiantesImport implements ToModel, WithHeadingRow
             ]
         );
 
+        $curso = Curso::where('numero_curso', $row['curso'])->first();
+
         Estudiante::updateOrCreate(
             ['fk_usuario' => $usuario->id_usuario],
             [
@@ -68,7 +71,7 @@ class EstudiantesImport implements ToModel, WithHeadingRow
                 'fecha_nacimiento' => $fecha,
                 'edad' => $row['edad'],
                 'grado' => $row['grado'],
-                'curso' => $row['curso'],
+                'fk_curso' => $curso ? $curso->id_curso : null, // Usar ID real
                 'nivel_educativo' => $row['nivel_educativo'],
                 'nacionalidad' => $row['nacionalidad'],
                 'correo_personal' => $row['correo_personal'],
