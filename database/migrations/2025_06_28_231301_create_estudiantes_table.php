@@ -36,7 +36,7 @@ return new class extends Migration {
         $table->string('grado', 50);
         // 🔄 Cambio aquí: usamos una FK en lugar de varchar
         $table->unsignedBigInteger('fk_curso')->nullable();
-        $table->foreign('fk_curso')->references('id_curso')->on('cursos')->onDelete('set null');
+        $table->foreign('fk_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
 
         $table->string('nivel_educativo', 30); // Primaria, secundaria, etc.
 
