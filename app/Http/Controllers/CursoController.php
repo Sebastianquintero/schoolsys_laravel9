@@ -69,6 +69,15 @@ class CursoController extends Controller
     {
         $curso = Curso::findOrFail($id);
 
+        $request->validate([
+            'nombre_curso' => 'required|string|max:255',
+            'numero_curso' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'estado' => 'required|in:Activo,Inactivo'
+        ]);
+
+        $curso->update($request->all()); // esto sí actualiza "estado
+
         // sincroniza las materias seleccionadas
         $curso->materias()->sync($request->materias ?? []);
 

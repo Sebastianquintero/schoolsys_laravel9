@@ -86,10 +86,10 @@
 
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <select id="estado" name="estado" required>
-                                                    <option value="Activo" {{ old('estado', $curso->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
-                                                    <option value="Inactivo" {{ old('estado', $curso->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
-                                                </select>
+<select id="estado" name="estado" required>
+    <option value="Activo" {{ old('estado', $curso->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
+    <option value="Inactivo" {{ old('estado', $curso->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
+</select>
                                             </div>
                                         </div>
 
