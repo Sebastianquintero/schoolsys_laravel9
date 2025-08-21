@@ -118,11 +118,18 @@
 
                                             {{-- Curso / Nivel educativo --}}
                                             <div class="row">
-                                                <div class="input-field col s6">
-                                                    <input type="text" name="curso" class="validate"
-                                                        value="{{ $estudiante->curso }}" required>
-                                                    <label class="active">Curso</label>
-                                                </div>
+<div class="input-field col s6">
+    <label class="active">Curso</label>
+    <select name="fk_curso" id="fk_curso" required>
+        <option value="" disabled>Seleccione un curso</option>
+        @foreach($cursos as $curso)
+            <option value="{{ $curso->id_curso }}" 
+                {{ $estudiante->fk_curso == $curso->id_curso ? 'selected' : '' }}>
+                {{ $curso->numero_curso }}
+            </option>
+        @endforeach
+    </select>
+</div>
                                                 <div class="input-field col s6">
                                                     <input type="text" name="nivel_educativo" class="validate"
                                                         value="{{ $estudiante->nivel_educativo }}" required>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
 use App\Models\Usuario;
+use App\Models\Curso;
+use App\Controllers\CursoController;
 use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
@@ -118,8 +120,9 @@ class EstudianteController extends Controller
 
     public function edit($id)
     {
+        $cursos = Curso::all(); // obtienes todos los cursos
         $estudiante = Estudiante::with('usuario')->findOrFail($id);
-        return view('admin_crud.admin_crud_estudiantes.admin_edit_estudiante', compact('estudiante'));
+        return view('admin_crud.admin_crud_estudiantes.admin_edit_estudiante', compact('estudiante', 'cursos'));
     }
 
     public function update(Request $request, $id)
@@ -133,7 +136,7 @@ class EstudianteController extends Controller
             'direccion' => 'required|string|max:150',
             'edad' => 'required|integer',
             'grado' => 'required|string|max:50',
-            'numero_curso' => 'nullable|string|max:20',
+            'fk_curso' => 'required|integer',
             'nivel_educativo' => 'required|string|max:30',
             'nacionalidad' => 'required|string|max:50',
             'acudiente' => 'required|string|max:100',

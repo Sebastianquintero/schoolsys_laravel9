@@ -89,7 +89,7 @@
                                                                 <span
                                                                     class="list-enq-name">{{ $estudiante->usuario->nombres }}
                                                                     {{ $estudiante->usuario->apellidos }}</span>
-                                                                <span class="list-enq-city">{{ $estudiante->curso }}</span>
+                                                                <span class="list-enq-city">{{ $estudiante->curso->numero_curso ?? 'Sin curso' }}</span>
                                                             </a>
                                                         </td>
                                                         <td>{{ $estudiante->telefono }}</td>
