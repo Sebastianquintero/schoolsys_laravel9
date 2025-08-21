@@ -12,7 +12,7 @@ class CursoController extends Controller
     // Método para mostrar todos los cursos
     public function index()
     {
-        $cursos = Curso::all(); // O puedes usar paginate(10) para paginación
+        $cursos = Curso::orderBy('id_curso', 'desc')->paginate(15); // O puedes usar paginate(10) para paginación
         return view('admin_crud.admin_crud_cursos.crud_ver_curso', compact('cursos'));
     }
 
@@ -31,12 +31,13 @@ class CursoController extends Controller
             'nombre_curso' => 'required|string|max:255',
             'numero_curso' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
-            'estado' => 'required|in:Activo,Desactivado',
+            'estado' => 'required|in:Activo,Inactivo',
             'materias' => 'required|array'
         ]);
 
         // Crear curso
         $curso = Curso::create([
+            'fk_colegio' => auth()->user()->fk_colegio,
             'nombre_curso' => $request->nombre_curso,
             'numero_curso' => $request->numero_curso,
             'descripcion' => $request->descripcion,
@@ -52,8 +53,19 @@ class CursoController extends Controller
 
     public function verMaterias($id)
     {
-        $curso = Curso::with('materiass')->findOrFail($id);
+        $curso = Curso::with('materias')->findOrFail($id);
         return view('admin_crud.admin_crud_cursos.materias', compact('curso'));
+    }
+
+    public function verEstudiantes($id)
+    {
+        $curso = Curso::with([
+            'estudiantes' => function ($q) {
+                $q->with('usuario:id_usuario,nombres,apellidos,correo,fecha_nacimiento');
+            }
+        ])->findOrFail($id);
+
+        return view('admin_crud.admin_crud_cursos.estudiantes', compact('curso'));
     }
 
     /* ------ Actulizar Curso con los check-box ------- */

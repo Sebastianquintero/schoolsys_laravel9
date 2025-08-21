@@ -16,7 +16,7 @@ class Estudiante extends Model
         'fecha_nacimiento',
         'edad',
         'grado',
-        'curso',
+        'fk_curso',
         'nivel_educativo',
         'nacionalidad',
         'telefono',
@@ -32,8 +32,12 @@ class Estudiante extends Model
         return $this->belongsTo(Usuario::class, 'fk_usuario', 'id_usuario');
     }
 
-        public function colegio()
+    public function colegio()
     {
         return $this->belongsTo(Colegio::class, 'fk_colegio', 'id_colegio');
+    }
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class, 'fk_curso', 'id_curso');
     }
 }

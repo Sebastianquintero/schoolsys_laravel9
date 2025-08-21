@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id('id_rol');
             $table->string('nombre');
             $table->enum('estado', ['Activo', 'Inactivo']);
-            $table->timestamps(); 
+            $table->timestamps();
         });
         Schema::create('colegios', function (Blueprint $table) {
             $table->id('id_colegio');
@@ -37,17 +37,17 @@ return new class extends Migration {
             $table->unsignedBigInteger('fk_rol');
             $table->unsignedBigInteger('fk_colegio')->nullable();
             $table->timestamps();
-            
+
             $table->foreign('fk_colegio')->references('id_colegio')->on('colegios');
             $table->foreign('fk_rol')->references('id_rol')->on('roles');
-            
+
 
 
         });
 
         Schema::create('materias', function (Blueprint $table) {
             $table->id('id_materia');
-            $table->string('nombre',100);
+            $table->string('nombre', 100);
             $table->text('descripcion');
             $table->enum('estado', ['Activo', 'Inactivo'])->default('Activo');
             $table->timestamps();
@@ -55,23 +55,32 @@ return new class extends Migration {
 
         Schema::create('cursos', function (Blueprint $table) {
             $table->id('id_curso');
+
+            $table->unsignedBigInteger('fk_colegio')->nullable();
             $table->string('nombre_curso', 100);
             $table->string('numero_curso', 20);
             $table->string('descripcion', 255)->nullable();
             $table->enum('estado', ['Activo', 'Inactivo'])->default('Activo');
             $table->timestamps();
+
+            $table->foreign('fk_colegio')->references('id_colegio')->on('colegios')->onDelete('cascade');
+
+            // índice único compuesto (usa un NOMBRE de índice, no un número)
+            $table->unique(['fk_colegio', 'numero_curso'], 'cursos_colegio_numero_unique');
+
         });
 
 
         Schema::create('curso_materias', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_curso');
-            $table->unsignedBigInteger('id_materia');
-
-            $table->foreign('id_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
-            $table->foreign('id_materia')->references('id_materia')->on('materias')->onDelete('cascade');
-
-            $table->primary(['id_curso', 'id_materia']);
+            $table->unsignedBigInteger('fk_curso');
+            $table->unsignedBigInteger('fk_materia');
             $table->timestamps();
+
+            $table->primary(['fk_curso', 'fk_materia']);
+
+            $table->foreign('fk_curso')->references('id_curso')->on('cursos')->onDelete('cascade');
+            $table->foreign('fk_materia')->references('id_materia')->on('materias')->onDelete('cascade');
+            
         });
 
 
@@ -166,7 +175,7 @@ return new class extends Migration {
             $table->foreign('fk_encuesta')->references('id_encuesta')->on('encuestas');
         });
 
-        
+
 
 
 

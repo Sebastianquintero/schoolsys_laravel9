@@ -82,25 +82,26 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('cursos_edit.edit', $curso->id_curso) }}"
-                                                                class="btn btn-sm btn-primary">
+                                                            <a href="{{ route('cursos_edit.edit',  $curso->id_curso) }}"
+                                                                class="btn btn-sm btn-primary" style="color: black;">
                                                                 <i class="fa fa-edit"></i> Editar
                                                             </a>
                                                             <form action="{{ route('cursos.destroy', $curso->id_curso) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                                <button type="submit" class="btn btn-sm btn-danger" style="color: black;"
                                                                     onclick="return confirm('¿Estás seguro de eliminar este curso?')">
                                                                     <i class="fa fa-trash"></i> Eliminar
                                                                 </button>
                                                             </form>
-                                                            <a href="" class="btn btn-sm btn-info">
+                                                            <a href="{{ route('cursos.estudiantes', $curso->id_curso) }}"
+                                                                class="btn btn-sm btn-info" style="color: black;">
                                                                 <i class="fa fa-users"></i> Estudiantes
                                                             </a>
 
                                                             <a href="{{ route('cursos.materias', ['id' => $curso->id_curso]) }}"
-                                                                class="btn btn-sm btn-warning">
+                                                                class="btn btn-sm btn-warning" style="color: black;">
                                                                 <i class="fa fa-book"></i> Listado de Materias
                                                             </a>
 
@@ -117,6 +118,9 @@
                                         </table>
                                         <div class="text-center">
                                         </div>
+                                    </div>
+                                    <div class="text-center">
+                                        {{ $cursos->links() }}
                                     </div>
                                 </div>
                             </div>

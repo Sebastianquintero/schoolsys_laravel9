@@ -10,6 +10,7 @@ class Curso extends Model
     protected $primaryKey = 'id_curso';
 
     protected $fillable = [
+        'fk_colegio',
         'nombre_curso',
         'numero_curso',
         'descripcion',
@@ -32,10 +33,7 @@ class Curso extends Model
         ];
     }
 
-    /*public function materias()
-{
-    return $this->belongsToMany(Materia::class, 'curso_materia', 'curso_id', 'materia_id');
-}*/
+
 
     public function materias()
     {
@@ -46,10 +44,13 @@ class Curso extends Model
             'id_materia'            // FK del otro modelo en la pivote
         );
     }
-
-    public function materiass()
+    public function estudiantes()
     {
-        return $this->belongsToMany(Materia::class, 'curso_materias', 'id_curso', 'id_materia');
+        return $this->hasMany(
+            Estudiante::class,
+            'fk_curso',
+            'id_curso'
+        );
     }
 
 }

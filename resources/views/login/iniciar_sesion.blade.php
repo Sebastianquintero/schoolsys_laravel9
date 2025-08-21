@@ -92,7 +92,7 @@
                                     required>
                                 <span class="input-group-text bg-dark-x border-0 mt-3" style="cursor:pointer"
                                     onclick="togglePassword()">
-                                    
+                                    👁️
                                 </span>
                             </div>
                             <a href="{{ route('recuperacion_password') }}"

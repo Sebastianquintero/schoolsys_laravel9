@@ -49,10 +49,10 @@ body.welcome {
 }
 
 .boton_modulo:hover {
-    background-color: rgba(0, 123, 255, 0.9);
+    background-color: #348E38;
     transform: translateY(-5px);
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 10px 20px #0F4229;
 }
 
 .boton_modulo img {

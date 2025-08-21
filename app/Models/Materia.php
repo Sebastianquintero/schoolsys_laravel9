@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Materia extends Model
 {
     //use HasFactory;
+    protected $table = 'materias';
     protected $primaryKey = 'id_materia';
 
     protected $fillable = [
@@ -36,14 +37,9 @@ class Materia extends Model
         return $this->belongsToMany(
             Curso::class,
             'curso_materias',
-            'id_materia',
-            'id_curso'
-        );
-    }
-
-    public function curso()
-    {
-        return $this->belongsToMany(Curso::class, 'curso_materias', 'id_materia', 'id_curso');
+            'fk_materia',
+            'fk_curso'
+        )->withTimestamps();
     }
 
 

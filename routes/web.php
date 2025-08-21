@@ -221,6 +221,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('/cursos/{id_curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
 
+    Route::get('/cursos/{id}/estudiantes', [CursoController::class, 'verEstudiantes'])->name('cursos.estudiantes');
 });
 
     /*--------------------- Rutas de Materias -------------------------- */ 
