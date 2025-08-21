@@ -70,7 +70,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($curso->materiass as $materia)
+                                                @forelse($curso->materias as $materia)
                                                     <tr>
                                                         <td>{{ $materia->id_materia }}</td>
                                                         <td>{{ $materia->nombre }}</td>
