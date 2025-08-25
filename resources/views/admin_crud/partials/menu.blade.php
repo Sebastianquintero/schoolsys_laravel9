@@ -18,7 +18,7 @@
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <li><a href="{{ route('admin_user_all') }}">Estudiantes</a></li>
-                    <li><a href="{{ route('admin_crud_estudiante') }}">Agregar Estudiantes</a></li>
+                    <li><a href="{{ route('estudiantes.create') }}">Agregar Estudiantes</a></li>
                 </ul>
             </div>
         </li>

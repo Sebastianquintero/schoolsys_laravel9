@@ -29,7 +29,15 @@ class EstudianteController extends Controller
         return view('estudiante.dashboard', compact('usuario', 'estudiante'));
     }
 
+    public function create()
+    {
+        $cursos = Curso::where('fk_colegio', auth()->user()->fk_colegio)
+            ->orderBy('numero_curso')
+            ->get(['id_curso', 'nombre_curso', 'numero_curso']);
 
+        // OJO: usa el path real de tu vista
+        return view('admin_crud.admin_crud_estudiantes.admin_crud_estudiante', compact('cursos'));
+    }
 
     public function store(Request $request)
     {
@@ -38,15 +46,16 @@ class EstudianteController extends Controller
             'apellidos' => 'required|string|max:100',
             'tipo_documento' => 'required|string|max:20',
             'numero_documento' => 'required|string|max:20|unique:usuarios,numero_documento',
-            'fecha_nacimiento' => 'required|date',
+            'fecha_nacimiento' => 'required|date|before_or_equal:' . now()->subYears(5)->format('Y-m-d'),
             'numero_telefono' => 'required|string|max:20',
             'correo' => 'required|email|unique:usuarios,correo',
             'correo_personal' => 'required|email',
-            'tipo_via' => 'required|string|max:20',
+            'tipo_via' => 'required|in:Calle,Carrera,Transversal,Diagonal',
             'direccion' => 'required|string|max:150',
             'edad' => 'required|integer',
             'grado' => 'required|string|max:50',
-            'numero_curso' => 'nullable|string|max:20',
+            'fk_curso' => 'nullable|integer|exists:cursos,id_curso|required_without:numero_curso',
+            'numero_curso' => 'nullable|string|required_without:fk_curso',
             'nivel_educativo' => 'required|string|max:30',
             'nacionalidad' => 'required|string|max:50',
             'acudiente' => 'required|string|max:100',
@@ -68,19 +77,18 @@ class EstudianteController extends Controller
             'contrasena' => bcrypt('12345678'),
         ]);
 
-        // Resolver curso por número (o por id si envías id_curso)
-        $cursoId = null;
-        if ($request->filled('numero_curso')) {
-            $numero = trim((string) $request->numero_curso);
-            if (str_contains($numero, '.')) {
-                $numero = strstr($numero, '.', true);
+        // Resolver curso
+        $cursoId = $request->fk_curso; // si viene por <select>
+
+        if (!$cursoId && $request->filled('numero_curso')) {
+            $num = trim((string) $request->numero_curso);
+            if (str_contains($num, '.')) { // si viene de Excel con "501.0"
+                $num = strstr($num, '.', true);
             }
 
-            // si tu tabla cursos tiene fk_colegio, añade ->where('fk_colegio', auth()->user()->fk_colegio)
-            $curso = \App\Models\Curso::where('numero_curso', $numero)->first();
-            if ($curso) {
-                $cursoId = $curso->id_curso;
-            }
+            $cursoId = Curso::where('fk_colegio', auth()->user()->fk_colegio ?? null)
+                ->where('numero_curso', $num)
+                ->value('id_curso'); // null si no existe
         }
         // Crear estudiante
         Estudiante::create([
@@ -145,43 +153,43 @@ class EstudianteController extends Controller
         ]);
 
         $estudiante = Estudiante::with('usuario')->findOrFail($id);
-    $usuario = $estudiante->usuario;
+        $usuario = $estudiante->usuario;
 
-    // usuario
-    $usuario->nombres = $request->nombres;
-    $usuario->apellidos = $request->apellidos;
-    $usuario->numero_telefono = $request->numero_telefono;
-    $usuario->correo = $request->correo;
-    $usuario->save();
+        // usuario
+        $usuario->nombres = $request->nombres;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->numero_telefono = $request->numero_telefono;
+        $usuario->correo = $request->correo;
+        $usuario->save();
 
-    // resolver curso por número si llega
-    $cursoId = $estudiante->fk_curso;
-    if ($request->filled('numero_curso')) {
-        $numero = trim((string) $request->numero_curso);
-        if (str_contains($numero, '.')) {
-            $numero = strstr($numero, '.', true);
+        // resolver curso por número si llega
+        $cursoId = $estudiante->fk_curso;
+        if ($request->filled('numero_curso')) {
+            $numero = trim((string) $request->numero_curso);
+            if (str_contains($numero, '.')) {
+                $numero = strstr($numero, '.', true);
+            }
+            $curso = \App\Models\Curso::where('numero_curso', $numero)->first();
+            if ($curso) {
+                $cursoId = $curso->id_curso;
+            }
         }
-        $curso = \App\Models\Curso::where('numero_curso', $numero)->first();
-        if ($curso) {
-            $cursoId = $curso->id_curso;
-        }
-    }
 
-    // estudiante
-    $estudiante->update([
-        'correo_personal' => $request->correo_personal,
-        'direccion'       => $request->direccion,
-        'edad'            => $request->edad,
-        'grado'           => $request->grado,
-        'fk_curso'        => $cursoId, 
-        'nivel_educativo' => $request->nivel_educativo,
-        'nacionalidad'    => $request->nacionalidad,
-        'acudiente'       => $request->acudiente,
-        'eps'             => $request->eps,
-        'sisben'          => $request->sisben,
-    ]);
+        // estudiante
+        $estudiante->update([
+            'correo_personal' => $request->correo_personal,
+            'direccion' => $request->direccion,
+            'edad' => $request->edad,
+            'grado' => $request->grado,
+            'fk_curso' => $cursoId,
+            'nivel_educativo' => $request->nivel_educativo,
+            'nacionalidad' => $request->nacionalidad,
+            'acudiente' => $request->acudiente,
+            'eps' => $request->eps,
+            'sisben' => $request->sisben,
+        ]);
 
-    return redirect()->route('lista_estudiantes_admin')->with('success', 'Estudiante actualizado correctamente.');
+        return redirect()->route('lista_estudiantes_admin')->with('success', 'Estudiante actualizado correctamente.');
     }
 
     public function destroy($id)

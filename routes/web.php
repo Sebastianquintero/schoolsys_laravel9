@@ -63,7 +63,8 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/admin_crud_estudiante', fn() => view('admin_crud.admin_crud_estudiantes.admin_crud_estudiante'))->name('admin_crud_estudiante');
 
     // Ruta: Mostrar formulario para crear un nuevo estudiante
-    Route::get('/admin_add_estudiante', [EstudianteController::class, 'create'])->name('admin_add_estudiante');
+    Route::get('/admin/estudiantes/crear', [EstudianteController::class, 'create'])->name('estudiantes.create');
+    //Route::get('/admin_add_estudiante', [EstudianteController::class, 'create'])->name('admin_add_estudiante');
     Route::post('/guardar_estudiante', [EstudianteController::class, 'store'])->name('guardar_estudiante');
 
     // Ruta: Mostrar todos estudiantes existentes

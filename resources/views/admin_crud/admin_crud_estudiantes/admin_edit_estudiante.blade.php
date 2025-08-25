@@ -66,11 +66,13 @@
                                             {{-- Nombres / Apellidos --}}
                                             <div class="row">
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Nombres</span>
                                                     <input type="text" name="nombres" class="validate"
                                                         value="{{ optional($estudiante->usuario)->nombres }}" required>
                                                     <label class="active">Nombres</label>
                                                 </div>
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Apellidos</span>
                                                     <input type="text" name="apellidos" class="validate"
                                                         value="{{ optional($estudiante->usuario)->apellidos }}"
                                                         required>
@@ -81,16 +83,19 @@
                                             {{-- Teléfono / Correo institucional / Correo personal --}}
                                             <div class="row">
                                                 <div class="input-field col s4">
+                                                    <span class="helper-text">Numero telefono</span>
                                                     <input type="text" name="numero_telefono" class="validate"
                                                         value="{{ $estudiante->telefono }}" required>
                                                     <label class="active">Número de teléfono</label>
                                                 </div>
                                                 <div class="input-field col s4">
+                                                    <span class="helper-text">Correo institucional</span>
                                                     <input type="email" name="correo" class="validate"
                                                         value="{{ optional($estudiante->usuario)->correo }}" required>
                                                     <label class="active">Correo institucional</label>
                                                 </div>
                                                 <div class="input-field col s4">
+                                                    <span class="helper-text">Correo personal</span>
                                                     <input type="email" name="correo_personal" class="validate"
                                                         value="{{ $estudiante->correo_personal }}" required>
                                                     <label class="active">Correo personal</label>
@@ -100,16 +105,19 @@
                                             {{-- Dirección / Edad / Grado --}}
                                             <div class="row">
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Direccion</span>
                                                     <input type="text" name="direccion" class="validate"
                                                         value="{{ $estudiante->direccion }}" required>
                                                     <label class="active">Dirección</label>
                                                 </div>
                                                 <div class="input-field col s3">
+                                                    <span class="helper-text">Edad</span>
                                                     <input type="number" name="edad" class="validate"
                                                         value="{{ $estudiante->edad }}" required>
                                                     <label class="active">Edad</label>
                                                 </div>
                                                 <div class="input-field col s3">
+                                                    <span class="helper-text">Grado</span>
                                                     <input type="text" name="grado" class="validate"
                                                         value="{{ $estudiante->grado }}" required>
                                                     <label class="active">Grado</label>
@@ -118,19 +126,21 @@
 
                                             {{-- Curso / Nivel educativo --}}
                                             <div class="row">
-<div class="input-field col s6">
-    <label class="active">Curso</label>
-    <select name="fk_curso" id="fk_curso" required>
-        <option value="" disabled>Seleccione un curso</option>
-        @foreach($cursos as $curso)
-            <option value="{{ $curso->id_curso }}" 
-                {{ $estudiante->fk_curso == $curso->id_curso ? 'selected' : '' }}>
-                {{ $curso->numero_curso }}
-            </option>
-        @endforeach
-    </select>
-</div>
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Curso</span>
+                                                    <label class="active">Curso</label>
+                                                    <select name="fk_curso" id="fk_curso" required>
+                                                        <option value="" disabled>Seleccione un curso</option>
+                                                        @foreach($cursos as $curso)
+                                                            <option value="{{ $curso->id_curso }}" 
+                                                                {{ $estudiante->fk_curso == $curso->id_curso ? 'selected' : '' }}>
+                                                                {{ $curso->numero_curso }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <span class="helper-text">Nivel educativo</span>
                                                     <input type="text" name="nivel_educativo" class="validate"
                                                         value="{{ $estudiante->nivel_educativo }}" required>
                                                     <label class="active">Nivel educativo</label>
@@ -140,11 +150,13 @@
                                             {{-- Nacionalidad / Acudiente --}}
                                             <div class="row">
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Nacionalidad</span>
                                                     <input type="text" name="nacionalidad" class="validate"
                                                         value="{{ $estudiante->nacionalidad }}" required>
                                                     <label class="active">Nacionalidad</label>
                                                 </div>
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Acudiente</span>
                                                     <input type="text" name="acudiente" class="validate"
                                                         value="{{ $estudiante->acudiente }}" required>
                                                     <label class="active">Acudiente</label>
@@ -154,11 +166,13 @@
                                             {{-- EPS / Sisbén --}}
                                             <div class="row">
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Eps</span>
                                                     <input type="text" name="eps" class="validate"
                                                         value="{{ $estudiante->eps }}" required>
                                                     <label class="active">EPS</label>
                                                 </div>
                                                 <div class="input-field col s6">
+                                                    <span class="helper-text">Sisben 0 si no poseé</span>
                                                     <input type="text" name="sisben" class="validate"
                                                         value="{{ $estudiante->sisben }}" required>
                                                     <label class="active">Sisbén</label>
