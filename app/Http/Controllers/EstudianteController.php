@@ -128,7 +128,10 @@ class EstudianteController extends Controller
 
     public function edit($id)
     {
-        $cursos = Curso::all(); // obtienes todos los cursos
+        $cursos = \App\Models\Curso::where('fk_colegio', auth()->user()->fk_colegio)
+            ->orderBy('numero_curso')
+            ->get(['id_curso', 'numero_curso', 'nombre_curso']);
+
         $estudiante = Estudiante::with('usuario')->findOrFail($id);
         return view('admin_crud.admin_crud_estudiantes.admin_edit_estudiante', compact('estudiante', 'cursos'));
     }
@@ -144,12 +147,13 @@ class EstudianteController extends Controller
             'direccion' => 'required|string|max:150',
             'edad' => 'required|integer',
             'grado' => 'required|string|max:50',
-            'fk_curso' => 'required|integer',
+            'fk_curso' => 'required|integer|exists:cursos,id_curso',
             'nivel_educativo' => 'required|string|max:30',
             'nacionalidad' => 'required|string|max:50',
             'acudiente' => 'required|string|max:100',
             'eps' => 'required|string|max:100',
             'sisben' => 'required|string|max:50',
+            'numero_curso' => 'nullable|string',
         ]);
 
         $estudiante = Estudiante::with('usuario')->findOrFail($id);
@@ -162,17 +166,18 @@ class EstudianteController extends Controller
         $usuario->correo = $request->correo;
         $usuario->save();
 
-        // resolver curso por número si llega
-        $cursoId = $estudiante->fk_curso;
-        if ($request->filled('numero_curso')) {
-            $numero = trim((string) $request->numero_curso);
-            if (str_contains($numero, '.')) {
-                $numero = strstr($numero, '.', true);
+        // 2) Resuelve el curso: usa el <select> fk_curso
+        $cursoId = (int) $request->fk_curso;
+
+        // (Opcional) Si quisieras aceptar numero_curso como alternativa:
+        if (!$cursoId && $request->filled('numero_curso')) {
+            $num = trim((string) $request->numero_curso);
+            if (str_contains($num, '.')) {
+                $num = strstr($num, '.', true);
             }
-            $curso = \App\Models\Curso::where('numero_curso', $numero)->first();
-            if ($curso) {
-                $cursoId = $curso->id_curso;
-            }
+            $cursoId = \App\Models\Curso::where('fk_colegio', auth()->user()->fk_colegio)
+                ->where('numero_curso', $num)
+                ->value('id_curso') ?? $estudiante->fk_curso;
         }
 
         // estudiante

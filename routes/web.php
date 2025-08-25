@@ -17,6 +17,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\CalificacionController;
 
 
 // Páginas públicas
@@ -245,3 +246,14 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+
+
+        /* ----------------- Ruta Boton de Calificaciones -------------  */
+    Route::middleware(['auth'])->group(function () {
+
+        Route::get('/admin_calificaciones', [CalificacionController::class, 'index'])->name('lista_cursos');
+
+
+
+
+        });

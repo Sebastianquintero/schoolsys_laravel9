@@ -102,6 +102,13 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <input type="email" id="correo" name="correo_personal"
+                                                    placeholder="Correo personal" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s6">
                                                 <label class="active">Tipo de documento</label>
                                                 <select name="tipo_documento" class="form-control" required>
                                                     <option value="">-- Selecciona --</option>
@@ -294,11 +301,7 @@
         </div>
     </div>
 
-    <!--Import jQuery before materialize.js-->
-    <script src="js/main.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/custom.js"></script>
+@include('admin_crud.partials.footer')
 </body>
 
 </html>

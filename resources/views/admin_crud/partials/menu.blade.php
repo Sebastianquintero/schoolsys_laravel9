@@ -48,8 +48,7 @@
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Calificaciones</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
-                    <!-- <li><a href="{{ url('admin/estudiantes') }}">Todos los Usuarios</a></li> -->
-                    
+                    <li><a href="{{ route('lista_cursos') }}">Calificar</a></li>
                 </ul>
             </div>
         </li>
