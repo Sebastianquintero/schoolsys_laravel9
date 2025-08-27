@@ -90,11 +90,13 @@ return new class extends Migration {
             $table->unsignedBigInteger('fk_curso');
             $table->unsignedBigInteger('fk_usuario');
             $table->date('fecha_asistencia');
-            $table->boolean('estado');
+            $table->enum('estado', ['asistio','falto','tarde','justificado'])->nullable();
             $table->timestamps();
 
             $table->foreign('fk_curso')->references('id_curso')->on('cursos');
             $table->foreign('fk_usuario')->references('id_usuario')->on('usuarios');
+
+            $table->unique(['fk_curso', 'fk_usuario', 'fecha_asistencia'], 'asist_unique');
         });
 
         Schema::create('actividades', function (Blueprint $table) {

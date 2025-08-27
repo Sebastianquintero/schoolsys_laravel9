@@ -19,6 +19,7 @@
                 <ul>
                     <li><a href="{{ route('admin_user_all') }}">Estudiantes</a></li>
                     <li><a href="{{ route('estudiantes.create') }}">Agregar Estudiantes</a></li>
+                    <li><a href="{{ route('admin.asistencias.tomar') }}">Tomar asistencia</a></li>
                 </ul>
             </div>
         </li>
@@ -59,35 +60,21 @@
                 <ul>
                     <li><a href="{{ route('admin') }}">Menú Principal</a></li>
                     <li><a href="#">Boletin de estudiante</a></li>
-                    <li><a href="#">Observador estudiantil</a></li>
+                    <li><a href="{{ route('admin.observador.index') }}">Observador estudiantil</a></li>
                     
                 </ul>
             </div>
         </li>
-
-        
-
-        <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap"></i>Actividades</a>
-            <div class="collapsible-body left-sub-menu">
-                <ul>
-                    <li><a href="{{ route('admin_ver_actividades') }}">Ver actividades</a></li>
-                    <li><a href="{{ route('admin_add_actividades') }}">Crear nuevas actividades</a></li>
-                </ul>
-            </div>
-        </li>
-        
 
         <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o"></i>Consultas</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <li><a href="#">Todas las Consultas</a></li>
-                    <li><a href="#">Consulta de Cursos</a></li>
+                    <li><a href="{{ route('crud_ver_curso') }}">Consulta de Cursos</a></li>
                     <li><a href="#">Consulta de Admisión</a></li>
-                    <li><a href="#">Consulta de Observaciones</a></li>
-                    <li><a href="#">Consulta de Eventos</a></li>
-                    <li><a href="#">Consulta Común</a></li>
+                    <li><a href="{{ route('admin.observador.index') }}">Consulta de Observaciones</a></li>
+                    
                 </ul>
             </div>
         </li>

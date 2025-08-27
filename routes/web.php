@@ -18,6 +18,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\CalificacionController;
+use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\ObservadorController;
 
 
 // Páginas públicas
@@ -112,17 +114,28 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
     Route::get('/gestion_cursos/editar/{id}', [AdminController::class, 'editarCurso'])->name('editar_curso');
     Route::get('/gestion_cursos/eliminar/{id}', [AdminController::class, 'eliminarCurso'])->name('eliminar_curso');
 */
-    // Rutas para el módulo de gestión de actividades
-    Route::get('/admin_ver_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_ver_actividades'))->name('admin_ver_actividades');
-    Route::get('/admin_add_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_add_actividades'))->name('admin_add_actividades');
-    Route::get('/admin_editar_actividades', fn() => view('admin_crud.admin_crud_actividades.admin_editar_actividades'))->name('admin_editar_actividades');
-    
+
     // Rutas para el módulo de gestión de anuncios
     Route::get('/anuncios', [AnuncioController::class,'index'])->name('admin.anuncios');
     Route::post('/anuncios', [AnuncioController::class,'store'])->name('admin.anuncios.store');
     Route::post('/anuncios/{id}', [AnuncioController::class,'update'])->name('admin.anuncios.update');
     Route::delete('/anuncios/{id}', [AnuncioController::class,'destroy'])->name('admin.anuncios.destroy');
     Route::post('/anuncios/{id}/toggle', [AnuncioController::class,'toggle'])->name('admin.anuncios.toggle');
+
+
+    // Rutas para el módulo de gestión de asistencias
+    Route::get('/tomar', [AsistenciaController::class, 'tomar'])->name('admin.asistencias.tomar');
+    Route::get('/cargar', [AsistenciaController::class,'cargar'])->name('admin.asistencias.cargar');
+    Route::post('/guardar', [AsistenciaController::class, 'guardar'])->name('admin.asistencias.guardar');
+
+    // Ruta de observador estudiantil 
+        Route::get('/observador', [ObservadorController::class,'index'])->name('admin.observador.index');
+        Route::get('/observador/crear', [ObservadorController::class,'create'])->name('admin.observador.create');
+        Route::post('/observador/guardar', [ObservadorController::class,'store'])->name('admin.observador.store');
+        Route::get('/observador/{id}', [ObservadorController::class,'show'])->name('admin.observador.show');
+        Route::get('/observador/{id}/pdf',[ObservadorController::class,'pdf'])->name('admin.observador.pdf');
+        Route::delete('/observador/{id}', [ObservadorController::class,'destroy'])->name('admin.observador.destroy');
+
 
 });
 
@@ -136,12 +149,19 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
     Route::get('/perfil', [EstudianteController::class, 'perfil'])->name('perfil');
     Route::get('/info', [EstudianteController::class, 'info'])->name('info_personal');
     Route::post('/info', [EstudianteController::class, 'updateInfo'])->name('estudiante.updateInfo');
-
+    // Rutas para las vistas de estudiante
     Route::get('/actividades', fn() => view('estudiante.actividades.actividades'))->name('actividades');
     Route::get('/cursos', fn() => view('estudiante.cursos.cursos'))->name('cursos');
     Route::get('/estudiante_profesor', [EstudianteController::class, 'profesores'])->name('estudiante_profesor');
     Route::get('/encuesta', fn() => view('estudiante.encuestas.encuesta'))->name('encuesta');
     Route::get('/calificaciones', fn() => view('estudiante.calificaciones.calificaciones'))->name('calificaciones');
+
+    // Ruta asistencia estudiante
+    Route::get('/asistencias', [AsistenciaController::class, 'misAsistencias'])->name('est.asistencias');
+
+    // Ruta observador estudiantil - ver sus observadores
+    Route::get('/', [ObservadorController::class,'misRegistros'])->name('index');
+    Route::get('/{id}/pdf', [ObservadorController::class,'pdf'])->name('pdf');
 
 
 });
