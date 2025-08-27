@@ -109,7 +109,7 @@ class EstudianteController extends Controller
             'fk_colegio' => auth()->user()->fk_colegio,
         ]);
 
-        return redirect()->back()->with('success', 'Estudiante registrado correctamente.');
+        return redirect()->route('admin_user_all')->with('success', 'Estudiante registrado correctamente.');
     }
 
     public function index()
