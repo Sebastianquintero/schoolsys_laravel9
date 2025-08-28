@@ -22,6 +22,7 @@ use App\Http\Controllers\CalificacionController;
 use App\Http\Controllers\CursoDocenteMateriaController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ObservadorController;
+use App\Http\Controllers\EstudianteNotasController;
 
 
 // Páginas públicas
@@ -157,14 +158,16 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
     Route::get('/estudiante_profesor', [EstudianteController::class, 'profesores'])->name('estudiante_profesor');
     Route::get('/encuesta', fn() => view('estudiante.encuestas.encuesta'))->name('encuesta');
     Route::get('/calificaciones', fn() => view('estudiante.calificaciones.calificaciones'))->name('calificaciones');
-
+    // Ruta para ver sus calificaciones
+    Route::get('/estudiante/calificaciones', [EstudianteNotasController::class, 'misCalificaciones'])->name('estudiante.calificaciones');
     // Ruta asistencia estudiante
     Route::get('/asistencias', [AsistenciaController::class, 'misAsistencias'])->name('est.asistencias');
 
     // Ruta observador estudiantil - ver sus observadores
     Route::get('/', [ObservadorController::class,'misRegistros'])->name('index');
     Route::get('/{id}/pdf', [ObservadorController::class,'pdf'])->name('pdf');
-
+    
+    
 
 });
 
@@ -219,7 +222,7 @@ Route::post('/importar-estudiantes', [EstudianteImportController::class, 'import
 Route::get('/exportar-estudiantes', function () {
     return Excel::download(new EstudiantesExport, 'estudiantes.xlsx');
 })->middleware('auth')->name('exportar.estudiantes');
-
+// importar docentes desde CSV
 Route::get('/importar-docentes', [DocenteImportController::class, 'show'])->name('importar.docentes.form');
 Route::post('/importar-docentes', [DocenteImportController::class, 'import'])->name('importar.docentes');
 

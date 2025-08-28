@@ -43,7 +43,7 @@
                                     <li><a href="{{ route('cursos') }}">Cursos</a></li>
                                     <li><a href="{{ route('estudiante_profesor') }}">Profesores</a></li>
                                     <li><a href="{{ route('encuesta') }}">Encuestas</a></li>
-                                    <li><a href="{{ route('calificaciones') }}">Calificaciones</a></li>
+                                    <li><a href="{{ route('estudiante.calificaciones') }}">Calificaciones</a></li>
                                     <li><a href="{{ route('est.asistencias') }}">Asistencias</a></li>
                                     
                                 </ul>
