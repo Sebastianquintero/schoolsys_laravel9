@@ -35,20 +35,22 @@
                 <div class="sb2-2-2">
                     <ul>
                         <li><a href="{{ route('admin') }}"><i class="fa fa-home" aria-hidden="true"></i>Inicio</a></li>
-                        <li class="active-bre"><a href="#">Cursos asignados</a></li>
-                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"
+                        <li><a href="{{ route('calificaciones.cursos') }}">Cursos asignados</a></li>
+                        <li class="active-bre"><a href="#">Estudiantes -
+                                {{ $curso->nombre ?? $curso->nombre_curso }}</a></li>
+                        <li class="page-back"><a href="{{ route('calificaciones.cursos') }}"><i class="fa fa-backward"
                                     aria-hidden="true"></i>Atrás</a></li>
                     </ul>
                 </div>
 
-                <!--== Cursos asignados ==-->
+                <!--== Estudiantes del Curso ==-->
                 <div class="sb2-2-3">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-inn-sp">
                                 <div class="inn-title">
-                                    <h4>Cursos asignados a {{ Auth::user()->nombres }}</h4>
-                                    <p>Selecciona un curso para calificar a los estudiantes.</p>
+                                    <h4>Estudiantes del curso: {{ $curso->numero_curso }}</h4>
+                                    <p>Selecciona un estudiante para asignar calificaciones.</p>
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive">
@@ -56,31 +58,43 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Nombre del curso</th>
-                                                    <th>Número</th>
+                                                    <th>Nombre del Estudiante</th>
+                                                    <th>Apellidos</th>
+                                                    <th>Documento</th>
                                                     <th>Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($cursos as $index => $curso)
+                                                @forelse ($estudiantes as $index => $estudiante)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
-                                                        <td>{{ $curso->nombre_curso }}</td>
-                                                        <td>{{ $curso->numero_curso }}</td>
+                                                        <td>{{ $estudiante->usuario?->nombres ?? 'Sin nombre' }}</td>
+                                                        <td>{{ $estudiante->usuario?->apellidos ?? 'Sin apellidos' }}</td>
+                                                        <td>{{ $estudiante->usuario?->numero_documento ?? 'Sin documento' }}
+                                                        </td>
                                                         <td>
-                                                            <a href="{{ route('calificaciones.estudiantes', $curso->id_curso) }}"
-                                                                class="btn btn-primary btn-sm">
-                                                                <i class="fa fa-pencil"></i> Calificar
+<a href="{{ route('calificaciones.crear', [$curso->id_curso, $estudiante->id_estudiante]) }}" class="btn btn-success btn-sm">
+    <i class="fa fa-plus"></i> Calificar
+</a>
+                                                            <a href="###" class="btn btn-info btn-sm">
+                                                                <i class="fa fa-eye"></i> Ver Notas
                                                             </a>
                                                         </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="4" class="text-center">
-                                                            No tienes cursos asignados.
+                                                        <td colspan="5" class="text-center">
+                                                            <div class="alert alert-warning">
+                                                                <strong>No hay estudiantes registrados en este
+                                                                    curso.</strong>
+                                                                <br>
+                                                                <small>Contacta al administrador para agregar
+                                                                    estudiantes.</small>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 @endforelse
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -89,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <!--== /Cursos asignados ==-->
+                <!--== /Estudiantes del Curso ==-->
             </div>
         </div>
     </div>

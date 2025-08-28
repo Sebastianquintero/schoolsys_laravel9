@@ -48,7 +48,9 @@
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users"></i>Calificaciones</a>
             <div class="collapsible-body left-sub-menu">
                 <ul>
-                    <li><a href="{{ route('lista_cursos') }}">Calificar</a></li>
+                    <li><a href="{{ route('calificaciones.cursos') }}">Calificar</a></li>
+                    <li><a href="{{ route('curso_docente_materia.create') }}">Asignacion de Cursos</a></li>
+                    
                 </ul>
             </div>
         </li>

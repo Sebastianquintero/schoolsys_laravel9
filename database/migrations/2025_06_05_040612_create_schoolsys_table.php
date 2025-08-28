@@ -50,8 +50,13 @@ return new class extends Migration {
             $table->string('nombre', 100);
             $table->text('descripcion');
             $table->enum('estado', ['Activo', 'Inactivo'])->default('Activo');
+            $table->unsignedBigInteger('fk_docente')->nullable();
+            $table->foreign('fk_docente')->references('id_usuario')->on('usuarios')->onDelete('cascade');
+
             $table->timestamps();
         });
+
+        
 
         Schema::create('cursos', function (Blueprint $table) {
             $table->id('id_curso');

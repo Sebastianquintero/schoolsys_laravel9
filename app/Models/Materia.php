@@ -42,5 +42,17 @@ class Materia extends Model
         )->withTimestamps();
     }
 
+    // Una materia pertenece a un docente
+    public function docente(): BelongsTo
+    {
+        return $this->belongsTo(Usuario::class, 'fk_docente', 'id_usuario');
+    }
+
+    // Una materia puede estar en varios cursos
+    public function cursosAsociados(): BelongsToMany
+    {
+        return $this->belongsToMany(Curso::class, 'curso_materias', 'fk_materia', 'fk_curso');
+    }
+
 
 }

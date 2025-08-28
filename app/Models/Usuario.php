@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Materia;
+
 
 
 class Usuario extends Authenticatable
@@ -25,7 +28,7 @@ class Usuario extends Authenticatable
         'correo',
         'fk_rol',
         'fk_colegio',
-        'foto_path', 
+        'foto_path',
     ];
 
     protected $hidden = ['contrasena'];
@@ -60,6 +63,11 @@ class Usuario extends Authenticatable
             return Storage::url($this->foto_path);
         }
         return asset('images/placeholder.jpg'); // imagen por defecto
+    }
+
+    public function materiasDictadas(): HasMany
+    {
+        return $this->hasMany(Materia::class, 'fk_docente', 'id_usuario');
     }
 
 }

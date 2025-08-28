@@ -18,6 +18,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\CalificacionController;
+use App\Http\Controllers\CursoDocenteMateriaController;
 
 
 // Páginas públicas
@@ -251,9 +252,32 @@ Route::middleware(['auth'])->group(function () {
         /* ----------------- Ruta Boton de Calificaciones -------------  */
     Route::middleware(['auth'])->group(function () {
 
-        Route::get('/admin_calificaciones', [CalificacionController::class, 'index'])->name('lista_cursos');
+        Route::get('/admin_calificaciones', [CalificacionController::class, 'cursosAsignados'])->name('lista_cursos');
+        Route::get('/calificaciones/cursos', [CalificacionController::class, 'cursosAsignados'])
+    ->name('calificaciones.cursos');
 
 
 
 
         });
+
+
+/* ----------------- Rutas Asignar Curso Materia Docente -------------  */
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/curso-docente-materia/create', [CursoDocenteMateriaController::class, 'create'])->name('curso_docente_materia.create');
+    Route::post('/curso-docente-materia/store', [CursoDocenteMateriaController::class, 'store'])->name('curso_docente_materia.store');
+});
+
+/* ----------------- Ruta Para Mostrar los estudiantes del curso en CALIFICACIONES -------------  */
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/calificaciones/cursos/{curso}', [CalificacionController::class, 'mostrarEstudiantes'])->name('calificaciones.estudiantes');
+
+    Route::get('/calificaciones/crear/{curso}/{estudiante}', [CalificacionController::class, 'crearCalificacion'])
+    ->name('calificaciones.crear');
+    
+    Route::post('/calificaciones/guardar', [CalificacionController::class, 'guardarCalificacion'])
+        ->name('calificaciones.guardar');
+});

@@ -53,4 +53,9 @@ class Curso extends Model
         );
     }
 
+    public function materiasAsociadas(): BelongsToMany
+    {
+        return $this->belongsToMany(Materia::class, 'curso_materias', 'fk_curso', 'fk_materia');
+    }
+
 }
