@@ -49,8 +49,8 @@ class Curso extends Model
         return $this->hasMany(
             Estudiante::class,
             'fk_curso',
-            'id_curso'
-        );
+            'id_curso')
+            ->with(['usuario:id_usuario,nombres,apellidos']);
     }
 
     public function materiasAsociadas(): BelongsToMany
