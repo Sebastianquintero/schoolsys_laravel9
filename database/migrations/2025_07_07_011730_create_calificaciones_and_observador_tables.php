@@ -67,7 +67,7 @@ return new class extends Migration {
             $t->index(['fk_colegio', 'anio_escolar']);
             $t->index(['fk_estudiante', 'fecha']);
         });
-
+        // Tabla pivote curso-docente-materia
         Schema::create('curso_docente_materia', function (Blueprint $table) {
             $table->id('id_asignacion');
 

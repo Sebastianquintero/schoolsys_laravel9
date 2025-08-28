@@ -14,9 +14,16 @@ class Calificacion extends Model
 {
     protected $table = 'calificacion';
     protected $fillable = [
-        'fk_estudiante', 'fk_materia', 'fk_usuario', 'fk_curso',
-        'periodo', 'fk_colegio', 'jornada', 'descripcion_nota',
-        'nota', 'observacion'
+        'fk_estudiante',
+        'fk_materia',
+        'fk_usuario',
+        'fk_curso',
+        'periodo',
+        'fk_colegio',
+        'jornada',
+        'descripcion_nota',
+        'nota',
+        'observacion'
     ];
 
     // Relaciones
@@ -38,5 +45,10 @@ class Calificacion extends Model
     public function curso()
     {
         return $this->belongsTo(Curso::class, 'fk_curso');
+    }
+
+    public function docenteAsignado()
+    {
+        return $this->belongsTo(Usuario::class, 'fk_docente_asignado');
     }
 }

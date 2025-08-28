@@ -61,6 +61,7 @@
             <div class="collapsible-body left-sub-menu">
                 <ul>
                     <li><a href="{{ route('admin') }}">Menú Principal</a></li>
+                    <li><a href="#">Consulta de Matriculas</a></li>
                     <li><a href="#">Boletin de estudiante</a></li>
                     <li><a href="{{ route('admin.observador.index') }}">Observador estudiantil</a></li>
                     
@@ -74,7 +75,7 @@
                 <ul>
                     <li><a href="#">Todas las Consultas</a></li>
                     <li><a href="{{ route('crud_ver_curso') }}">Consulta de Cursos</a></li>
-                    <li><a href="#">Consulta de Admisión</a></li>
+                    <li><a href="#">Consulta de Matriculas</a></li>
                     <li><a href="{{ route('admin.observador.index') }}">Consulta de Observaciones</a></li>
                     
                 </ul>

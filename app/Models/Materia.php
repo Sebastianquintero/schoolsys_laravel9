@@ -43,13 +43,13 @@ class Materia extends Model
     }
 
     // Una materia pertenece a un docente
-    public function docente(): BelongsTo
+    public function docente(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Usuario::class, 'fk_docente', 'id_usuario');
     }
 
     // Una materia puede estar en varios cursos
-    public function cursosAsociados(): BelongsToMany
+    public function cursosAsociados(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Curso::class, 'curso_materias', 'fk_materia', 'fk_curso');
     }

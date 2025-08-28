@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstudianteController;
@@ -273,11 +274,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin_calificaciones', [CalificacionController::class, 'cursosAsignados'])->name('lista_cursos');
-        Route::get('/calificaciones/cursos', [CalificacionController::class, 'cursosAsignados'])
-    ->name('calificaciones.cursos');
-
-
-
+        Route::get('/calificaciones/cursos', [CalificacionController::class, 'cursosAsignados'])->name('calificaciones.cursos');
+        Route::get('/obtener-docente', [CalificacionController::class, 'obtenerDocenteAsignado'])->name('obtener.docente');
+        Route::get('/notas/{id}', [NotasController::class, 'verNotas'])->name('notas.ver');
+        Route::get('/notas/{estudiante}/pdf', [NotasController::class, 'verNotasPDF'])->name('notas.pdf');
 
         });
 
@@ -288,6 +288,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/curso-docente-materia/create', [CursoDocenteMateriaController::class, 'create'])->name('curso_docente_materia.create');
     Route::post('/curso-docente-materia/store', [CursoDocenteMateriaController::class, 'store'])->name('curso_docente_materia.store');
+    Route::delete('/curso-docente-materia/{id_asignacion}', [CursoDocenteMateriaController::class, 'destroy'])->name('curso_docente_materia.destroy');
+
 });
 
 /* ----------------- Ruta Para Mostrar los estudiantes del curso en CALIFICACIONES -------------  */

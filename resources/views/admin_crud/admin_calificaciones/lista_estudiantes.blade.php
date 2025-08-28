@@ -73,10 +73,12 @@
                                                         <td>{{ $estudiante->usuario?->numero_documento ?? 'Sin documento' }}
                                                         </td>
                                                         <td>
-<a href="{{ route('calificaciones.crear', [$curso->id_curso, $estudiante->id_estudiante]) }}" class="btn btn-success btn-sm">
-    <i class="fa fa-plus"></i> Calificar
-</a>
-                                                            <a href="###" class="btn btn-info btn-sm">
+                                                            <a href="{{ route('calificaciones.crear', [$curso->id_curso, $estudiante->id_estudiante]) }}"
+                                                                class="btn btn-success btn-sm">
+                                                                <i class="fa fa-plus"></i> Calificar
+                                                            </a>
+                                                            <a href="{{ route('notas.ver', $estudiante->id_estudiante) }}"
+                                                                class="btn btn-info btn-sm">
                                                                 <i class="fa fa-eye"></i> Ver Notas
                                                             </a>
                                                         </td>

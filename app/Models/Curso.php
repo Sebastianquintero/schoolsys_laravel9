@@ -53,7 +53,7 @@ class Curso extends Model
             ->with(['usuario:id_usuario,nombres,apellidos']);
     }
 
-    public function materiasAsociadas(): BelongsToMany
+    public function materiasAsociadas(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Materia::class, 'curso_materias', 'fk_curso', 'fk_materia');
     }
