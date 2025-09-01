@@ -37,6 +37,9 @@
                     <ul>
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li class="active-bre"><a href="#"> Listado de Cursos</a></li>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atras</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -77,7 +80,8 @@
                                                         <td>{{ $curso->numero_curso }}</td>
                                                         <td>
                                                             <span
-                                                                class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
+                                                                class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}"
+                                                                style="background-color: #219230ff; color: #fff; font-size: 14px;">
                                                                 {{ $curso->estado }}
                                                             </span>
                                                         </td>

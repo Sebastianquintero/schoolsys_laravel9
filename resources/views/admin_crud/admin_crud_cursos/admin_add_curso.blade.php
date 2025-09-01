@@ -30,7 +30,7 @@
                     <ul>
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home"></i> Home</a></li>
                         <li class="active-bre"><a href="#">Agregar nuevo curso</a></li>
-                        <li class="page-back"><a href="{{ route('welcome') }}"><i class="fa fa-backward"></i> Back</a></li>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"></i> Atras</a></li>
                     </ul>
                 </div>
 

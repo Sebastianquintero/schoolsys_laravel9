@@ -38,6 +38,9 @@
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li><a href="{{ route('crud_ver_curso') }}"><i class="fa fa-book"></i> Cursos</a></li>
                         <li class="active-bre"><a href="#">Materias del Curso</a></li>
+                        <li class="page-back"><a href="{{ route('crud_ver_curso') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atras</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -54,9 +57,7 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Materias del Curso: {{ $curso->nombre_curso }} ({{ $curso->numero_curso }})</h4>
-                                    <a href="{{ route('crud_ver_curso') }}" class="btn btn-secondary pull-right">
-                                        <i class="fa fa-arrow-left"></i> Volver a Cursos
-                                    </a>
+                                    
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive table-desi">

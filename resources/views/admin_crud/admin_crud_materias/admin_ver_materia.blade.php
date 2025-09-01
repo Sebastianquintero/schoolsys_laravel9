@@ -37,6 +37,9 @@
                     <ul>
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li class="active-bre"><a href="#"> Usuarios(Estudiantes)</a></li>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atras</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -53,7 +56,7 @@
                             <div class="box-inn-sp">
                                 <div class="inn-title">
                                     <h4>Detalles de Materias</h4>
-                                    <a href="{{ route('admin_add_materia') }}" class="btn btn-success pull-right">
+                                    <a href="{{ route('admin_add_materia') }}" class="btn btn-success pull-right" style="color: black;">
                                         <i class="fa fa-plus"></i>Agregar Nueva Materia
                                     </a>
                                 </div>
@@ -76,18 +79,19 @@
                                                     <td>{{ $materia->nombre }}</td>
                                                     <td>{{ $materia->descripcion }}</td>
                                                     <td>
-                                                        <span class="badge {{ $materia->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}">
+                                                        <span class="badge {{ $materia->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}"
+                                                        style="background-color: #219230ff; color: #fff; font-size: 14px;">
                                                             {{ $materia->estado }}
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin_edit_materia', $materia ->id_materia) }}" class="btn btn-sm btn-primary">
+                                                        <a href="{{ route('admin_edit_materia', $materia ->id_materia) }}" class="btn btn-sm btn-primary" style="color: black;">
                                                             <i class="fa fa-edit"></i> Editar
                                                         </a>
                                                         <form action="{{ route('materias.destroy', $materia->id_materia) }}" method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta materia?')">
+                                                            <button type="submit" class="btn btn-sm btn-danger" style="color: black;" onclick="return confirm('¿Estás seguro de eliminar esta materia?')">
                                                                 <i class="fa fa-trash"></i> Eliminar
                                                             </button>
                                                         </form>

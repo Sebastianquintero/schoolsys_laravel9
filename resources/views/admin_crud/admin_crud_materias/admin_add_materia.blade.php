@@ -40,7 +40,7 @@
                         </li>
                         <li class="active-bre"><a href="#"> Agregar nueva materia</a>
                         </li>
-                        <li class="page-back"><a href="{{ route('welcome') }}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward" aria-hidden="true"></i> Atras</a>
                         </li>
                     </ul>
                 </div>

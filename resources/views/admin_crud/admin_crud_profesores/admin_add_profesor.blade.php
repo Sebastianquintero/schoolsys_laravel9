@@ -38,6 +38,9 @@
                     <ul>    
                         <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li class="active-bre"><a href="#"> Agregar Profesor</a></li>
+                        <li class="page-back"><a href="{{ route('admin_crud_profesor') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atras</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -58,21 +61,25 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Nombres:</span>
                                                 <input type="text" name="nombres" placeholder="Nombres" required>
                                                 <label>Nombre</label>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Apellidos:</span>
                                                 <input type="text" name="apellidos" placeholder="Apellidos" required>
                                                 <label>Apellido</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Tipo de documento:</span>
                                                 <input type="text" name="tipo_documento" placeholder="Tipo documento"
                                                     required>
                                                 <label>tipo de documento</label>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Numero de documento:</span>
                                                 <input type="text" name="numero_documento"
                                                     placeholder="Numero documento" required>
                                                 <label>numero de documento</label>
@@ -81,10 +88,12 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Cargo:</span>
                                                 <input type="text" name="cargo" placeholder="Cargo / Puesto" required>
                                                 <label>Cargo / Puesto</label>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Tipo de contrato:</span>
                                                 <input type="text" name="tipo_contrato" placeholder="Tipo de contrato"
                                                     required>
                                                 <label>Tipo de Contrato</label>
@@ -93,22 +102,24 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <span class="helper-text">Fecha inicio contrato</span>
+                                                <span class="helper-text">Fecha inicio contrato:</span>
                                                 <input type="date" name="fecha_inicio" required>
                                             </div>
                                             <div class="input-field col s6">
-                                                <span class="helper-text">Fecha fin contrato</span>
+                                                <span class="helper-text">Fecha fin contrato:</span>
                                                 <input type="date" name="fecha_fin" required>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Duracion del contrato:</span>
                                                 <input type="text" name="duracion" placeholder="Duración del contrato"
                                                     required>
                                                 <label>Duración</label>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Numero de telefono:</span>
                                                 <input type="text" name="numero_telefono" placeholder="Teléfono">
                                                 <label>Teléfono</label>
                                             </div>
@@ -116,11 +127,13 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Correo institucional:</span>
                                                 <input type="email" name="correo" placeholder="Correo institucional"
                                                     required>
                                                 <label>Correo Institucional</label>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Correo personal:</span>
                                                 <input type="email" name="correo_personal"
                                                     placeholder="Correo personal">
                                                 <label>Correo Personal</label>

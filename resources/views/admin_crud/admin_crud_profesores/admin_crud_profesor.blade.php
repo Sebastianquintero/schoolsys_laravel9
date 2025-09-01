@@ -40,6 +40,8 @@
                         </li>
                         <li class="active-bre"><a href="#">Profesores</a>
                         </li>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atrás</a></li>
                     </ul>
                 </div>
 

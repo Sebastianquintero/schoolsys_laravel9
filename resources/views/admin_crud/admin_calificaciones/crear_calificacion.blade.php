@@ -4,64 +4,7 @@
 <head>
     @include('admin_crud.partials.head')
 
-    <!-- CSS mínimo para mejorar el formulario -->
-    <style>
-        /* Solo estilos esenciales */
-        .box-inn-sp {
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
-        }
-
-        .inn-title {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            color: white;
-            border-radius: 8px 8px 0 0;
-            margin: -20px -20px 20px -20px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .inn-title h4 {
-            color: white;
-            margin: 0;
-        }
-
-        .inn-title p {
-            color: rgba(255, 255, 255, 0.9);
-            margin: 5px 0 0 0;
-        }
-
-        .col-form-label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-control {
-            border: 1px solid #28a745;
-            border-radius: 6px;
-        }
-
-        .form-control:focus {
-            border-color: #20c997;
-            box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
-        }
-
-        .form-control[readonly] {
-            background-color: #f8f9fa;
-            border-color: #dee2e6;
-        }
-
-        .btn-success {
-            border-radius: 20px;
-            padding: 10px 25px;
-        }
-
-        .btn-secondary {
-            border-radius: 20px;
-            padding: 10px 25px;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -97,7 +40,8 @@
                         <li class="active-bre"><a href="{{ route('calificaciones.cursos') }}">Cursos asignados</a></li>
                         <li class="active-bre"><a href="#">Estudiantes</a></li>
                         <li class="active-bre"><a href="#">Calificar Estudiante</a></li>
-                        <li class="page-back"><a href="#"><i class="fa fa-backward" aria-hidden="true"></i>Atrás</a>
+                        <li class="page-back"><a href="{{ route('admin') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atrás</a></li>
                         </li>
                     </ul>
                 </div>
@@ -141,7 +85,7 @@
                                                     <label class="col-form-label">
                                                         <i class="fa fa-user text-success"></i> Nombre del Estudiante
                                                     </label>
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" style="font-size: 14px;"
                                                         value="{{ $estudiante->usuario?->nombres ?? 'Sin nombre' }} {{ $estudiante->usuario?->apellidos ?? 'Sin apellidos' }}"
                                                         readonly>
                                                 </div>
@@ -151,7 +95,7 @@
                                                     <label class="col-form-label">
                                                         <i class="fa fa-users text-info"></i> Curso
                                                     </label>
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" style="font-size: 14px;"
                                                         value="{{ $curso->numero_curso ?? $curso->numero_curso }}"
                                                         readonly>
                                                 </div>
@@ -173,7 +117,7 @@
                                                 <!-- Campo para mostrar docente asignado -->
                                                 <div class="form-group">
                                                     <label><i class="fa fa-user"></i> Docente asignado</label>
-                                                    <input type="text" id="docenteAsignado" class="form-control"
+                                                    <input type="text" id="docenteAsignado" class="form-control" style="font-size: 14px;"
                                                         readonly>
                                                 </div>
 
@@ -204,7 +148,7 @@
                                                     <label class="col-form-label">
                                                         <i class="fa fa-university text-success"></i> Colegio *
                                                     </label>
-                                                    <input type="text" name="colegio" class="form-control"
+                                                    <input type="text" name="colegio" class="form-control" style="font-size: 14px;"
                                                         value="{{ old('colegio', auth()->user()->colegio->nombre ?? 'Colegio no asignado') }}"
                                                         readonly required>
                                                 </div>
@@ -227,7 +171,7 @@
                                                         <i class="fa fa-edit text-secondary"></i> Descripción de la Nota
                                                         *
                                                     </label>
-                                                    <input type="text" name="descripcion_nota" class="form-control"
+                                                    <input type="text" name="descripcion_nota" class="form-control" style="font-size: 14px;"
                                                         placeholder="Ej: Examen parcial, Quiz, Tarea, etc."
                                                         value="{{ old('descripcion_nota') }}" required>
                                                 </div>
@@ -237,7 +181,7 @@
                                                     <label class="col-form-label">
                                                         <i class="fa fa-star text-warning"></i> Nota (0.0 - 5.0) *
                                                     </label>
-                                                    <input type="number" name="nota" class="form-control" min="0"
+                                                    <input type="number" name="nota" class="form-control" min="0" style="font-size: 14px;"
                                                         max="5" step="0.1" placeholder="Ej: 4.5"
                                                         value="{{ old('nota') }}" required>
                                                     <small class="form-text text-muted">Ingrese la nota en escala de 0.0

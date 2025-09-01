@@ -55,8 +55,7 @@
                             <div class="box-inn-sp admin-form">
                                 <div class="inn-title">
                                     <h4>Agregar un nuevo estudiante</h4>
-                                    <p>Here you can edit your website basic details URL, Phone, Email, Address, User and
-                                        password and more</p>
+                                    <p>agrega nuevo estudiante</p>
                                 </div>
                                 <div class="tab-inn">
                                     <form action="{{ route('guardar_estudiante') }}" method="POST"
@@ -65,10 +64,12 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Nombres:</span>
                                                 <input type="text" id="nombres" name="nombres" placeholder="Nombres"
                                                     required>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Apellidos:</span>
                                                 <input type="text" id="apellidos" name="apellidos"
                                                     placeholder="Apellidos" required>
                                             </div>
@@ -76,6 +77,7 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Correo institucional:</span>
                                                 <input type="email" id="correo" name="correo"
                                                     placeholder="Correo institucional" readonly required>
                                             </div>
@@ -102,6 +104,7 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Correo personal:</span>
                                                 <input type="email" id="correo" name="correo_personal"
                                                     placeholder="Correo personal" required>
                                             </div>
@@ -109,6 +112,7 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Tipo de documento:</span>
                                                 <label class="active">Tipo de documento</label>
                                                 <select name="tipo_documento" class="form-control" required>
                                                     <option value="">-- Selecciona --</option>
@@ -119,6 +123,7 @@
                                                 </select>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Numero de documento:</span>
                                                 <input type="text" name="numero_documento"
                                                     placeholder="Número de documento" required>
                                             </div>
@@ -131,6 +136,7 @@
                                                     required>
                                             </div>
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Edad:</span>
                                                 <input type="text" id="edad" name="edad" placeholder="Edad" readonly
                                                     required>
                                             </div>
@@ -157,6 +163,7 @@
                                         </script>
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Numero de telefono:</span>
                                                 <input type="text" name="numero_telefono"
                                                     placeholder="Número de teléfono" required>
                                             </div>
@@ -165,7 +172,7 @@
                                         <div class="row">
 
                                             <div class="input-field col s6">
-                                                <span class="helper-text">Tipo de vía</span>
+                                                <span class="helper-text">Tipo de vía:</span>
                                                 <label class="active">Tipo de vía</label>
                                                 <select name="tipo_via" required class="form-control">
                                                     <option value="">-- Selecciona --</option>
@@ -179,6 +186,7 @@
 
                                         <div class="row">
                                             <div class="input-field col s12">
+                                                <span class="helper-text">Dirección:</span>
                                                 <input type="text" name="direccion" placeholder="Dirección" required>
                                             </div>
                                         </div>
@@ -186,12 +194,14 @@
 
                                         <div class="row">
                                             <div class="input-field col s12">
+                                                <span class="helper-text">Grado:</span>
                                                 <input type="text" name="grado" placeholder="Grado" required>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Curso: (recomendado)</span>
                                                 <label class="active">Curso (seleccionar)</label>
                                                 <select name="fk_curso" class="form-control">
                                                     <option value="">-- Selecciona curso --</option>
@@ -205,6 +215,7 @@
                                             </div>
 
                                             <div class="input-field col s6">
+                                                <span class="helper-text">Si no encuentra el curso: (Opcional)</span>
                                                 <label class="active">o Número de curso</label>
                                                 <input type="text" name="numero_curso" placeholder="Ej. 402"
                                                     value="{{ old('numero_curso') }}">
@@ -215,7 +226,7 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <span class="helper-text">Nivel educativo</span>
+                                                <span class="helper-text">Nivel educativo:</span>
                                                 <label class="active">Nivel educativo</label>
                                                 <select name="nivel_educativo" required class="form-control">
                                                     <option value="">-- Selecciona --</option>
@@ -228,7 +239,7 @@
 
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <span class="helper-text">Nacionalidad</span>
+                                                <span class="helper-text">Nacionalidad:</span>
                                                 <label class="active">Nacionalidad</label>
                                                 <select id="nacionalidad" name="nacionalidad" required
                                                     class="form-control">
@@ -257,18 +268,21 @@
 
                                         <div class="row">
                                             <div class="input-field col s12">
+                                                <span class="helper-text">Acudiente:</span>
                                                 <input type="text" name="acudiente" placeholder="Acudiente" required>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s12">
+                                                <span class="helper-text">Eps:</span>
                                                 <input type="text" name="eps" placeholder="EPS" required>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="input-field col s12">
+                                                <span class="helper-text">Sisben:</span>
                                                 <input type="text" name="sisben" placeholder="SISBEN" required>
                                             </div>
                                         </div>

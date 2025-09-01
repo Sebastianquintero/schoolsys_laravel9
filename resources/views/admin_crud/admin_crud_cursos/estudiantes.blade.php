@@ -37,6 +37,9 @@
                     <ul>
                         <li><a href="{{ route('welcome') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                         <li class="active-bre"><a href="#"> Listado de estudiantes</a></li>
+                        <li class="page-back"><a href="{{ route('crud_ver_curso') }}"><i class="fa fa-backward"
+                                    aria-hidden="true"></i>Atras</a>
+                        </li>
                     </ul>
                 </div>
 
