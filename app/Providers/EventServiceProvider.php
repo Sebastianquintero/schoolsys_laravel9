@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Spatie\Activitylog\Models\Activity;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,12 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Activity::saving(function (Activity $activity) {
+            if (auth()->check()) {
+                $activity->causer()->associate(auth()->user()); // usuario que actúa
+                $activity->ip_address = request()->ip();         // puedes agregar columna custom si quieres
+            }
+        });
     }
+
 }

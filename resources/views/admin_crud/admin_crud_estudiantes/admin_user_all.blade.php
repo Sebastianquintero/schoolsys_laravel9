@@ -148,6 +148,4 @@
 
     @include('admin_crud.partials.footer')
 </body>
-
-
 </html>

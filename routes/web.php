@@ -23,6 +23,8 @@ use App\Http\Controllers\CursoDocenteMateriaController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ObservadorController;
 use App\Http\Controllers\EstudianteNotasController;
+use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\MatriculaController;
 
 
 // Páginas públicas
@@ -119,26 +121,35 @@ Route::middleware(['auth', 'rol:1'])->prefix('admin')->group(function () {
 */
 
     // Rutas para el módulo de gestión de anuncios
-    Route::get('/anuncios', [AnuncioController::class,'index'])->name('admin.anuncios');
-    Route::post('/anuncios', [AnuncioController::class,'store'])->name('admin.anuncios.store');
-    Route::post('/anuncios/{id}', [AnuncioController::class,'update'])->name('admin.anuncios.update');
-    Route::delete('/anuncios/{id}', [AnuncioController::class,'destroy'])->name('admin.anuncios.destroy');
-    Route::post('/anuncios/{id}/toggle', [AnuncioController::class,'toggle'])->name('admin.anuncios.toggle');
+    Route::get('/anuncios', [AnuncioController::class, 'index'])->name('admin.anuncios');
+    Route::post('/anuncios', [AnuncioController::class, 'store'])->name('admin.anuncios.store');
+    Route::post('/anuncios/{id}', [AnuncioController::class, 'update'])->name('admin.anuncios.update');
+    Route::delete('/anuncios/{id}', [AnuncioController::class, 'destroy'])->name('admin.anuncios.destroy');
+    Route::post('/anuncios/{id}/toggle', [AnuncioController::class, 'toggle'])->name('admin.anuncios.toggle');
 
 
     // Rutas para el módulo de gestión de asistencias
     Route::get('/tomar', [AsistenciaController::class, 'tomar'])->name('admin.asistencias.tomar');
-    Route::get('/cargar', [AsistenciaController::class,'cargar'])->name('admin.asistencias.cargar');
+    Route::get('/cargar', [AsistenciaController::class, 'cargar'])->name('admin.asistencias.cargar');
     Route::post('/guardar', [AsistenciaController::class, 'guardar'])->name('admin.asistencias.guardar');
 
     // Ruta de observador estudiantil 
-        Route::get('/observador', [ObservadorController::class,'index'])->name('admin.observador.index');
-        Route::get('/observador/crear', [ObservadorController::class,'create'])->name('admin.observador.create');
-        Route::post('/observador/guardar', [ObservadorController::class,'store'])->name('admin.observador.store');
-        Route::get('/observador/{id}', [ObservadorController::class,'show'])->name('admin.observador.show');
-        Route::get('/observador/{id}/pdf',[ObservadorController::class,'pdf'])->name('admin.observador.pdf');
-        Route::delete('/observador/{id}', [ObservadorController::class,'destroy'])->name('admin.observador.destroy');
+    Route::get('/observador', [ObservadorController::class, 'index'])->name('admin.observador.index');
+    Route::get('/observador/crear', [ObservadorController::class, 'create'])->name('admin.observador.create');
+    Route::post('/observador/guardar', [ObservadorController::class, 'store'])->name('admin.observador.store');
+    Route::get('/observador/{id}', [ObservadorController::class, 'show'])->name('admin.observador.show');
+    Route::get('/observador/{id}/pdf', [ObservadorController::class, 'pdf'])->name('admin.observador.pdf');
+    Route::delete('/observador/{id}', [ObservadorController::class, 'destroy'])->name('admin.observador.destroy');
 
+    // Rutas para el módulo de matriculas
+    Route::get ('/matriculas',          [MatriculaController::class,'index'])->name('admin.matriculas.index');
+    Route::patch('/matriculas/{id}',     [MatriculaController::class,'update'])->name('admin.matriculas.update');
+    Route::post('/matriculas/rebuild',   [MatriculaController::class,'rebuild'])->name('admin.matriculas.rebuild');
+
+    // Rutas para el módulo de promoción de estudiantes
+    Route::get('/promover', [PromocionController::class, 'index'])->name('admin.promover.index');               // seleccionar curso / año
+    Route::get('/promover/cargar', [PromocionController::class, 'cargar'])->name('admin.promover.cargar');     // lista de alumnos
+    Route::post('/promover/guardar', [PromocionController::class, 'guardar'])->name('admin.promover.guardar'); // aplicar resultados
 
 });
 
@@ -164,10 +175,12 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
     Route::get('/asistencias', [AsistenciaController::class, 'misAsistencias'])->name('est.asistencias');
 
     // Ruta observador estudiantil - ver sus observadores
-    Route::get('/', [ObservadorController::class,'misRegistros'])->name('index');
-    Route::get('/{id}/pdf', [ObservadorController::class,'pdf'])->name('pdf');
-    
-    
+    Route::get('/', [ObservadorController::class, 'misRegistros'])->name('index');
+    Route::get('/{id}/pdf', [ObservadorController::class, 'pdf'])->name('pdf');
+
+    // Ruta para ver sus matriculas
+    Route::get('/estudiante/matriculas', [MatriculaController::class,'misMatriculas'])->name('estudiante.matriculas');
+
 
 });
 
@@ -186,13 +199,13 @@ Route::middleware(['auth', 'rol:1,2,3'])
         Route::post('/enviar', [MensajeController::class, 'enviar'])->name('enviar');
 
         // Acciones de papelera
-    Route::delete('/{id}',[MensajeController::class,'destroy'])->whereNumber('id')->name('destroy'); // mover a papelera
-    Route::post('/{id}/restore',[MensajeController::class,'restore'])->whereNumber('id')->name('restore'); // restaurar
-    Route::delete('/{id}/force',[MensajeController::class,'forceDelete'])->whereNumber('id')->name('force'); // eliminar definitivo
-        
+        Route::delete('/{id}', [MensajeController::class, 'destroy'])->whereNumber('id')->name('destroy'); // mover a papelera
+        Route::post('/{id}/restore', [MensajeController::class, 'restore'])->whereNumber('id')->name('restore'); // restaurar
+        Route::delete('/{id}/force', [MensajeController::class, 'forceDelete'])->whereNumber('id')->name('force'); // eliminar definitivo
+    
         Route::get('/{id}', [MensajeController::class, 'ver'])
             ->whereNumber('id')->name('ver');
-});
+    });
 
 // =====================================================================================================
 // COLOCAR FOTOS DE USUARIOS
@@ -202,7 +215,7 @@ Route::post('/perfil/avatar', [UsuarioController::class, 'updateOwnAvatar'])
 
 // (Opcional) Para que un admin actualice la foto de otro usuario
 Route::post('/usuarios/{usuario}/avatar', [UsuarioController::class, 'updateAvatar'])
-    ->middleware(['auth','rol:1'])->name('usuario.avatar.update');
+    ->middleware(['auth', 'rol:1'])->name('usuario.avatar.update');
 
 
 
@@ -233,7 +246,7 @@ Route::get('/exportar-docentes', function () {
 
 
 
-/*--------------------- Rutas de Cursos -------------------------- */ 
+/*--------------------- Rutas de Cursos -------------------------- */
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin_add_curso', [CursoController::class, 'create'])->name('admin_add_curso');
@@ -251,10 +264,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cursos/{id}/estudiantes', [CursoController::class, 'verEstudiantes'])->name('cursos.estudiantes');
 });
 
-    /*--------------------- Rutas de Materias -------------------------- */ 
+/*--------------------- Rutas de Materias -------------------------- */
 
 
-    Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin_add_materia', [MateriaController::class, 'create'])->name('admin_add_materia');
     Route::post('/materias', [MateriaController::class, 'store'])->name('materias.store');
     Route::get('/admin_ver_materia', [MateriaController::class, 'index'])->name('admin_ver_materia');
@@ -273,16 +286,16 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-        /* ----------------- Ruta Boton de Calificaciones -------------  */
-    Route::middleware(['auth'])->group(function () {
+/* ----------------- Ruta Boton de Calificaciones -------------  */
+Route::middleware(['auth'])->group(function () {
 
-        Route::get('/admin_calificaciones', [CalificacionController::class, 'cursosAsignados'])->name('lista_cursos');
-        Route::get('/calificaciones/cursos', [CalificacionController::class, 'cursosAsignados'])->name('calificaciones.cursos');
-        Route::get('/obtener-docente', [CalificacionController::class, 'obtenerDocenteAsignado'])->name('obtener.docente');
-        Route::get('/notas/{id}', [NotasController::class, 'verNotas'])->name('notas.ver');
-        Route::get('/notas/{estudiante}/pdf', [NotasController::class, 'verNotasPDF'])->name('notas.pdf');
+    Route::get('/admin_calificaciones', [CalificacionController::class, 'cursosAsignados'])->name('lista_cursos');
+    Route::get('/calificaciones/cursos', [CalificacionController::class, 'cursosAsignados'])->name('calificaciones.cursos');
+    Route::get('/obtener-docente', [CalificacionController::class, 'obtenerDocenteAsignado'])->name('obtener.docente');
+    Route::get('/notas/{id}', [NotasController::class, 'verNotas'])->name('notas.ver');
+    Route::get('/notas/{estudiante}/pdf', [NotasController::class, 'verNotasPDF'])->name('notas.pdf');
 
-        });
+});
 
 
 /* ----------------- Rutas Asignar Curso Materia Docente -------------  */
@@ -301,8 +314,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/calificaciones/cursos/{curso}', [CalificacionController::class, 'mostrarEstudiantes'])->name('calificaciones.estudiantes');
 
     Route::get('/calificaciones/crear/{curso}/{estudiante}', [CalificacionController::class, 'crearCalificacion'])
-    ->name('calificaciones.crear');
-    
+        ->name('calificaciones.crear');
+
     Route::post('/calificaciones/guardar', [CalificacionController::class, 'guardarCalificacion'])
         ->name('calificaciones.guardar');
 });

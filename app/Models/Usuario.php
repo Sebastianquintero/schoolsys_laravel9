@@ -8,11 +8,32 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Materia;
+use App\Models\Traits\HasActivityLog;
 
 
 
 class Usuario extends Authenticatable
 {
+
+    use HasActivityLog;
+
+    protected $logName = 'usuarios';
+
+    // <<--- PARA v4
+    protected array $activityLogAttributes = [
+        'nombres',
+        'apellidos',
+        'tipo_documento',
+        'numero_documento',
+        'fecha_nacimiento',
+        'numero_telefono',
+        'correo',
+        'fk_rol',
+        'fk_colegio',
+        'foto_path',
+    ];
+
+
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
     public $timestamps = false;

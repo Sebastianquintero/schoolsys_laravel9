@@ -4,9 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\HasActivityLog;
 
 class Estudiante extends Model
-{
+{   
+    use HasActivityLog;
+
+    // Opcional: nombre de canal en el log
+    protected $logName = 'estudiantes';
+
+    // Campos que quieres auditar
+    protected array $activityLogAttributes = [
+        'fk_usuario',
+        'fk_curso',
+        'direccion',
+        'edad',
+        'grado',
+        'nivel_educativo',
+        'telefono',
+        'correo_personal',
+        'fk_colegio',
+    ];
+
+
     protected $table = 'estudiantes';
     protected $primaryKey = 'id_estudiante';
     public $incrementing = true; // id_estudiante es autoincremental
@@ -27,6 +47,10 @@ class Estudiante extends Model
         'fk_usuario',
         'fk_colegio'
     ];
+
+    
+
+
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'fk_usuario', 'id_usuario');
@@ -40,4 +64,10 @@ class Estudiante extends Model
     {
         return $this->belongsTo(Curso::class, 'fk_curso', 'id_curso');
     }
+    public function matriculas() 
+    { 
+        return $this->hasMany(Matricula::class, 'fk_estudiante', 'id_estudiante'); 
+    }
+
+
 }
