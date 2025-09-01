@@ -29,7 +29,7 @@ class CursoController extends Controller
     {
         $request->validate([
             'nombre_curso' => 'required|string|max:255',
-            'numero_curso' => 'required|string|max:255',
+            'numero_curso' => 'required|string|max:10',
             'descripcion' => 'nullable|string',
             'estado' => 'required|in:Activo,Inactivo',
             'materias' => 'required|array'

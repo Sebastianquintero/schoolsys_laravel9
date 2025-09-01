@@ -20,7 +20,7 @@ class DocentesImport implements ToCollection, WithHeadingRow
 
     public function collection(Collection $rows)
     {
-
+        return activity()->withoutLogs(function () use ($rows) {
         foreach ($rows as $row) {
             if (empty($row['nombres']) || empty($row['correo'])) {
                 $this->omitidos++;
@@ -79,6 +79,7 @@ class DocentesImport implements ToCollection, WithHeadingRow
 
             $this->importados++;
         }
+        });
 
     }
     public function getImportados(): int

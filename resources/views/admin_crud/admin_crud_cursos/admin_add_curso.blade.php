@@ -69,60 +69,87 @@
                                                 <div class="bor">
                                                     <form method="POST" action="{{ route('cursos.store') }}">
                                                         @csrf
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <input id="nombre_curso" name="nombre_curso" type="text" class="validate" value="{{ old('nombre_curso') }}" required>
-                                                                <label for="nombre_curso">Nombre del curso</label>
-                                                            </div>
-                                                            <div class="input-field col s12">
-                                                                <input id="numero_curso" name="numero_curso" type="text" class="validate" value="{{ old('numero_curso') }}" required>
-                                                                <label for="numero_curso">Número de curso</label>
-                                                            </div>
+
+                                                        <div>
+                                                            <label>Nombre del curso</label><br>
+                                                            <input type="text" name="nombre_curso" value="{{ old('nombre_curso') }}" placeholder="un nombre como 5° 3° o parecido" required>
                                                         </div>
 
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <textarea id="descripcion" name="descripcion" class="materialize-textarea">{{ old('descripcion') }}</textarea>
-                                                                <label for="descripcion">Descripción del curso:</label>
-                                                            </div>
+                                                        <div>
+                                                            <label>Número del curso</label><br>
+                                                            <input type="text" name="numero_curso" value="{{ old('numero_curso') }}" placeholder="Ejemplo: 302, 1102, 504" required>
                                                         </div>
 
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <select id="estado" name="estado" required>
-                                                                    <option value="" disabled selected>Seleccionar estado</option>
-                                                                    <option value="Activo" {{ old('estado') == 'Activo' ? 'selected' : '' }}>Activo</option>
-                                                                    <option value="Desactivado" {{ old('estado') == 'Desactivado' ? 'selected' : '' }}>Desactivado</option>
-                                                                </select>
-                                                            </div>
+                                                        <div>
+                                                            <label>Descripción</label><br>
+                                                            <textarea name="descripcion" placeholder="Descripción del curso">{{ old('descripcion') }}</textarea>
                                                         </div>
 
-                                                        {{-- 🔹 Nueva sección para asignar materias --}}
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <br><br>
-                                                            @foreach ($materias as $materia)
-                                                                <div>
-                                                                    <input type="checkbox" 
-                                                                        name="materias[]" 
-                                                                        id="materia_{{ $materia->id_materia }}" 
-                                                                        value="{{ $materia->id_materia }}"
-                                                                        {{ in_array($materia->id_materia, old('materias', [])) ? 'checked' : '' }}>
-                                                                    <label for="materia_{{ $materia->id_materia }}">{{ $materia->nombre }}</label>
-                                                                </div>
-                                                            @endforeach
-                                                            </div>
+                                                        <div>
+                                                            <label>Estado</label><br>
+                                                            <select name="estado" required>
+                                                                <option value="Activo" {{ old('estado')=='Activo' ? 'selected' : '' }}>Activo</option>
+                                                                <option value="Inactivo" {{ old('estado')=='Inactivo' ? 'selected' : '' }}>Inactivo</option>
+                                                            </select>
                                                         </div>
-                                                        {{-- 🔹 Fin sección materias --}}
 
-                                                        <div class="row">
-                                                            <div class="input-field col s12">
-                                                                <button type="submit" class="waves-effect waves-light btn-large">
-                                                                    Enviar
-                                                                </button>
+                                                        <hr>
+
+                                                        <h4>Materias</h4>
+                                                            <button type="button" id="toggle-all">Seleccionar todas</button>
+
+                                                            <div id="materias-wrapper" style="margin-top:10px;">
+                                                                @foreach ($materias as $materia)
+                                                                    <div>
+                                                                        <input type="checkbox"
+                                                                            name="materias[]"
+                                                                            id="materia_{{ $materia->id_materia }}"
+                                                                            value="{{ $materia->id_materia }}"
+                                                                            {{ in_array($materia->id_materia, old('materias', [])) ? 'checked' : '' }}>
+                                                                        <label for="materia_{{ $materia->id_materia }}">{{ $materia->nombre }}</label>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
-                                                        </div>
+
+                                                            <div style="margin-top: 15px;">
+                                                                <button type="submit">Guardar</button>
+                                                            </div>
                                                     </form>
+
+                                                    <script>
+                                                        (function () {
+                                                            const wrapper = document.getElementById('materias-wrapper');
+                                                            const btn = document.getElementById('toggle-all');
+                                                            const boxes = () => wrapper.querySelectorAll('input[name="materias[]"]');
+
+                                                            function allChecked() {
+                                                                const list = boxes();
+                                                                return list.length > 0 && Array.from(list).every(cb => cb.checked);
+                                                            }
+
+                                                            function setAll(val) {
+                                                                boxes().forEach(cb => cb.checked = val);
+                                                                btn.textContent = val ? 'Quitar todas' : 'Seleccionar todas';
+                                                            }
+
+                                                            // estado inicial del botón (por si vienen old() marcadas)
+                                                            btn.textContent = allChecked() ? 'Quitar todas' : 'Seleccionar todas';
+
+                                                            // toggle al hacer clic
+                                                            btn.addEventListener('click', function () {
+                                                                setAll(!allChecked());
+                                                            });
+
+                                                            // si el usuario marca/desmarca manualmente, actualizar texto del botón
+                                                            wrapper.addEventListener('change', function (e) {
+                                                                if (e.target.matches('input[name="materias[]"]')) {
+                                                                    btn.textContent = allChecked() ? 'Quitar todas' : 'Seleccionar todas';
+                                                                }
+                                                            });
+                                                        })();
+                                                        </script>
+
+
                                                 </div>
                                             </div>
                                         </div>

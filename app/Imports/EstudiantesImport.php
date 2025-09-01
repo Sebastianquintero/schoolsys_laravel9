@@ -22,6 +22,7 @@ class EstudiantesImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
+        return activity()->withoutLogs(function () use ($row) {
         // Ignorar fila vacía o inválida
         if (empty($row['nombres']) || empty($row['correo'])) {
             $this->omitidos++;
@@ -135,6 +136,7 @@ class EstudiantesImport implements ToModel, WithHeadingRow
         Log::info("Fila importada correctamente", ['total_importados' => $this->importados]);
 
         return null;
+        });
     }
 
     public function getImportados(): int

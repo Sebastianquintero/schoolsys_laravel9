@@ -52,7 +52,7 @@ trait HasActivityLog
      */
     public function getDescriptionForEvent(string $eventName): string
     {
-        return $this->getLogNameToUse().' '.$eventName;
+        return $this->getLogNameToUse() . ' ' . $eventName;
     }
 
     /**
@@ -67,8 +67,9 @@ trait HasActivityLog
 
             $props = $activity->properties ?? collect();
             $extra = [
-                'ip'  => request()->ip(),
+                'ip' => request()->ip(),
                 'url' => request()->fullUrl(),
+                'agent' => request()->userAgent(),
             ];
 
             $activity->properties = $props->merge(['extra' => $extra]);
