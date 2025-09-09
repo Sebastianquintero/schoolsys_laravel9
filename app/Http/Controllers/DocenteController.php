@@ -9,6 +9,8 @@ use App\Models\Usuario;
 use App\Exports\DocentesExport;
 use App\Imports\DocentesImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class DocenteController extends Controller
 {
@@ -40,49 +42,84 @@ class DocenteController extends Controller
         $request->validate([
             'nombres' => 'required|string|max:100',
             'apellidos' => 'required|string|max:100',
-            'tipo_documento' => 'required|string|max:50',
+
+            // enums controlados
+            'tipo_documento' => 'required|string|in:CC,Pasaporte,PPT,PEP',
             'numero_documento' => 'required|string|max:50|unique:usuarios,numero_documento',
+
             'fecha_nacimiento' => 'required|date',
-            'correo' => 'required|email|unique:usuarios,correo',
+
+            // correo institucional lo podemos autogenerar, pero si llega lo validamos
+            'correo' => 'nullable|email|unique:usuarios,correo',
             'correo_personal' => 'required|email',
+
             'numero_telefono' => 'required|string|max:20',
             'cargo' => 'required|string|max:100',
-            'tipo_contrato' => 'required|string',
-            'duracion' => 'required|string',
+
+            'tipo_contrato' => 'required|string|in:Contrato indefinido,Contrato definido,Contrato prestación de servicios,Contrato obra y labor,Contrato por horas',
+
+            // fechas y duración: la duración se calculará, no se pide al usuario
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
-            'foto' => 'nullable|image|max:2048',
 
+            'foto' => 'nullable|image|max:2048',
         ]);
 
-        // Crear usuario
+        // 1) Calcular duración (años/meses/días) y validar que no sea 0 negativo
+        $inicio = Carbon::parse($request->fecha_inicio)->startOfDay();
+        $fin = Carbon::parse($request->fecha_fin)->startOfDay();
+
+        // diferencia total en días
+        $dias = $inicio->diffInDays($fin);
+        if ($dias <= 0) {
+            return back()->withErrors(['duracion' => 'La duración del contrato debe ser mayor a 0 días.'])->withInput();
+        }
+
+        // Formato humano años/meses/días
+        $interval = $inicio->diff($fin);
+        $duracionHumana = sprintf('%d años, %d meses, %d días', $interval->y, $interval->m, $interval->d);
+
+        // 2) Generar correo institucional si no viene
+        $correoInst = $request->correo;
+        if (empty($correoInst)) {
+            $correoInst = $this->generarCorreoInstitucional(
+                $request->nombres,
+                $request->apellidos,
+                config('app.domain_mail', 'school.edu.co') // edita si tienes un dominio real
+            );
+        }
+
+        // 3) Crear usuario (rol docente = 2)
         $usuario = Usuario::create([
             'nombres' => $request->nombres,
             'apellidos' => $request->apellidos,
             'tipo_documento' => $request->tipo_documento,
             'numero_documento' => $request->numero_documento,
             'fecha_nacimiento' => $request->fecha_nacimiento,
-            'correo' => $request->correo,
+            'correo' => $correoInst,
             'numero_telefono' => $request->numero_telefono,
             'fk_rol' => 2,
             'fk_colegio' => auth()->user()->fk_colegio,
-            'contrasena' => bcrypt('12345678'), // Contraseña por defecto
+            'contrasena' => bcrypt('12345678'),
         ]);
 
-        // Guardar foto si existe
+        // 4) Foto
         $nombreFoto = null;
         if ($request->hasFile('foto')) {
-            $nombreFoto = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('images/docentes'), $nombreFoto);
+            $nombreFoto = time() . '.' . $request->file('foto')->extension();
+            $request->file('foto')->move(public_path('images/docentes'), $nombreFoto);
+
+            // Guardar la ruta en usuarios.foto_path
+            $usuario->foto_path = 'images/docentes/' . $nombreFoto;
+            $usuario->save();
         }
 
-        // Crear docente
+        // 5) Docente (sin 'foto')
         Docente::create([
             'fk_usuario' => $usuario->id_usuario,
-            'foto' => $nombreFoto,
             'cargo' => $request->cargo,
             'tipo_contrato' => $request->tipo_contrato,
-            'duracion' => $request->duracion,
+            'duracion' => $duracionHumana,
             'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
             'correo_personal' => $request->correo_personal,
@@ -90,6 +127,41 @@ class DocenteController extends Controller
 
         return redirect()->route('admin_crud_profesor')->with('success', 'Profesor creado correctamente');
     }
+
+    /**
+     * Genera email institucional con 2 letras del nombre + 2 del apellido + dominio.
+     * Si existe, agrega sufijo incremental -1, -2, ...
+     */
+    protected function generarCorreoInstitucional(string $nombres, string $apellidos, string $dominio): string
+    {
+        // primer nombre / primer apellido
+        $nom = Str::of($nombres)->trim()->lower()->explode(' ')->first();
+        $ape = Str::of($apellidos)->trim()->lower()->explode(' ')->first();
+
+        // limpiar acentos y no-alfanum
+        $nom = Str::ascii($nom);
+        $ape = Str::ascii($ape);
+
+        $pref = substr($nom, 0, 2) . substr($ape, 0, 2); // dos y dos
+        $pref = preg_replace('/[^a-z0-9]/', '', $pref);  // seguridad
+
+        if ($pref === '') {
+            $pref = 'us'; // fallback
+        }
+
+        $base = $pref . '@' . $dominio;
+        $correo = $base;
+
+        // resolver colisiones
+        $i = 1;
+        while (Usuario::where('correo', $correo)->exists()) {
+            $correo = $pref . '-' . $i . '@' . $dominio;
+            $i++;
+        }
+
+        return $correo;
+    }
+
     public function update(Request $request, $id)
     {
         // Validar datos
@@ -158,6 +230,6 @@ class DocenteController extends Controller
         return redirect()->back()->with('success', 'Todos los docentes han sido eliminados.');
     }
 
-    
+
 
 }
