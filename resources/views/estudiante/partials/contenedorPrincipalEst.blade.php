@@ -3,7 +3,7 @@
         <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
             <a href="#" class="btn-close-menu"><i class="fa fa-times"></i></a>
             <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu"></i></a>
-            <a href="{{ url('dashboard_estudiante') }}">
+            <a href="{{ url('welcome') }}">
                 <h1 class="m0">ScholSys</h1>
             </a>
         </div>
@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-2 tab-hide">
             <div class="top-not-cen">
-                <a class='waves-effect btn-noti' href="{{ url('dashboard_estudiante') }}"><i
+                <a class='waves-effect btn-noti' href="{{ route('dashboard_estudiante') }}"><i
                         class="fa fa-commenting-o"></i><span>1</span></a>
                 <a class='waves-effect btn-noti' href="{{ route('mensajes.bandeja') }}"><i
                         class="fa fa-envelope-o"></i><span>1</span></a>

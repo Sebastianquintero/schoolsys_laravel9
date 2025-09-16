@@ -16,25 +16,25 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Servicios</h4>
-                    <a class="btn btn-link" href="feature.html">Educativo</a>
-                    <a class="btn btn-link" href="feature2.html">Academico</a>
-                    <a class="btn btn-link" href="feature3.html">Electoral</a>
+                    <a class="btn btn-link" href="{{ route('feature2') }}">Educativo</a>
+                    <a class="btn btn-link" href="{{ route('feature') }}">Academico</a>
+                    <a class="btn btn-link" href="{{ route('feature3') }}">Electoral</a>
                     
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Links</h4>
-                    <a class="btn btn-link" href="about.html">Información</a>
-                    <a class="btn btn-link" href="contact.html">Contactanos</a>
-                    <a class="btn btn-link" href="feature.html">Nuestros servicios</a>
-                    <a class="btn btn-link" href="">Terminos & Condiciones</a>
-                    <a class="btn btn-link" href="contact.html">Soporte</a>
+                    <a class="btn btn-link" href="{{ route('about') }}">Información</a>
+                    <a class="btn btn-link" href="{{ route('contact') }}">Contactanos</a>
+                    <a class="btn btn-link" href="{{ route('feature') }}">Nuestros servicios</a>
+                    <a class="btn btn-link" href="#">Terminos & Condiciones</a>
+                    <a class="btn btn-link" href="{{ route('contact') }}">Soporte</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">noticias</h4>
+                    <h4 class="text-white mb-4">Noticias</h4>
                     <p>Enterese de las ultimas actualizaciones</p>
                     <div class="position-relative w-100">
-                        <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">enviar</button>
+                        <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Enviar</button>
                     </div>
                 </div>
             </div>

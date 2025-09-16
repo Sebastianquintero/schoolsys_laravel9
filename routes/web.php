@@ -168,9 +168,9 @@ Route::middleware(['auth', 'rol:1,3'])->prefix('estudiante')->group(function () 
     Route::get('/cursos', fn() => view('estudiante.cursos.cursos'))->name('cursos');
     Route::get('/estudiante_profesor', [EstudianteController::class, 'profesores'])->name('estudiante_profesor');
     Route::get('/encuesta', fn() => view('estudiante.encuestas.encuesta'))->name('encuesta');
-    Route::get('/calificaciones', fn() => view('estudiante.calificaciones.calificaciones'))->name('calificaciones');
+    //Route::get('/calificaciones', fn() => view('estudiante.calificaciones.calificaciones'))->name('calificaciones');
     // Ruta para ver sus calificaciones
-    Route::get('/estudiante/calificaciones', [EstudianteNotasController::class, 'misCalificaciones'])->name('estudiante.calificaciones');
+    Route::get('/calificaciones', [EstudianteNotasController::class, 'misCalificaciones'])->name('estudiante.calificaciones');
     // Ruta asistencia estudiante
     Route::get('/asistencias', [AsistenciaController::class, 'misAsistencias'])->name('est.asistencias');
 
