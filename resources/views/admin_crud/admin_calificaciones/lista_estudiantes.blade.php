@@ -48,9 +48,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box-inn-sp">
-                                <div class="inn-title">
-                                    <h4>Estudiantes del curso: {{ $curso->numero_curso }}</h4>
-                                    <p>Selecciona un estudiante para asignar calificaciones.</p>
+                                <div class="inn-title d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h4>Estudiantes del curso: {{ $curso->numero_curso }}</h4>
+                                        <p>Selecciona un estudiante para asignar calificaciones.</p>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('notas.curso.pdf', $curso->id_curso) }}" class="btn btn-primary">
+                                            <i class="fa fa-file-pdf-o"></i> Notas todo el curso
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="tab-inn">
                                     <div class="table-responsive">

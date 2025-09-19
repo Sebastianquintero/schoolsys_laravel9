@@ -110,7 +110,7 @@
                                                 <div class="input-field col s6">
                                                     <span class="helper-text">Direccion</span>
                                                     <input type="text" name="direccion" class="validate"
-                                                        value="{{ $estudiante->direccion }}" required>
+                                                        value="{{ $estudiante->tipo_via . ' ' . $estudiante->direccion }}" required>
                                                     <label class="active">Dirección</label>
                                                 </div>
                                                 <div class="input-field col s3">
@@ -132,7 +132,7 @@
                                                 <div class="input-field col s6">
                                                     <span class="helper-text">Curso</span>
                                                     <label class="active">Curso</label>
-                                                    <select name="fk_curso" id="fk_curso" required>
+                                                    <select name="fk_curso" id="fk_curso" class="browser-default select-estado" required>
                                                         <option value="" disabled>Seleccione un curso</option>
                                                         @foreach($cursos as $curso)
                                                             <option value="{{ $curso->id_curso }}" 
@@ -175,7 +175,7 @@
                                                     <label class="active">EPS</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <span class="helper-text">Sisben 0 si no poseé</span>
+                                                    <span class="helper-text">Sisben (0 si no poseé)</span>
                                                     <input type="text" name="sisben" class="validate"
                                                         value="{{ $estudiante->sisben }}" required>
                                                     <label class="active">Sisbén</label>

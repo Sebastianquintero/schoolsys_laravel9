@@ -112,17 +112,27 @@ class EstudianteController extends Controller
         return redirect()->route('admin_user_all')->with('success', 'Estudiante registrado correctamente.');
     }
 
-    public function index()
-    {
-        $estudiantes = Estudiante::with('usuario')->paginate(10);
-        return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
-    }
+public function index()
+{
+    $estudiantes = Estudiante::with(['usuario', 'curso'])
+        ->join('cursos', 'estudiantes.fk_curso', '=', 'cursos.id_curso')
+        ->orderBy('cursos.numero_curso', 'asc')
+        ->select('estudiantes.*') // importante para no sobreescribir columnas
+        ->paginate(10);
 
-    public function verCrudEstudiante()
-    {
-        $estudiantes = Estudiante::with('usuario')->paginate(10);
-        return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
-    }
+    return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
+}
+
+public function verCrudEstudiante()
+{
+    $estudiantes = Estudiante::with(['usuario', 'curso'])
+        ->join('cursos', 'estudiantes.fk_curso', '=', 'cursos.id_curso')
+        ->orderBy('cursos.numero_curso', 'asc')
+        ->select('estudiantes.*')
+        ->paginate(10);
+
+    return view('admin_crud.admin_crud_estudiantes.admin_user_all', compact('estudiantes'));
+}
 
     //Editar estudiante
 

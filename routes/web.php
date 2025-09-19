@@ -319,3 +319,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/calificaciones/guardar', [CalificacionController::class, 'guardarCalificacion'])
         ->name('calificaciones.guardar');
 });
+
+// PDF de todas las notas del curso (controlador)
+Route::get('/notas/curso/{curso}/pdf', [NotasController::class, 'pdfNotasCurso'])->name('notas.curso.pdf');

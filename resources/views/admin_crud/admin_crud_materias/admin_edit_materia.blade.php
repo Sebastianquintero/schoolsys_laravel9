@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <select id="estado" name="estado" required>
+                                                <select id="estado" name="estado" class="browser-default" required>
                                                     <option value="Activo" {{ old('estado', $materia->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
                                                     <option value="Inactivo" {{ old('estado', $materia->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo
                                                     </option>

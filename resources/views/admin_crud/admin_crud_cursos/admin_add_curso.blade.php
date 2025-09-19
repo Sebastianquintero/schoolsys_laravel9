@@ -72,7 +72,7 @@
 
                                                         <div>
                                                             <label>Nombre del curso</label><br>
-                                                            <input type="text" name="nombre_curso" value="{{ old('nombre_curso') }}" placeholder="un nombre como 5° 3° o parecido" required>
+                                                            <input type="text" name="nombre_curso" value="{{ old('nombre_curso') }}" placeholder="Un nombre como 5° 3° o parecido" required>
                                                         </div>
 
                                                         <div>
@@ -86,8 +86,8 @@
                                                         </div>
 
                                                         <div>
-                                                            <label>Estado</label><br>
-                                                            <select name="estado" required>
+                                                            <label for="estado">Estado</label><br>
+                                                            <select name="estado" id="estado" class="browser-default select-estado" style="width:200px;" required>
                                                                 <option value="Activo" {{ old('estado')=='Activo' ? 'selected' : '' }}>Activo</option>
                                                                 <option value="Inactivo" {{ old('estado')=='Inactivo' ? 'selected' : '' }}>Inactivo</option>
                                                             </select>
@@ -96,7 +96,7 @@
                                                         <hr>
 
                                                         <h4>Materias</h4>
-                                                            <button type="button" id="toggle-all">Seleccionar todas</button>
+                                                            <button type="button" id="toggle-all" class="btn btn-success mb-2">Seleccionar todas</button>
 
                                                             <div id="materias-wrapper" style="margin-top:10px;">
                                                                 @foreach ($materias as $materia)
@@ -112,10 +112,11 @@
                                                             </div>
 
                                                             <div style="margin-top: 15px;">
-                                                                <button type="submit">Guardar</button>
+                                                                <button type="submit" class="btn btn-warning px-4 fw-bold">Guardar</button>
                                                             </div>
                                                     </form>
 
+                                                    
                                                     <script>
                                                         (function () {
                                                             const wrapper = document.getElementById('materias-wrapper');
@@ -165,11 +166,11 @@
 
     @include('admin_crud.partials.footer')
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
 </body>
 </html>

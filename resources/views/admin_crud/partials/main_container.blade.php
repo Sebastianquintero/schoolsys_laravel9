@@ -16,12 +16,11 @@
         </div>
         <div class="col-md-2 tab-hide">
             <div class="top-not-cen">
-                <a class='waves-effect btn-noti' href="#" title="principal"><i class="fa fa-commenting-o"
-                        aria-hidden="true"></i><span></span></a>
-                <a class='waves-effect btn-noti' href="#" title="correo"><i class="fa fa-envelope-o"
-                        aria-hidden="true"></i><span></span></a>
-                <a class='waves-effect btn-noti' href="#" title=""><i class="fa fa-tag"
-                        aria-hidden="true"></i><span></span></a>
+                <a class='waves-effect btn-noti' href="{{ route('dashboard_estudiante') }}"><i
+                        class="fa fa-commenting-o"></i><span>1</span></a>
+                <a class='waves-effect btn-noti' href="{{ route('mensajes.bandeja') }}"><i
+                        class="fa fa-envelope-o"></i><span>1</span></a>
+                <a class='waves-effect btn-noti' href="#"><i class="fa fa-tag"></i></a>
             </div>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-6">

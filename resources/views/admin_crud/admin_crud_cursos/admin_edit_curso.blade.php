@@ -18,7 +18,7 @@
                     <ul>
                         <li><img src="{{ asset('images/placeholder.jpg') }}" alt=""></li>
                         @php
-                            $rol = Auth::user()->fk_rol;
+$rol = Auth::user()->fk_rol;
                         @endphp
                         <li>
                             <h5>{{ Auth::user()->nombres }}<span> Bogotá D.C.</span></h5>
@@ -86,10 +86,10 @@
 
                                         <div class="row">
                                             <div class="input-field col s12">
-<select id="estado" name="estado" required>
-    <option value="Activo" {{ old('estado', $curso->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
-    <option value="Inactivo" {{ old('estado', $curso->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
-</select>
+                                                <select id="estado" name="estado" class="browser-default select-estado" required>
+                                                    <option value="Activo" {{ old('estado', $curso->estado) == 'Activo' ? 'selected' : '' }}>Activo</option>
+                                                    <option value="Inactivo" {{ old('estado', $curso->estado) == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
+                                                </select>
                                             </div>
                                         </div>
 

@@ -79,14 +79,13 @@
                                                         <td>{{ $curso->nombre_curso }}</td>
                                                         <td>{{ $curso->numero_curso }}</td>
                                                         <td>
-                                                            <span
-                                                                class="badge {{ $curso->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}"
-                                                                style="background-color: #219230ff; color: #fff; font-size: 14px;">
+                                                            <span class="badge"
+                                                                style="background-color: {{ $curso->estado == 'Activo' ? '#219230ff' : '#dc3545' }}; color: #fff; font-size: 14px;">
                                                                 {{ $curso->estado }}
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('cursos_edit.edit',  $curso->id_curso) }}"
+                                                            <a href="{{ route('cursos_edit.edit', $curso->id_curso) }}"
                                                                 class="btn btn-sm btn-primary" style="color: black;">
                                                                 <i class="fa fa-edit"></i> Editar
                                                             </a>
@@ -94,7 +93,8 @@
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-sm btn-danger" style="color: black;"
+                                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                                    style="color: black;"
                                                                     onclick="return confirm('¿Estás seguro de eliminar este curso?')">
                                                                     <i class="fa fa-trash"></i> Eliminar
                                                                 </button>

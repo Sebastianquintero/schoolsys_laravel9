@@ -79,10 +79,10 @@
                                                     <td>{{ $materia->nombre }}</td>
                                                     <td>{{ $materia->descripcion }}</td>
                                                     <td>
-                                                        <span class="badge {{ $materia->estado == 'Activo' ? 'badge-success' : 'badge-danger' }}"
-                                                        style="background-color: #219230ff; color: #fff; font-size: 14px;">
-                                                            {{ $materia->estado }}
-                                                        </span>
+                                                            <span class="badge"
+                                                                style="background-color: {{ $materia->estado == 'Activo' ? '#219230ff' : '#dc3545' }}; color: #fff; font-size: 14px;">
+                                                                {{ $materia->estado }}
+                                                            </span>
                                                     </td>
                                                     <td>
                                                         <a href="{{ route('admin_edit_materia', $materia ->id_materia) }}" class="btn btn-sm btn-primary" style="color: black;">

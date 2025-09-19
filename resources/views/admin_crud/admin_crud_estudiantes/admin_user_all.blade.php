@@ -94,7 +94,7 @@
                                                         </td>
                                                         <td>{{ $estudiante->telefono }}</td>
                                                         <td>{{ $estudiante->usuario->correo }}</td>
-                                                        <td>{{ $estudiante->direccion ?? 'N/A' }}</td>
+                                                        <td>{{ $estudiante->tipo_via . ' ' . $estudiante->direccion ?? 'N/A' }}</td>
                                                         <td>{{ $estudiante->usuario->numero_documento }}</td>
                                                         <td>
                                                             <span class="label label-success">Activo</span>
